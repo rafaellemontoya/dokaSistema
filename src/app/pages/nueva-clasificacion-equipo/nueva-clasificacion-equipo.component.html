@@ -1,0 +1,185 @@
+<div   class="admin-elements-page">
+    <!-- Start: Content-Wrapper-->
+    <section id="content_wrapper">
+      <!-- Start: Topbar-Dropdown-->
+  
+      <!-- Start: Topbar-->
+      <header id="topbar" class="alt">
+        <div class="topbar-left">
+          <ol class="breadcrumb">
+            
+            <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="crumb-link"><a routerLink="/empleados">Empleados</a></li>
+            <li class="crumb-trail">Nuevo empleado</li>
+          </ol>
+        </div>
+        
+      </header>
+      <!-- Begin: Content-->
+      <section id="content" class="table-layout animated fadeIn">
+        <!-- begin: .tray-center-->
+        <div class="tray tray-center">
+          <div class="mw1000 center-block">
+            <!-- Begin: Content Header-->
+            <div class="content-header">
+              <h2> <b style="color:#004A8E;">Nueva clasificación de equipo</b> 
+              </h2>
+              <p class="lead">Llena el formulario para agregar el clasificación de equipo</p>
+            </div>
+            
+  
+  
+            <!-- Begin: Admin Form-->
+            <div class="admin-form">
+              <div  class="panel heading-border">
+                <!-- Panel guardado-->
+                <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
+                    
+  
+                <div class="alert alert-success alert-dismissable mb30" style="background: yellow">
+                    <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                    <h3 class="mt5">Empleado guardado exitosamente!</h3>
+                    <p>Empleado añadido con éxito.</p><br>
+                    <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-white">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo empleado</button></div>
+                  </div>
+    
+    
+                </div>
+                <!-- Panel formulario-->
+                <div [hidden]="submitted" class="panel-body bg-light">
+                  <form (ngSubmit)="nuevoEmpleado()" (keydown.enter)="$event.preventDefault()">
+                    <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
+                    <!-- .section-divider-->
+                    <!-- Basic Inputs-->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input id="tooltip1" type="text" name="tooltip1"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Nombre del cliente.</em>
+                            </b>
+                            <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+                          <!--
+                          <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                             Se necesita un nombre de empleado
+                          </div>
+                        -->
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+                    <!-- Input Icons-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="section">
+                              <label class="field prepend-icon">
+                                <input id="tooltip1" type="text" name="tooltip1"  id="nombre" required  name="nombre" placeholder="Item del manual" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Nombre del empleado.</em>
+                                </b>
+                                <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+                              <!--
+                              <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                 Se necesita un nombre de empleado
+                              </div>
+                            -->
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                              <div class="section">
+                                <label class="field prepend-icon">
+                                  <input id="tooltip1" type="text" name="tooltip1"  id="nombre" required  name="nombre" placeholder="Página del manual" class="gui-input">
+                                  <b class="tooltip tip-right-top">
+                                    <em> Nombre del empleado.</em>
+                                  </b>
+                                  <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                                </label>
+                                <!--
+                                <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                   Se necesita un nombre de empleado
+                                </div>
+                              -->
+                              </div>
+                            </div>
+                    
+                      
+                      
+                    </div>
+  
+                    
+                    <!-- Multi Selects-->
+                    
+                    
+                    
+                    <!-- .section-divider-->
+                    <!-- tooltips-->
+                   
+                    
+                    
+                 
+                    <div class="panel-footer ">
+                      <button type="button" class="btn btn-success" (click)="nuevoEmpleado()">Guardar</button>
+                      
+                      <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- begin: .tray-right-->
+        
+      </section>
+    </section>
+    </div>
+  
+  
+  
+  
+  
+  <!-- No hay permisos--
+  <section  [hidden]="empleadoActual.permisos.empleados" id="content_wrapper">
+  
+  
+  
+  <header id="topbar" class="bg-white alt">
+    <div class="topbar-left">
+      <ol class="breadcrumb mt-10">
+        <li class="crumb-active"><a routerLink="/inicio">Sistema Memphis</a></li>
+      
+      </ol>
+    </div>
+  
+  </header>
+  
+  <div id="content" class="animated fadeIn">
+  
+    
+    <div class="row">
+      <div class="col-md-12">
+  
+  
+        <hr class="mt20 mb30">
+       
+       
+        <div class="">
+          <div class="alert alert-danger alert-dismissable mb30">
+  
+            <h5 class="mt5">Error</h5>
+            <h3 class="mt5">No tienes acceso a ésta sección</h3>
+            <p>Ponte en contacto con el administrador.</p><br>
+            <div class="element-groups-sm-custom"><a (click)="cancel()" class="btn btn-white">REGRESAR</a></div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  </section>-->
+    
+  

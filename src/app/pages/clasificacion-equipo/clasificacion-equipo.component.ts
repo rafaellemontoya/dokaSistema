@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-editar-usuario',
-  templateUrl: './editar-usuario.component.html',
-  styleUrls: ['./editar-usuario.component.css']
+  selector: 'app-clasificacion-equipo',
+  templateUrl: './clasificacion-equipo.component.html',
+  styleUrls: ['./clasificacion-equipo.component.css']
 })
-export class EditarUsuarioComponent implements OnInit {
+export class ClasificacionEquipoComponent implements OnInit {
 
   mensajeErrorImg = '';
   claseCargaImg = '';
