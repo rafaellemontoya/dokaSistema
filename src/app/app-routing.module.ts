@@ -8,6 +8,8 @@ import { NuevoProyectoComponent } from './pages/nuevo-proyecto/nuevo-proyecto.co
 import { NuevoDanoComponent } from './pages/nuevo-dano/nuevo-dano.component';
 import { NuevaClasificacionEquipoComponent } from './pages/nueva-clasificacion-equipo/nueva-clasificacion-equipo.component';
 import { NuevoMaterialComponent } from './pages/nuevo-material/nuevo-material.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { ProyectosComponent } from './pages/proyectos/proyectos.component';
 
 
 const app_routes: Routes=[
@@ -24,6 +26,8 @@ const app_routes: Routes=[
     {path: 'nuevo-tipo-dano', component: NuevoDanoComponent},
     {path: 'nueva-clasificacion-equipo', component: NuevaClasificacionEquipoComponent},
     {path: 'nuevo-material', component: NuevoMaterialComponent},
+    {path: 'clientes', component: ClientesComponent},
+    {path: 'proyectos', component: ProyectosComponent},
 
 ]
 @NgModule({

@@ -19,6 +19,8 @@ import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { ProyectosComponent } from './pages/proyectos/proyectos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,14 +34,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ClasificacionEquipoComponent,
     NuevaClasificacionEquipoComponent,
     NuevoDanoComponent,
-    NuevoMaterialComponent
+    NuevoMaterialComponent,
+    ClientesComponent,
+    ProyectosComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AppRouting,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ],
   providers: [AngularFirestore, AngularFireStorageModule],
   bootstrap: [AppComponent]

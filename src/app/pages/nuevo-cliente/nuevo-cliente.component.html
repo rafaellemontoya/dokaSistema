@@ -9,8 +9,8 @@
         <ol class="breadcrumb">
           
           <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
-          <li class="crumb-link"><a routerLink="/empleados">Empleados</a></li>
-          <li class="crumb-trail">Nuevo empleado</li>
+          <li class="crumb-link"><a routerLink="/empleados">Clientes</a></li>
+          <li class="crumb-trail">Nuevo cliente</li>
         </ol>
       </div>
       
@@ -38,16 +38,16 @@
 
               <div class="alert alert-success alert-dismissable mb30" style="background: yellow">
                   <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
-                  <h3 class="mt5">Empleado guardado exitosamente!</h3>
-                  <p>Empleado añadido con éxito.</p><br>
-                  <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-white">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo empleado</button></div>
+                  <h3 class="mt5">Cliente guardado exitosamente!</h3>
+                  <p>Cliente añadido con éxito.</p><br>
+                  <div class="element-groups-sm-custom"><a routerLink="/clientes" class="btn btn-white">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo empleado</button></div>
                 </div>
   
   
               </div>
               <!-- Panel formulario-->
               <div [hidden]="submitted" class="panel-body bg-light">
-                <form (ngSubmit)="nuevoEmpleado()" (keydown.enter)="$event.preventDefault()">
+                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
@@ -55,17 +55,15 @@
                     <div class="col-md-12">
                       <div class="section">
                         <label class="field prepend-icon">
-                          <input id="tooltip1" type="text" name="tooltip1"  id="nombre" required  name="nombre" placeholder="Nombre" class="gui-input">
+                          <input [(ngModel)]="item.nombre" #nombre="ngModel" type="text"   id="nombre" required  name="nombre" placeholder="Nombre" class="gui-input">
                           <b class="tooltip tip-right-top">
                             <em> Nombre del cliente.</em>
                           </b>
                           <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                         </label>
-                        <!--
                         <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
-                           Se necesita un nombre de empleado
+                           Se necesita un nombre de cliente
                         </div>
-                      -->
                       </div>
                     </div>
                     
@@ -76,26 +74,24 @@
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field prepend-icon">
-                              <input id="tooltip1" type="text" name="tooltip1"  id="nombre" required  name="nombre" placeholder="No. Cliente" class="gui-input">
+                              <input [(ngModel)]="item.numero" #numero="ngModel" required type="text"   id="numero"   name="numero" placeholder="No. Cliente" class="gui-input">
                               <b class="tooltip tip-right-top">
-                                <em> Nombre del empleado.</em>
+                                <em> Número de cliente.</em>
                               </b>
                               <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                             </label>
-                            <!--
                             <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
-                               Se necesita un nombre de empleado
+                               Se necesita un número de cliente
                             </div>
-                          -->
                           </div>
                         </div>
                     <div class="col-md-4">
                         <div class="section">
                           <label class="field select">
-                            <select class="form-control" id="clasificacion1" required name="clasificacion1" >
+                            <select  [(ngModel)]="item.estado" #estado="ngModel" class="form-control" id="estado" required name="estado" >
                         
-                              <option >Activo</option>
-                              <option ></option>
+                              <option value=1 >Activo</option>
+                              <option value=0>Inactivo</option>
                               </select><i class="arrow"></i>
                         </label>
                             
@@ -155,7 +151,7 @@
                   
                
                   <div class="panel-footer ">
-                    <button type="button" class="btn btn-success" (click)="nuevoEmpleado()">Guardar</button>
+                    <button type="button" class="btn btn-success" (click)="crearItem()">Guardar</button>
                     
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>

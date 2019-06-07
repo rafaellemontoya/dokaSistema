@@ -60,8 +60,8 @@ export class NuevoUsuarioComponent implements OnInit {
     //this.item.usuarioAlta = keyUser;
     this.item.fechaAlta = new Date().getTime();
     this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
-    const shirtsCollection = this.afs.collection<Usuario>('users');
-    shirtsCollection.add(this.item);
+    const itemCollection = this.afs.collection<Usuario>('users');
+    itemCollection.add(this.item);
 
     console.log(this.item);
   }
