@@ -6,7 +6,7 @@
   <!-- Start: Topbar-->
   <div id="topbar" class="text-center bg-white alt ph10 br-b-ddd">
     <div>
-      <h1><b style="color: #004a8e">Clasificación de equipo</b></h1>
+      <h1><b style="color: #004a8e">Tipos de daño</b></h1>
     </div>
 
   </div>
@@ -27,7 +27,7 @@
 
                 <div class="bs-¡">
                   <a routerLink="/nuevo-usuario" style="background-color: #ffe600"
-                    class="btn btn-rounded btn-primary btn-block">Agregar clasificación de equipo</a>
+                    class="btn btn-rounded btn-primary btn-block">Agregar tipo de daño</a>
                 </div>
               </div>
 
@@ -83,10 +83,8 @@
               <thead>
                 <tr class="bg-system">
 
-                  <th>Nombre </th>
-                  <th>Item</th>
-                  <th>Manual</th>
-                  <th>Páginas</th>
+                  <th>Clasificacion de equipo </th>
+                  <th>Tipo de daño</th>
                   <th class="text-right">Estado</th>
                 </tr>
               </thead>
@@ -95,15 +93,13 @@
 
                   <!--<td class="w100"><img title="user" [src]="item.foto" class="img-responsive mw40 ib mr10"></td>-->
 
-                  <td>{{item.nombre }}</td>
-                  <td>{{item.item}}</td>
-                  <td>{{item.manual}}</td>
-                  <td>{{item.paginas}}</td>
+                  <td>{{item.clasificacionEquipo }}</td>
+                  <td>{{item.tipoDano}}</td>
 
                   <td class="text-right">
                     <div class="btn-group text-right">
                       <button type="button" data-toggle="dropdown" aria-expanded="false"
-                        class="btn btn-danger br2 btn-xs fs12 dropdown-toggle">Inactivo<span
+                        class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Activo<span
                           class="caret ml15"></span></button>
                       <ul role="menu" class="dropdown-menu">
                         <li><a [routerLink]="['/editar-item', item.key]">Editar</a></li>

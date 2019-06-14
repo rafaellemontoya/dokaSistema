@@ -10,6 +10,9 @@ import { NuevaClasificacionEquipoComponent } from './pages/nueva-clasificacion-e
 import { NuevoMaterialComponent } from './pages/nuevo-material/nuevo-material.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
+import { ClasificacionEquipoComponent } from './pages/clasificacion-equipo/clasificacion-equipo.component';
+import { TipoDanoComponent } from './pages/tipo-dano/tipo-dano.component';
+import { MaterialesComponent } from './pages/materiales/materiales.component';
 
 
 const app_routes: Routes=[
@@ -26,8 +29,12 @@ const app_routes: Routes=[
     {path: 'nuevo-tipo-dano', component: NuevoDanoComponent},
     {path: 'nueva-clasificacion-equipo', component: NuevaClasificacionEquipoComponent},
     {path: 'nuevo-material', component: NuevoMaterialComponent},
+    {path: 'nuevo-proyecto', component: NuevoProyectoComponent},
     {path: 'clientes', component: ClientesComponent},
     {path: 'proyectos', component: ProyectosComponent},
+    {path: 'materiales', component: MaterialesComponent},
+    {path: 'clasificacion-equipo', component: ClasificacionEquipoComponent},
+    {path: 'tipo-dano', component: TipoDanoComponent},
 
 ]
 @NgModule({

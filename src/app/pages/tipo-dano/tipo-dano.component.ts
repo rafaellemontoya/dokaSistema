@@ -3,22 +3,24 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-proyectos',
-  templateUrl: './proyectos.component.html',
-  styleUrls: ['./proyectos.component.css']
+  selector: 'app-tipo-dano',
+  templateUrl: './tipo-dano.component.html',
+  styleUrls: ['./tipo-dano.component.css']
 })
-export class ProyectosComponent implements OnInit {
-  private itemsCollection: AngularFirestoreCollection<Proyecto>;
-  items: Observable<Proyecto[]>;
+export class TipoDanoComponent implements OnInit {
+
+  private itemsCollection: AngularFirestoreCollection<TipoDano>;
+  items: Observable<TipoDano[]>;
+
   constructor(private afs: AngularFirestore) {
     this.getInfo();
-   }
+  }
 
   ngOnInit() {
   }
+
   getInfo() {
-    this.itemsCollection = this.afs.collection<Proyecto>('projects');
+    this.itemsCollection = this.afs.collection<TipoDano>('damage');
     this.items = this.itemsCollection.valueChanges();
   }
-
 }

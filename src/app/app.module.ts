@@ -21,6 +21,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
+import { MaterialesComponent } from './pages/materiales/materiales.component';
+import { TipoDanoComponent } from './pages/tipo-dano/tipo-dano.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import { ProyectosComponent } from './pages/proyectos/proyectos.component';
     NuevoDanoComponent,
     NuevoMaterialComponent,
     ClientesComponent,
-    ProyectosComponent
+    ProyectosComponent,
+    MaterialesComponent,
+    TipoDanoComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,7 @@
               <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
                   
 
-              <div class="alert alert-success alert-dismissable mb30" style="background: yellow">
+              <div class="alert alert-success alert-dismissable mb30" >
                   <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
                   <h3 class="mt5">Cliente guardado exitosamente!</h3>
                   <p>Cliente añadido con éxito.</p><br>
@@ -47,7 +47,7 @@
               </div>
               <!-- Panel formulario-->
               <div [hidden]="submitted" class="panel-body bg-light">
-                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()">
+                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()" #itemForm="ngForm">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
@@ -61,7 +61,7 @@
                           </b>
                           <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                         </label>
-                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-primary">
                            Se necesita un nombre de cliente
                         </div>
                       </div>
@@ -151,7 +151,7 @@
                   
                
                   <div class="panel-footer ">
-                    <button type="button" class="btn btn-success" (click)="crearItem()">Guardar</button>
+                    <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Guardar</button>
                     
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>

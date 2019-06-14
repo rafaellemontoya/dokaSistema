@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-clasificacion-equipo',
@@ -7,24 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClasificacionEquipoComponent implements OnInit {
 
-  mensajeErrorImg = '';
-  claseCargaImg = '';
-  porcentajeCargaImg = '';
-  submitted = false;
-  constructor() { }
+
+  private itemsCollection: AngularFirestoreCollection<ClasificacionEquipo>;
+  items: Observable<ClasificacionEquipo[]>;
+
+  constructor(private afs: AngularFirestore) {
+    this.getInfo();
+   }
 
   ngOnInit() {
   }
 
-  getFile(event){
-
-  }
-
-  nuevoEmpleado(){
-
-  }
-  cancel(){
-
+  getInfo() {
+    this.itemsCollection = this.afs.collection<ClasificacionEquipo>('equipmentType');
+    this.items = this.itemsCollection.valueChanges();
   }
 
 }
