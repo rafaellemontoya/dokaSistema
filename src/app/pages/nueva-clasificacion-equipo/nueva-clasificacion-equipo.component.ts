@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-nueva-clasificacion-equipo',
@@ -7,24 +10,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NuevaClasificacionEquipoComponent implements OnInit {
 
-  mensajeErrorImg = '';
-  claseCargaImg = '';
-  porcentajeCargaImg = '';
   submitted = false;
-  constructor() { }
+  private itemsCollection: AngularFirestoreCollection<Cliente>;
+ items: Observable<Cliente[]>;
 
-  ngOnInit() {
-  }
+ item: ClasificacionEquipo = {
+   nombre: '',
+   manual: '',
+   paginas: '',
+   item: 0,
+   key: '',
+   pais: '',
+   usuarioAlta: '',
+   fechaAlta: 0,
+   estado: 0,
 
-  getFile(event){
+   }
 
-  }
+   constructor(private sharedService: SharedService, private afs: AngularFirestore) { }
 
-  nuevoEmpleado(){
+   ngOnInit() { }
 
-  }
-  cancel(){
+   nuevaClasificacion(){
+     console.log(this.item);
 
-  }
+     this.item.pais = 'MX';
+     //this.item.usuarioAlta = keyUser;
+     this.item.fechaAlta = new Date().getTime();
+     const itemCollection = this.afs.collection<ClasificacionEquipo>('equipmentType');
+     itemCollection.add(this.item);
+     this.submitted = true;
+   }
 
-}
+
+   cancel() {
+     this.sharedService.cancelar();
+   }
+
+
+
+
+
+ }

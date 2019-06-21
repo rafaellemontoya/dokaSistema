@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-nuevo-dano',
@@ -8,23 +11,49 @@ import { Component, OnInit } from '@angular/core';
 export class NuevoDanoComponent implements OnInit {
 
 
-  mensajeErrorImg = '';
-  claseCargaImg = '';
-  porcentajeCargaImg = '';
   submitted = false;
-  constructor() { }
+  private itemsCollection: AngularFirestoreCollection<ClasificacionEquipo>;
+ items: Observable<ClasificacionEquipo[]>;
 
-  ngOnInit() {
-  }
+ item: TipoDano = {
+   tipoDano: '',
+   clasificacionEquipo: '',
+   key: '',
+   pais: '',
+   usuarioAlta: '',
+   fechaAlta: 0,
+   estado: 0,
 
-  getFile(event){
+   }
 
-  }
+   constructor(private sharedService: SharedService, private afs: AngularFirestore) { }
 
-  nuevoEmpleado(){
+   ngOnInit() {
+     this.getInfo();
+   }
 
-  }
-  cancel(){
+   getInfo() {
+     this.itemsCollection = this.afs.collection<ClasificacionEquipo>('equipmentType');
+     console.log(this.itemsCollection);
+     this.items = this.itemsCollection.valueChanges();
+   }
 
-  }
-}
+   nuevoDano(){
+     this.item.pais = 'MX';
+     //this.item.usuarioAlta = keyUser;
+     this.item.fechaAlta = new Date().getTime();
+     const itemCollection = this.afs.collection<TipoDano>('damage');
+     itemCollection.add(this.item);
+     this.submitted = true;
+   }
+
+
+   cancel() {
+     this.sharedService.cancelar();
+   }
+
+
+
+
+
+ }
