@@ -23,6 +23,7 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
 import { MaterialesComponent } from './pages/materiales/materiales.component';
 import { TipoDanoComponent } from './pages/tipo-dano/tipo-dano.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { TipoDanoComponent } from './pages/tipo-dano/tipo-dano.component';
     ClientesComponent,
     ProyectosComponent,
     MaterialesComponent,
-    TipoDanoComponent
+    TipoDanoComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

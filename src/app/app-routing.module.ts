@@ -13,6 +13,7 @@ import { ProyectosComponent } from './pages/proyectos/proyectos.component';
 import { ClasificacionEquipoComponent } from './pages/clasificacion-equipo/clasificacion-equipo.component';
 import { TipoDanoComponent } from './pages/tipo-dano/tipo-dano.component';
 import { MaterialesComponent } from './pages/materiales/materiales.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 const app_routes: Routes=[
@@ -35,7 +36,7 @@ const app_routes: Routes=[
     {path: 'materiales', component: MaterialesComponent},
     {path: 'clasificacion-equipo', component: ClasificacionEquipoComponent},
     {path: 'tipo-dano', component: TipoDanoComponent},
-    {path: 'dashboard', component: DashboardComponent},
+    { path: 'dashboard', component: DashboardComponent },
 
 ]
 @NgModule({
