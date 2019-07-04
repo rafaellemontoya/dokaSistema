@@ -4,7 +4,7 @@
     <img src="assets/assets/img/logos/logo.png">
   </a><span id="toggle_sidemenu_l" class="fa fa-bars"></span></div>
   <ul class="nav navbar-nav navbar-left"></ul>
-  
+
   <ul class="nav navbar-nav navbar-right">
     <li><img src="assets/assets/img/avatars/1.jpg" alt="avatar"></li>
     <li class="dropdown menu-merge"><a href="#" data-toggle="dropdown" class="dropdown-toggle fw600 p15"><span class="fa fa-angle-down"></span> </a>
@@ -62,7 +62,7 @@ Results: Fixed Left Sidebar with light/white background
       <!-- Sidebar Widget - Search (hidden)-->
       <div class="sidebar-widget search-widget hidden">
         <div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span>
-          <input id="sidebar-search" type="text" placeholder=" class="form-control"/>
+          <input id="sidebar-search" type="text" placeholder="" class="form-control"/>
         </div>
       </div>
     </header>
@@ -74,41 +74,41 @@ Results: Fixed Left Sidebar with light/white background
       <li><a href="documentation/"><span class="fa fa-file-text-o"></span><span class="sidebar-title">Documentation</span></a>
       </li>
     -->
-      <li class=""><a href="index.html"><span class="fa fa-home"></span><span class="sidebar-title">Inicio</span></a>
+      <li class=""><a routerLink="/inicio"><span class="fa fa-home"></span><span class="sidebar-title">Inicio</span></a>
       </li>
-      
+
       <li class="sidebar-label pt35 "></li>
       <li class="active"><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-fire"></span><span class="sidebar-title">Administración</span><span class="caret"></span></a>
         <ul class="nav sub-nav">
-          <li><a href="admin_plugins-modals.html"><span class="glyphicon glyphicon-modal-window"></span>
+          <li><a routerLink="/clientes"><span class="glyphicon glyphicon-modal-window"></span>
             Clientes
           </a>
           </li>
-          <li><a href="admin_plugins-dock.html"><span class="glyphicon glyphicon-equalizer"></span>
+          <li><a routerLink="/clasificacion-equipo"><span class="glyphicon glyphicon-equalizer"></span>
             Clasificación de equipo
           </a>
           </li>
-          <li><a href="admin_plugins-dock.html"><span class="glyphicon glyphicon-equalizer"></span>
+          <li><a routerLink="/tipo-dano"><span class="glyphicon glyphicon-equalizer"></span>
             Tipos de daño
           </a>
           </li>
-          <li><a href="admin_plugins-dock.html"><span class="glyphicon glyphicon-equalizer"></span>
+          <li><a routerLink="/proyectos"><span class="glyphicon glyphicon-equalizer"></span>
             Proyectos
           </a>
           </li>
-          <li><a href="admin_plugins-dock.html"><span class="glyphicon glyphicon-equalizer"></span>
+          <li><a routerLink="/materiales"><span class="glyphicon glyphicon-equalizer"></span>
             Materiales
           </a>
           </li>
-          <li><a href="admin_plugins-dock.html"><span class="glyphicon glyphicon-equalizer"></span>
+          <li><a routerLink="/usuarios"><span class="glyphicon glyphicon-equalizer"></span>
             Usuarios
           </a>
           </li>
         </ul>
       </li>
-      
+
       <li class="sidebar-label pt35"></li>
-      
+
       <li><a href="documentation/"><span class="fa fa-file-text-o"></span><span class="sidebar-title">
         Reportes de envíos
       </span></a>
@@ -126,7 +126,7 @@ Results: Fixed Left Sidebar with light/white background
   <li class="sidebar-label pt35"></li>
   <li class=""><a href="index.html"><span class="fa fa-home"></span><span class="sidebar-title">Dashboard</span></a>
   </li>
-  
+
     </ul>
     <!-- Start: Sidebar Collapse Button-->
     <div class="sidebar-toggle-mini"><a href="#"><span class="fa fa-sign-out"></span></a></div>

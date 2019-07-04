@@ -35,6 +35,7 @@ const app_routes: Routes=[
     {path: 'materiales', component: MaterialesComponent},
     {path: 'clasificacion-equipo', component: ClasificacionEquipoComponent},
     {path: 'tipo-dano', component: TipoDanoComponent},
+    {path: 'dashboard', component: DashboardComponent},
 
 ]
 @NgModule({
