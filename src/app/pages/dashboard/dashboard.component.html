@@ -24,7 +24,7 @@
           <div class="content-header">
             <h2> <b style="color:#004A8E;">Dashboard admin</b>
             </h2>
-            <p class="lead">Llena el formulario para agregar el cliente</p>
+            <p class="lead">Realiza los cambios y da click en guardar para que se muestren en el Dashboard Doka</p>
           </div>
 
 
@@ -55,45 +55,39 @@
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                       <div class="section">
+                        <b style="color: #004A8E;"> Ventas</b>
                         <label class="field prepend-icon">
-                          <input [(ngModel)]="item.ventas" #nombre="ngModel" type="text" id="nombre" required
-                            name="nombre" placeholder="Nombre" class="gui-input">
+                          <input [(ngModel)]="item.ventas" #Ventas="ngModel" type="text" id="Ventas" required
+                            name="Ventas" placeholder="Ventas" class="gui-input">
                           <b class="tooltip tip-right-top">
                             <em> Ventas.</em>
                           </b>
                           <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                         </label>
-                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-primary">
-                          Se necesita un nombre de cliente
-                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="section">
+                       <b style="color: #004A8E;"> Mensaje</b>
+                        <label class="field prepend-icon">
+                          <input [(ngModel)]="item.mensaje" #mensaje="ngModel" type="text" id="mensaje" name="mensaje"
+                            placeholder="No. Cliente" class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Mensaje.</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                      
                       </div>
                     </div>
 
 
                   </div>
                   <!-- Input Icons-->
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="section">
-                        <label class="field prepend-icon">
-                          <input [(ngModel)]="item.mensaje" #numero="ngModel" required type="text" id="numero"
-                            name="numero" placeholder="No. Cliente" class="gui-input">
-                          <b class="tooltip tip-right-top">
-                            <em> Número de cliente.</em>
-                          </b>
-                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
-                        </label>
-                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
-                          Se necesita un número de cliente
-                        </div>
-                      </div>
-                    </div>
-                    
-
-
-                  </div>
+                
 
 
                   <!-- Multi Selects-->
@@ -105,7 +99,7 @@
 
 
 
-                  <div id="spy3" class="section-divider mv40"><span style="color:#004A8E;">Logo (opcional)</span></div>
+                  <div id="spy3" class="section-divider mv40"><span style="color:#004A8E;">Video (opcional)</span></div>
                   <div [hidden]="!imgError">
                     <h2>{{mensajeErrorImg}}</h2>
 
@@ -115,15 +109,34 @@
 
                   <!-- imagen 1 -->
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                       <div class="section">
                         <label class="field prepend-icon append-button file"><span
                             class="button btn-primary">Seleccionar</span>
                           <input id="file1" type="file" name="file1" (change)="getFile($event) "
                             onchange="document.getElementById('up1').value = this.value;" class="gui-file">
-                          <input id="up1" type="text" placeholder="Logo de cliente" class="gui-input">
+                          <input id="up1" type="text" placeholder="Video mp4" class="gui-input">
                           <label class="field-icon"><i class="fa fa-upload"></i></label>
                         </label>
+
+
+
+                        
+                          <div [hidden]="!imgError" class="alert alert-danger alert-dismissable">
+                            <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button><i class="fa fa-remove pr10"></i><strong>Error en la imagen!</strong> {{mensajeErrorImg}}.
+                          </div>
+
+
+
+                          <div [hidden]="!estadoCargaImg" class="progress mt10">
+                            <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': porcentajeCargaImg + '%'}"  [ngClass]="claseCargaImg">{{porcentajeCargaImg}}%</div>
+                          </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="section">
+                        <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="reproducirVideo()">Reproducir</button>
 
 
 

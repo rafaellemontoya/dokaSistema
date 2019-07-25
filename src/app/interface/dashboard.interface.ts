@@ -3,6 +3,7 @@ interface Dashboard{
     mensaje: string;
     tempHoy: string;
     video: string;
-    duracionVideo:number;
+    duracionVideo: number;
+    videoplay: number;
 
 }

@@ -32,7 +32,8 @@ export class DashboardComponent implements OnInit {
     mensaje: '',
     video: '',
     duracionVideo: 0,
-    tempHoy: ''
+    tempHoy: '',
+    videoplay: 0
   }
 
   constructor(private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage) { }
@@ -44,27 +45,25 @@ export class DashboardComponent implements OnInit {
 
   getDashboardInfo(){
 
-
-    //this.itemsCollection = this.afs.collection<Dashboard>('');
-    // .snapshotChanges() returns a DocumentChangeAction[], which contains
-    // a lot of information about "what happened" with each change. If you want to
-    // get the data and the id use the map operator.
     this.items = this.afs.collectionGroup<Dashboard>('dashboard', )
       .valueChanges();
-    this.items.subscribe(elements=>{
-        
+    this.items.subscribe(elements => {
+
         this.item.ventas = elements[0].ventas;
         this.item.mensaje = elements[0].mensaje;
-      this.item.duracionVideo = elements[0].duracionVideo;
+        this.item.duracionVideo = elements[0].duracionVideo;
+        this.item.video = elements[0].video;
+        this.item.videoplay = elements[0].videoplay;
+        //console.log(elements[0].video.duration);
       });
   }
 
   crearItem() {
-    
+
     //this.item.usuarioAlta = keyUser;
     const itemDoc = this.afs.doc<Dashboard>('dashboard/CsiHCHA3p37pEKX5cFcz');
     itemDoc.update(this.item);
-    
+
   }
   cancel() {
     this.sharedService.cancelar();
@@ -80,34 +79,26 @@ export class DashboardComponent implements OnInit {
     // this.uploadFile();
     if (event.target.files && event.target.files[0]) {
       if (event.target.files[0].type === 'video/mp4' ) {
-        console.log('Video válido');
-        if (event.target.files[0].size < 2000 * 2000) {// Checking height * width}
-          console.log('tamaño válida');
-          // this.selectedFile.push(event.target.id = { tevent.target.files[0]});
-          // console.log(this.selectedFile);
-          if (event.target.files[0].size < 2000000) {//
-            console.log('peso válido');
+
+
+          if (event.target.files[0].size < 10000000) {//
+            this.item.duracionVideo = event.target;
+            console.log(this.selectedFile.duration);
+
             this.uploadFile(event.target.id);
           } else {
             // Peso inválido
 
-            this.mensajeErrorImg = 'Video demasiado grande. Debe pesar menos de ';
+            this.mensajeErrorImg = 'Video demasiado grande. Debe pesar menos de 10 MB ';
             this.imgError = true;
 
             console.log('peso inválido');
           }
-        } else {
-          // Tamaño inválido
 
-          this.mensajeErrorImg = 'Tamaño inválido. Debe medir 200 px de alto por 200 px de ancho.';
-          this.imgError = true;
-
-          console.log('tamaño inválido');
-        }
       } else {
         // No es imagen
 
-        this.mensajeErrorImg = 'Formato no válido, debe ser una imagen en .jpg o .png';
+        this.mensajeErrorImg = 'Formato no válido, debe ser una imagen en .mp4 ';
         this.imgError = true;
 
         console.log('No imagen');
@@ -152,6 +143,17 @@ export class DashboardComponent implements OnInit {
     )
       .subscribe(
         x => console.log(fileRef.getDownloadURL));
+  }
+
+  reproducirVideo(){
+    const itemDoc = this.afs.doc<Dashboard>('dashboard/CsiHCHA3p37pEKX5cFcz');
+    this.item.videoplay = -1;
+    itemDoc.update(this.item);
+    setTimeout(() => {
+      this.item.videoplay = 0;
+      itemDoc.update(this.item);
+
+    }, ((this.item.duracionVideo ) * 1000));
   }
 
 
