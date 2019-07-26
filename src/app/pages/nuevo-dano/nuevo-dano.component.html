@@ -47,7 +47,7 @@
                 </div>
                 <!-- Panel formulario-->
                 <div [hidden]="submitted" class="panel-body bg-light">
-                  <form (ngSubmit)="nuevoEmpleado()" (keydown.enter)="$event.preventDefault()">
+                  <form (ngSubmit)="nuevoDano()" (keydown.enter)="$event.preventDefault()">
                     <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                     <!-- .section-divider-->
                     <!-- Basic Inputs-->
@@ -79,7 +79,7 @@
                             <select class="form-control" name="clasifiacion" id="clasificacion" required [(ngModel)]="item.clasificacionEquipo" #clsificacionEquipo="ngModel" >
 
                               <option >Clasificacion de Equipo</option>
-                              <option *ngFor="let item2 of items | async" [value] ="item2.id" > {{item2.nombre}}</option>
+                              <option *ngFor="let item2 of items | async" [value] ="item2.nombre" > {{item2.nombre}}</option>
                               </select><i class="arrow"></i>
                         </label>
 

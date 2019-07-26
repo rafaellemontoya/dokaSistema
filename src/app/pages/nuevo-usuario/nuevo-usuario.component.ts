@@ -12,6 +12,7 @@ export class NuevoUsuarioComponent implements OnInit {
   claseCargaImg = '';
   porcentajeCargaImg = '';
   submitted = false;
+  imgError = false;
 
   item: Usuario = {
     seccion: '',

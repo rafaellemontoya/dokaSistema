@@ -17,7 +17,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 const app_routes: Routes=[
-    {path: '', component: InicioComponent},
+    { path: '', component: InicioComponent},
     //Rutas ingles
     {path: 'home', component: InicioComponent},
     {path: 'users', component: UsuariosComponent},
@@ -40,13 +40,13 @@ const app_routes: Routes=[
 
 ]
 @NgModule({
-    imports:[
+    imports: [
         RouterModule.forRoot( app_routes)
     ],
     exports: [
         RouterModule
     ]
 })
-export class AppRouting{
+export class AppRoutingModule {
 
 }

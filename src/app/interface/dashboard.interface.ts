@@ -5,5 +5,6 @@ interface Dashboard{
     video: string;
     duracionVideo: number;
     videoplay: number;
+    
 
 }

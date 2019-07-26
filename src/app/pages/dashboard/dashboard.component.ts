@@ -4,7 +4,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import { element } from '@angular/core/src/render3';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +12,10 @@ import { element } from '@angular/core/src/render3';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+
+  private itemsCollection: AngularFirestoreCollection<Videos>;
+  itemsVideosGuardados: Observable<Videos[]>;
 
   mensajeErrorImg = '';
   claseCargaImg = '';
@@ -23,7 +27,8 @@ export class DashboardComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   key = 'CsiHCHA3p37pEKX5cFcz';
-  private itemsCollection: AngularFirestoreCollection<Dashboard>;
+  //private itemsCollection: AngularFirestoreCollection<Dashboard>;
+  private itemsCollectionVideo: AngularFirestoreCollection<Videos>;
   items: Observable<Dashboard[]>;
 
 
@@ -34,12 +39,19 @@ export class DashboardComponent implements OnInit {
     duracionVideo: 0,
     tempHoy: '',
     videoplay: 0
-  }
+  };
+  itemVideo: Videos = {
+
+    url: '',
+    duracionVideo: 0,
+    nombre: ''
+  };
 
   constructor(private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.getDashboardInfo();
+    this.getInfo();
   }
 
 
@@ -135,6 +147,8 @@ export class DashboardComponent implements OnInit {
         this.downloadURL.subscribe(
           url => {
             this.item.video = url;
+            this.itemVideo.nombre = file.name;
+            this.itemVideo.url = url;
             this.claseCargaImg = 'progress-bar progress-bar-success';
           }
         );
@@ -145,16 +159,56 @@ export class DashboardComponent implements OnInit {
         x => console.log(fileRef.getDownloadURL));
   }
 
-  reproducirVideo(){
+  reproducirVideo(video: Videos){
+    //
+    
+    // Actualizar valores 
+    
     const itemDoc = this.afs.doc<Dashboard>('dashboard/CsiHCHA3p37pEKX5cFcz');
     this.item.videoplay = -1;
+
+    this.item.video = video.url;
     itemDoc.update(this.item);
     setTimeout(() => {
       this.item.videoplay = 0;
       itemDoc.update(this.item);
 
-    }, ((this.item.duracionVideo ) * 1000));
+    }, ((video.duracionVideo ) * 1000));
   }
 
+  getDuration(e) {
+    
+    this.itemVideo.duracionVideo = e.target.duration + 1;
+    console.log(this.itemVideo.duracionVideo);
+    if ( this.itemVideo.url !== '') {
+      this.crearItemVideo();
+    }
+  }
 
+  crearItemVideo() {
+
+    const itemCollection = this.afs.collection<Videos>('dashboard/CsiHCHA3p37pEKX5cFcz/videos');
+    itemCollection.add(this.itemVideo);
+    this.submitted = true;
+  }
+  getInfo(){
+    this.itemsCollectionVideo = this.afs.collection<Videos>('dashboard/CsiHCHA3p37pEKX5cFcz/videos');
+    // .valueChanges() is simple. It just returns the 
+    // JSON data without metadata. If you need the 
+    // doc.id() in the value you must persist it your self
+    // or use .snapshotChanges() instead. See the addItem()
+    // method below for how to persist the id with
+    // valueChanges()
+    this.itemsVideosGuardados = this.itemsCollectionVideo.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Videos;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+
+    );
+    this.itemsVideosGuardados.subscribe(elements => {
+      console.log(elements);
+    });
+  }
 }

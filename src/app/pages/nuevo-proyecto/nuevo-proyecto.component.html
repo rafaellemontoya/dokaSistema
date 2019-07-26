@@ -96,7 +96,7 @@
                               <select class="form-control" name="cliente" id="clasificacion1" required [(ngModel)]="item.cliente" #cliente="ngModel" >
 
                                 <option >Cliente</option>
-                                <option *ngFor="let item2 of items | async" [value] ="item2.id" > {{item2.nombre}}</option>
+                                <option *ngFor="let item2 of items | async" [value] ="item2.nombre" > {{item2.nombre}}</option>
                                 </select><i class="arrow"></i>
                           </label>
 
@@ -131,10 +131,7 @@
 
 
 
-                    <div [hidden]="!imgError">
-                      <h2>{{mensajeErrorImg}}</h2>
-
-                    </div>
+                   
                     <!-- .section-divider-->
                     <!-- File Uploaders-->
 

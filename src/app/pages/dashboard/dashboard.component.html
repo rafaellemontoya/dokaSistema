@@ -32,23 +32,9 @@
           <!-- Begin: Admin Form-->
           <div class="admin-form">
             <div class="panel heading-border">
-              <!-- Panel guardado-->
-              <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
-
-
-                <div class="alert alert-success alert-dismissable mb30">
-                  <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
-                  <h3 class="mt5">Cliente guardado exitosamente!</h3>
-                  <p>Cliente añadido con éxito.</p><br>
-                  <div class="element-groups-sm-custom"><a routerLink="/clientes"
-                      class="btn btn-white">Continuar</a><button type="button" (click)="submitted=false; "
-                      class="btn btn-default">Nuevo empleado</button></div>
-                </div>
-
-
-              </div>
+              
               <!-- Panel formulario-->
-              <div [hidden]="submitted" class="panel-body bg-light">
+              <div  class="panel-body bg-light">
                 <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()" #itemForm="ngForm">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span>
                   </div>
@@ -86,6 +72,19 @@
 
 
                   </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="section">
+                        <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Actualizar</button>
+                        
+                       
+                        
+                      </div>
+                    </div>
+                    
+
+
+                  </div>
                   <!-- Input Icons-->
                 
 
@@ -114,10 +113,13 @@
                         <label class="field prepend-icon append-button file"><span
                             class="button btn-primary">Seleccionar</span>
                           <input id="file1" type="file" name="file1" (change)="getFile($event) "
-                            onchange="document.getElementById('up1').value = this.value;" class="gui-file">
+                            onchange="document.getElementById('up1').value = this.value;" class="gui-file"(loadedmetadata)="getDuration($event)">
                           <input id="up1" type="text" placeholder="Video mp4" class="gui-input">
                           <label class="field-icon"><i class="fa fa-upload"></i></label>
                         </label>
+                        <video #video style="display: none;" *ngIf="item.video" width="320" height="240" controls [attr.src]="item.video"
+                          (loadedmetadata)="getDuration($event)">
+                        </video>
 
 
 
@@ -136,9 +138,19 @@
                     </div>
                     <div class="col-md-4">
                       <div class="section">
-                        <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="reproducirVideo()">Reproducir</button>
+                        
+
+                      <div [hidden]="!submitted" class=" animated fadeIn">
 
 
+                        <div class="alert alert-success alert-dismissable mb30" style="background-color: #70ca63;">
+                          <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                          <h3 class="mt5">Video {{itemVideo.nombre}} cargado exitosamente!</h3>
+                        <div class="element-groups-sm-custom"><button type="button" (click)="submitted=false; estadoCargaImg=false; " class="btn btn-default">Aceptar</button></div>
+                        </div>
+
+
+                      </div>
 
                         <!--
                           <div [hidden]="!imgError" class="alert alert-danger alert-dismissable">
@@ -159,13 +171,46 @@
 
 
 
-                  <div class="panel-footer ">
-                    <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success"
-                      (click)="crearItem()">Guardar</button>
-
-                    <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;">Cancelar</a>
-                  </div>
+                  
                 </form>
+              </div>
+
+
+              <div class="panel-body pn">
+                <div class="table-responsive of-y-a">
+                  <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                    <thead style="background-color: #004a8e; color: #fff;">
+                      <tr class="bg-system">
+              
+                     
+                        <th>Nombre. </th>
+                        <th>Duración</th>
+                        <th class="text-right">Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of itemsVideosGuardados | async">
+              
+                        
+              
+                        <td>{{item.nombre }}</td>
+                        <td>{{item.duracionVideo}}</td>
+              
+                        <td class="text-right">
+                          <div class="btn-group text-right">
+                            <button type="button" data-toggle="dropdown" aria-expanded="false"
+                              class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Listo para reproducción<span class="caret ml15"></span></button>
+                            <ul role="menu" class="dropdown-menu">
+                              <li><a (click)="reproducirVideo(item)">Reproducir</a></li>
+                              
+              
+                            </ul>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
