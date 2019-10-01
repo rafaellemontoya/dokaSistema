@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-dashboard-avisos',
+  templateUrl: './dashboard-avisos.component.html',
+  styleUrls: ['./dashboard-avisos.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardAvisosComponent implements OnInit {
 
 
   private itemsCollection: AngularFirestoreCollection<Videos>;
@@ -44,7 +43,7 @@ export class DashboardComponent implements OnInit {
     videoplay: 0
   };
   itemVideo: Videos = {
-    
+
     url: '',
     duracionVideo: 0,
     nombre: ''
@@ -58,19 +57,19 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  getDashboardInfo(){
+  getDashboardInfo() {
 
-    this.items = this.afs.collectionGroup<Dashboard>('dashboard', )
+    this.items = this.afs.collectionGroup<Dashboard>('dashboard')
       .valueChanges();
     this.items.subscribe(elements => {
 
-        this.item.ventas = elements[0].ventas;
-        this.item.mensaje = elements[0].mensaje;
-        this.item.duracionVideo = elements[0].duracionVideo;
-        this.item.video = elements[0].video;
-        this.item.videoplay = elements[0].videoplay;
-        //console.log(elements[0].video.duration);
-      });
+      this.item.ventas = elements[0].ventas;
+      this.item.mensaje = elements[0].mensaje;
+      this.item.duracionVideo = elements[0].duracionVideo;
+      this.item.video = elements[0].video;
+      this.item.videoplay = elements[0].videoplay;
+      //console.log(elements[0].video.duration);
+    });
   }
 
   crearItem() {
@@ -93,22 +92,22 @@ export class DashboardComponent implements OnInit {
     console.log(event.target.files[0].type);
     // this.uploadFile();
     if (event.target.files && event.target.files[0]) {
-      if (event.target.files[0].type === 'video/mp4' ) {
+      if (event.target.files[0].type === 'video/mp4') {
 
 
-          if (event.target.files[0].size < 10000000) {//
-            this.itemVideo.duracionVideo = event.target;
-            console.log(this.selectedFile.duration);
+        if (event.target.files[0].size < 10000000) {//
+          this.itemVideo.duracionVideo = event.target;
+          console.log(this.selectedFile.duration);
 
-            this.uploadFile(event.target.id);
-          } else {
-            // Peso inválido
+          this.uploadFile(event.target.id);
+        } else {
+          // Peso inválido
 
-            this.mensajeErrorImg = 'Video demasiado grande. Debe pesar menos de 10 MB ';
-            this.imgError = true;
+          this.mensajeErrorImg = 'Video demasiado grande. Debe pesar menos de 10 MB ';
+          this.imgError = true;
 
-            console.log('peso inválido');
-          }
+          console.log('peso inválido');
+        }
 
       } else {
         // No es imagen
@@ -162,7 +161,7 @@ export class DashboardComponent implements OnInit {
         x => console.log(fileRef.getDownloadURL));
   }
 
-  reproducirVideo(video: Videos){
+  reproducirVideo(video: Videos) {
     //
     this.reproduciendo = true;
     this.claseReproduccion = 'btn btn-danger br2 btn-xs fs12 dropdown-toggle';
@@ -181,14 +180,14 @@ export class DashboardComponent implements OnInit {
       this.reproduciendo = false;
       this.estadoReproduccion = 'Listo para reproducción';
       this.claseReproduccion = 'btn btn-success br2 btn-xs fs12 dropdown-toggle';
-    }, ((video.duracionVideo ) * 1000));
+    }, ((video.duracionVideo) * 1000));
   }
 
   getDuration(e) {
-    
+
     this.itemVideo.duracionVideo = e.target.duration + 1;
     console.log(this.itemVideo.duracionVideo);
-    if ( this.itemVideo.url !== '') {
+    if (this.itemVideo.url !== '') {
       this.crearItemVideo();
     }
   }
@@ -202,7 +201,7 @@ export class DashboardComponent implements OnInit {
     this.itemVideo.url = '';
     this.submitted = true;
   }
-  getInfo(){
+  getInfo() {
     this.itemsCollectionVideo = this.afs.collection<Videos>('dashboard/CsiHCHA3p37pEKX5cFcz/videos');
     // .valueChanges() is simple. It just returns the 
     // JSON data without metadata. If you need the 
@@ -223,9 +222,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  eliminar(id: string, video: Videos){
+  eliminar(id: string, video: Videos) {
     console.log(id, video);
-    
+
     const itemDoc = this.afs.doc<Dashboard>('dashboard/CsiHCHA3p37pEKX5cFcz/videos/' + id);
 
     itemDoc.delete();

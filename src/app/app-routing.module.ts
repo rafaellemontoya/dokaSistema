@@ -14,6 +14,10 @@ import { ClasificacionEquipoComponent } from './pages/clasificacion-equipo/clasi
 import { TipoDanoComponent } from './pages/tipo-dano/tipo-dano.component';
 import { MaterialesComponent } from './pages/materiales/materiales.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardVentasComponent } from './pages/dashboard-ventas/dashboard-ventas.component';
+import { DashboardAvisosComponent } from './pages/dashboard-avisos/dashboard-avisos.component';
+import { DashboardVideoComponent } from './pages/dashboard-video/dashboard-video.component';
+import { DashboardCobranzaComponent } from './pages/dashboard-cobranza/dashboard-cobranza.component';
 
 
 const app_routes: Routes=[
@@ -36,7 +40,9 @@ const app_routes: Routes=[
     {path: 'materiales', component: MaterialesComponent},
     {path: 'clasificacion-equipo', component: ClasificacionEquipoComponent},
     {path: 'tipo-dano', component: TipoDanoComponent},
-    { path: 'dashboard', component: DashboardComponent },
+    { path: 'dashboard-cobranza', component: DashboardCobranzaComponent },
+    { path: 'dashboard-avisos', component: DashboardAvisosComponent },
+    { path: 'dashboard-video', component: DashboardVideoComponent },
 
 ]
 @NgModule({

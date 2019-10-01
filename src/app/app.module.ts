@@ -17,7 +17,7 @@ import { NuevoMaterialComponent } from './pages/nuevo-material/nuevo-material.co
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
@@ -25,6 +25,10 @@ import { MaterialesComponent } from './pages/materiales/materiales.component';
 import { TipoDanoComponent } from './pages/tipo-dano/tipo-dano.component';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardVentasComponent } from './pages/dashboard-ventas/dashboard-ventas.component';
+import { DashboardAvisosComponent } from './pages/dashboard-avisos/dashboard-avisos.component';
+import { DashboardVideoComponent } from './pages/dashboard-video/dashboard-video.component';
+import { DashboardCobranzaComponent } from './pages/dashboard-cobranza/dashboard-cobranza.component';
 
 const routes: Routes = [];
 @NgModule({
@@ -45,11 +49,16 @@ const routes: Routes = [];
     ProyectosComponent,
     MaterialesComponent,
     TipoDanoComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardVentasComponent,
+    DashboardAvisosComponent,
+    DashboardVideoComponent,
+    DashboardCobranzaComponent
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, 'dokaSistema'),
+    AngularFirestoreModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
