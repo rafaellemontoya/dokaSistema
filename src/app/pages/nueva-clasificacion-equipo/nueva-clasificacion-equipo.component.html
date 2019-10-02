@@ -40,7 +40,7 @@
                     <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
                     <h3 class="mt5">Clasificación guardada exitosamente!</h3>
                     <p>Nueva clasificación de equipo añadida con éxito.</p><br>
-                    <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; admin-form.reset()" class="btn btn-default">Nuevo Clasificación</button></div>
+                    <div class="element-groups-sm-custom"><a routerLink="/clasificacion-equipo" class="btn btn-default">Continuar</a><button type="button" routerLink='/nueva-clasificacion-equipo' class="btn btn-default">Nuevo Clasificación</button></div>
                   </div>
 
 
@@ -55,7 +55,7 @@
                       <div class="col-md-12">
                         <div class="section">
                           <label class="field prepend-icon">
-                            <input  type="text" [(ngModel)]="item.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
+                            <input  type="text" [(ngModel)]="itemClasificacion.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
                             <b class="tooltip tip-right-top">
                               <em> Nombre de la clasificacion.</em>
                             </b>
@@ -76,7 +76,7 @@
                         <div class="col-md-4">
                             <div class="section">
                               <label class="field prepend-icon">
-                                <input type="text" [(ngModel)]="item.item" #item="ngModel"  id="item" required  name="item" placeholder="Item del manual" class="gui-input">
+                                <input type="text" [(ngModel)]="itemClasificacion.item" #item="ngModel"  id="item" required  name="item" placeholder="Item del manual" class="gui-input">
                                 <b class="tooltip tip-right-top">
                                   <em> Item del manual.</em>
                                 </b>
@@ -92,7 +92,7 @@
                           <div class="col-md-4">
                               <div class="section">
                                 <label class="field prepend-icon">
-                                  <input type="text" [(ngModel)]="item.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
+                                  <input type="text" [(ngModel)]="itemClasificacion.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
                                   <b class="tooltip tip-right-top">
                                     <em> Manual.</em>
                                   </b>
@@ -109,7 +109,7 @@
                             <div class="col-md-4">
                               <div class="section">
                                 <label class="field prepend-icon">
-                                  <input  type="text" [(ngModel)]="item.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página del Manual" class="gui-input">
+                                  <input  type="text" [(ngModel)]="itemClasificacion.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página del Manual" class="gui-input">
                                   <b class="tooltip tip-right-top">
                                     <em> Nombre del Manual.</em>
                                   </b>

@@ -29,6 +29,7 @@ import { DashboardVentasComponent } from './pages/dashboard-ventas/dashboard-ven
 import { DashboardAvisosComponent } from './pages/dashboard-avisos/dashboard-avisos.component';
 import { DashboardVideoComponent } from './pages/dashboard-video/dashboard-video.component';
 import { DashboardCobranzaComponent } from './pages/dashboard-cobranza/dashboard-cobranza.component';
+import { EditarClienteComponent } from './pages/editar-cliente/editar-cliente.component';
 
 const routes: Routes = [];
 @NgModule({
@@ -53,7 +54,8 @@ const routes: Routes = [];
     DashboardVentasComponent,
     DashboardAvisosComponent,
     DashboardVideoComponent,
-    DashboardCobranzaComponent
+    DashboardCobranzaComponent,
+    EditarClienteComponent
   ],
   imports: [
     BrowserModule,

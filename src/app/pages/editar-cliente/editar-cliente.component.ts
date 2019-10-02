@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from 'src/app/services/shared.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { SharedService } from 'src/app/services/shared.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-nuevo-cliente',
-  templateUrl: './nuevo-cliente.component.html',
-  styleUrls: ['./nuevo-cliente.component.css']
+  selector: 'app-editar-cliente',
+  templateUrl: './editar-cliente.component.html',
+  styleUrls: ['./editar-cliente.component.css']
 })
-export class NuevoClienteComponent implements OnInit {
+export class EditarClienteComponent implements OnInit {
   mensajeErrorImg = '';
   claseCargaImg = '';
   porcentajeCargaImg: any ;
@@ -21,37 +22,59 @@ export class NuevoClienteComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
 
-
+  idRecibido = '';
+  private itemDoc: AngularFirestoreDocument<Cliente>;
+  itemRecibido: Observable<Cliente>;
   item: Cliente = {
-  nombre: '',
-  nombreBusqueda: '',
-  numero: '',
-  key: '',
-  pais: '',
-  usuarioAlta: '',
-  fechaAlta: 0,
-  estado: 0,
-  logo: '',
-  fechaEdicion: 0,
-  
-  }
+    nombre: '',
+    nombreBusqueda: '',
+    numero: '',
+    key: '',
+    pais: '',
+    usuarioAlta: '',
+    fechaAlta: 0,
+    estado: 0,
+    logo: '',
+    fechaEdicion: 0,
 
-  constructor(private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage) { }
+    };
+
+  constructor(private sharedService: SharedService,
+              private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+    this.route.params
+    .subscribe( parametros => {
+    this.idRecibido = parametros.id;
+    console.log(parametros.id);
+    this.obtenerInformacion(this.idRecibido);
+   });
+ }
+
+  obtenerInformacion(idRecibido) {
+    // this.afs.collection('clients', ref => ref.where('key', '==', 'large'));
+    this.itemDoc = this.afs.doc<Cliente>('clients/' + idRecibido);
+    this.itemDoc.valueChanges().subscribe(data => {
+      console.log(data);
+      this.item = data;
+    });
+
+
+    // console.log(this.item.nombre);
+
   }
 
 
-
-  crearItem(){
+  crearItem() {
     this.item.pais = 'MX';
-    //this.item.usuarioAlta = keyUser;
-    this.item.fechaAlta = new Date().getTime();
-    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
 
-    const itemCollection = this.afs.collection<Cliente>('clients');
-    itemCollection.add(this.item);
+    this.item.fechaEdicion = new Date().getTime();
+    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
+    this.itemDoc.update(this.item);
     this.submitted = true;
+
+    window.scrollTo(0, 0);
   }
   cancel() {
     this.sharedService.cancelar();
@@ -142,6 +165,5 @@ export class NuevoClienteComponent implements OnInit {
       .subscribe(
         x => console.log(fileRef.getDownloadURL));
   }
-
 
 }

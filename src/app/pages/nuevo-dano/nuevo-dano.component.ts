@@ -45,6 +45,7 @@ export class NuevoDanoComponent implements OnInit {
      const itemCollection = this.afs.collection<TipoDano>('damage');
      itemCollection.add(this.item);
      this.submitted = true;
+     window.scrollTo(0, 0);
    }
 
 

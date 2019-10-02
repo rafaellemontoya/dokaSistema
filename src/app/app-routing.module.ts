@@ -18,15 +18,16 @@ import { DashboardVentasComponent } from './pages/dashboard-ventas/dashboard-ven
 import { DashboardAvisosComponent } from './pages/dashboard-avisos/dashboard-avisos.component';
 import { DashboardVideoComponent } from './pages/dashboard-video/dashboard-video.component';
 import { DashboardCobranzaComponent } from './pages/dashboard-cobranza/dashboard-cobranza.component';
+import { EditarClienteComponent } from './pages/editar-cliente/editar-cliente.component';
 
 
-const app_routes: Routes=[
+const routes: Routes = [
     { path: '', component: InicioComponent},
-    //Rutas ingles
+    // Rutas ingles
     {path: 'home', component: InicioComponent},
     {path: 'users', component: UsuariosComponent},
 
-    //Rutas espanol
+    // Rutas espanol
     {path: 'inicio', component: InicioComponent},
     {path: 'usuarios', component: UsuariosComponent},
     {path: 'nuevo-usuario', component: NuevoUsuarioComponent},
@@ -40,14 +41,15 @@ const app_routes: Routes=[
     {path: 'materiales', component: MaterialesComponent},
     {path: 'clasificacion-equipo', component: ClasificacionEquipoComponent},
     {path: 'tipo-dano', component: TipoDanoComponent},
+    {path: 'editar-cliente/:id', component: EditarClienteComponent},
     { path: 'dashboard-cobranza', component: DashboardCobranzaComponent },
     { path: 'dashboard-avisos', component: DashboardAvisosComponent },
     { path: 'dashboard-video', component: DashboardVideoComponent },
 
-]
+];
 @NgModule({
     imports: [
-        RouterModule.forRoot( app_routes)
+        RouterModule.forRoot( routes)
     ],
     exports: [
         RouterModule

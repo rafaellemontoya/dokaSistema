@@ -1,4 +1,4 @@
-interface Cliente{
+interface Cliente {
     nombre: string;
     nombreBusqueda: string;
     numero: string;
@@ -8,4 +8,6 @@ interface Cliente{
     fechaAlta: number;
     estado: number;
     logo: string;
+    id?: string;
+    fechaEdicion: number;
 }

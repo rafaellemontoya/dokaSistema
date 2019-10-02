@@ -11,10 +11,9 @@ import { SharedService } from 'src/app/services/shared.service';
 export class NuevaClasificacionEquipoComponent implements OnInit {
 
   submitted = false;
-  private itemsCollection: AngularFirestoreCollection<Cliente>;
- items: Observable<Cliente[]>;
 
- item: ClasificacionEquipo = {
+
+ itemClasificacion: ClasificacionEquipo = {
    nombre: '',
    manual: '',
    paginas: '',
@@ -32,13 +31,13 @@ export class NuevaClasificacionEquipoComponent implements OnInit {
    ngOnInit() { }
 
    nuevaClasificacion(){
-     console.log(this.item);
+     console.log(this.itemClasificacion);
 
-     this.item.pais = 'MX';
+     this.itemClasificacion.pais = 'MX';
      //this.item.usuarioAlta = keyUser;
-     this.item.fechaAlta = new Date().getTime();
+     this.itemClasificacion.fechaAlta = new Date().getTime();
      const itemCollection = this.afs.collection<ClasificacionEquipo>('equipmentType');
-     itemCollection.add(this.item);
+     itemCollection.add(this.itemClasificacion);
      this.submitted = true;
    }
 
