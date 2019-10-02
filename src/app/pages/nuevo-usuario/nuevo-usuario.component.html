@@ -1,6 +1,6 @@
 <div  class="admin-elements-page">
  <!--[hidden]="!empleadoActual.permisos.empleados"-->
-  
+
   <!-- Start: Content-Wrapper-->
   <section id="content_wrapper">
       <!-- Start: Topbar-Dropdown-->
@@ -9,13 +9,13 @@
       <header id="topbar" class="alt">
         <div class="topbar-left">
           <ol class="breadcrumb">
-            
+
             <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="crumb-link"><a routerLink="/empleados">Empleados</a></li>
-            <li class="crumb-trail">Nuevo empleado</li>
+            <li class="crumb-link"><a routerLink="/empleados">Usuarios</a></li>
+            <li class="crumb-trail">Nuevo usuario</li>
           </ol>
         </div>
-        
+
       </header>
       <!-- Begin: Content-->
       <section id="content" class="table-layout animated fadeIn">
@@ -24,28 +24,28 @@
           <div class="mw1000 center-block">
             <!-- Begin: Content Header-->
             <div class="content-header">
-              <h2> <b style="color:#004A8E;">Nuevo usuario</b> 
+              <h2> <b style="color:#004A8E;">Nuevo usuario</b>
               </h2>
               <p class="lead">Llena el formulario para agregar el usuario</p>
             </div>
-            
-  
-  
+
+
+
             <!-- Begin: Admin Form-->
             <div class="admin-form">
               <div  class="panel heading-border">
                 <!-- Panel guardado-->
                 <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
-                    
-  
-                <div class="alert alert-success alert-dismissable mb30" style="background: yellow">
+
+
+                <div class="alert alert-success alert-dismissable mb30" style="background: rgb(3, 151, 102)">
                     <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
                     <h3 class="mt5">Empleado guardado exitosamente!</h3>
                     <p>Empleado añadido con éxito.</p><br>
-                    <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-white">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo empleado</button></div>
+                    <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo empleado</button></div>
                   </div>
-    
-    
+
+
                 </div>
                 <!-- Panel formulario-->
                 <div [hidden]="submitted" class="panel-body bg-light">
@@ -63,7 +63,7 @@
                             </b>
                             <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                           </label>
-                          
+
                           <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
                              Se necesita un nombre de empleado
                           </div>
@@ -83,7 +83,7 @@
                           </div>
                         </div>
                       </div>
-                      
+
                     </div>
                     <!-- Input Icons-->
                     <div class="row">
@@ -96,7 +96,7 @@
                                 </b>
                                 <label for="usuario" class="field-icon"><i class="fa fa-flag"></i></label>
                               </label>
-                              
+
                           </div>
                       </div>
                       <div class="col-md-4">
@@ -108,7 +108,7 @@
                                 </b>
                                 <label for="password" class="field-icon"><i class="fa fa-flag"></i></label>
                               </label>
-                              
+
                           </div>
                       </div>
                       <div class="col-md-4">
@@ -120,15 +120,15 @@
                                 </b>
                                 <label for="seccion" class="field-icon"><i class="fa fa-flag"></i></label>
                               </label>
-                              
+
                           </div>
                       </div>
-                      
+
                     </div>
 
                     <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Correo electrónico</span></div>
                     <!-- Multi Selects-->
-                    
+
                     <div class="row">
                       <div class="col-md-6">
                         <div class="section">
@@ -139,7 +139,7 @@
                             </b>
                             <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                           </label>
-                    
+
                           <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
                             Se necesita un correo de empleado
                           </div>
@@ -160,7 +160,7 @@
                           </div>
                         </div>
                       </div>
-                    
+
                     </div>
 
                     <div id="spy2" class="section-divider mv40"><span style="color:#004A8E;">Permisos de administración de Sistema web</span></div>
@@ -204,7 +204,7 @@
                           <label for="usuarios">Tipos de daño</label>
                         </div>
                       </div>
-                      
+
                     </div>
 
                     <div id="spy2" class="section-divider mv40"><span style="color:#004A8E;">Permisos de reportes de Sistema web</span></div>
@@ -237,7 +237,7 @@
                           <label for="reportesObraWeb">Reportes de obra</label>
                         </div>
                       </div>
-                      
+
                     </div>
 
 
@@ -271,18 +271,18 @@
                           <label for="reportesObraApp">Reportes de obra</label>
                         </div>
                       </div>
-                      
+
                     </div>
-                    
-                    
+
+
                     <div id="spy3" class="section-divider mv40"><span style="color:#004A8E;">Foto (opcional)</span></div>
                     <div [hidden]="!imgError">
                       <h2>{{mensajeErrorImg}}</h2>
-                      
+
                     </div>
                     <!-- .section-divider-->
                     <!-- File Uploaders-->
-  
+
                     <!-- imagen 1 -->
                     <div class="row">
                         <div class="col-md-12">
@@ -292,18 +292,18 @@
                               <input id="up1"  type="text" placeholder="Foto empleado" class="gui-input">
                               <label class="field-icon"><i class="fa fa-upload"></i></label>
                             </label>
-  
+
                           </div>
                         </div>
-                        
+
                       </div>
-                
-                    
-                    
-                 
+
+
+
+
                     <div class="panel-footer ">
                       <button type="button" class="btn btn-success" (click)="crearItem()">Guardar</button>
-                      
+
                       <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                     </div>
                   </form>
@@ -313,7 +313,7 @@
           </div>
         </div>
         <!-- begin: .tray-right-->
-        
+
       </section>
     </section>
     </div>
@@ -324,29 +324,29 @@
 
   <!-- No hay permisos--
  <section  [hidden]="empleadoActual.permisos.empleados" id="content_wrapper">
-  
 
-  
+
+
   <header id="topbar" class="bg-white alt">
     <div class="topbar-left">
       <ol class="breadcrumb mt-10">
         <li class="crumb-active"><a routerLink="/inicio">Sistema Memphis</a></li>
-      
+
       </ol>
     </div>
 
   </header>
-  
+
   <div id="content" class="animated fadeIn">
 
-    
+
     <div class="row">
       <div class="col-md-12">
 
 
         <hr class="mt20 mb30">
-       
-       
+
+
         <div class="">
           <div class="alert alert-danger alert-dismissable mb30">
 
@@ -356,10 +356,9 @@
             <div class="element-groups-sm-custom"><a (click)="cancel()" class="btn btn-white">REGRESAR</a></div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
 </section>-->
-    
-  
+
