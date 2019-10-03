@@ -30,6 +30,10 @@ import { DashboardAvisosComponent } from './pages/dashboard-avisos/dashboard-avi
 import { DashboardVideoComponent } from './pages/dashboard-video/dashboard-video.component';
 import { DashboardCobranzaComponent } from './pages/dashboard-cobranza/dashboard-cobranza.component';
 import { EditarClienteComponent } from './pages/editar-cliente/editar-cliente.component';
+import { EditarMaterialesComponent } from './pages/editar-materiales/editar-materiales.component';
+import { EditarProyectosComponent } from './pages/editar-proyectos/editar-proyectos.component';
+import { EditarTipoDanoComponent } from './pages/editar-tipo-dano/editar-tipo-dano.component';
+import { EditarClasificacionEquipoComponent } from './pages/editar-clasificacion-equipo/editar-clasificacion-equipo.component';
 
 const routes: Routes = [];
 @NgModule({
@@ -55,7 +59,11 @@ const routes: Routes = [];
     DashboardAvisosComponent,
     DashboardVideoComponent,
     DashboardCobranzaComponent,
-    EditarClienteComponent
+    EditarClienteComponent,
+    EditarMaterialesComponent,
+    EditarProyectosComponent,
+    EditarTipoDanoComponent,
+    EditarClasificacionEquipoComponent
   ],
   imports: [
     BrowserModule,
