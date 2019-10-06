@@ -1,0 +1,200 @@
+<div   class="admin-elements-page">
+  <!-- Start: Content-Wrapper-->
+  <section id="content_wrapper">
+    <!-- Start: Topbar-Dropdown-->
+
+    <!-- Start: Topbar-->
+    <header id="topbar" class="alt">
+      <div class="topbar-left">
+        <ol class="breadcrumb">
+
+          <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
+          <li class="crumb-link"><a routerLink="/clasificacion-equipo">Clasificaciones de equipo</a></li>
+          <li class="crumb-trail">Editar clasificación</li>
+        </ol>
+      </div>
+
+    </header>
+    <!-- Begin: Content-->
+    <section id="content" class="table-layout animated fadeIn">
+      <!-- begin: .tray-center-->
+      <div class="tray tray-center">
+        <div class="mw1000 center-block">
+          <!-- Begin: Content Header-->
+          <div class="content-header">
+            <h2> <b style="color:#004A8E;">Editar clasificación de equipo</b>
+            </h2>
+            <p class="lead">Llena el formulario para editar la nueva clasificación de equipo</p>
+          </div>
+
+
+
+          <!-- Begin: Admin Form-->
+          <div class="admin-form">
+            <div  class="panel heading-border">
+              <!-- Panel guardado-->
+              <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
+
+
+              <div class="alert alert-success alert-dismissable mb30" style="background: rgb(3, 151, 102)">
+                  <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                  <h3 class="mt5">Clasificación guardada exitosamente!</h3>
+                  <p>Nueva clasificación de equipo añadida con éxito.</p><br>
+                  <div class="element-groups-sm-custom"><a routerLink="/clasificacion-equipo" class="btn btn-default">Continuar</a><button type="button" routerLink='/nueva-clasificacion-equipo' class="btn btn-default">Nuevo Clasificación</button></div>
+                </div>
+
+
+              </div>
+              <!-- Panel formulario-->
+              <div [hidden]="submitted" class="panel-body bg-light">
+                <form (ngSubmit)="nuevaClasificacion()" (keydown.enter)="$event.preventDefault()">
+                  <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
+                  <!-- .section-divider-->
+                  <!-- Basic Inputs-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section">
+                        <label class="field prepend-icon">
+                          <input  type="text" [(ngModel)]="itemClasificacion.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Nombre de la clasificacion.</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                        <!--
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                           Se necesita un nombre de empleado
+                        </div>
+                      -->
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <!-- Input Icons-->
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="section">
+                            <label class="field prepend-icon">
+                              <input type="text" [(ngModel)]="itemClasificacion.item" #item="ngModel"  id="item" required  name="item" placeholder="Item del manual" class="gui-input">
+                              <b class="tooltip tip-right-top">
+                                <em> Item del manual.</em>
+                              </b>
+                              <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                            </label>
+                            <!--
+                            <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                               Se necesita un nombre de empleado
+                            </div>
+                          -->
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="section">
+                              <label class="field prepend-icon">
+                                <input type="text" [(ngModel)]="itemClasificacion.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Manual.</em>
+                                </b>
+                                <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+                              <!--
+                              <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                 Se necesita un nombre de empleado
+                              </div>
+                            -->
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="section">
+                              <label class="field prepend-icon">
+                                <input  type="text" [(ngModel)]="itemClasificacion.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página del Manual" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Nombre del Manual.</em>
+                                </b>
+                                <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+                              <!--
+                              <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                 Se necesita un nombre de empleado
+                              </div>
+                            -->
+                            </div>
+                          </div>
+
+                  </div>
+
+
+                  <!-- Multi Selects-->
+
+
+
+                  <!-- .section-divider-->
+                  <!-- tooltips-->
+
+
+
+
+                  <div class="panel-footer ">
+                    <button type="button" class="btn btn-success" (click)="nuevaClasificacion()">Guardar</button>
+
+                    <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- begin: .tray-right-->
+
+    </section>
+  </section>
+  </div>
+
+
+
+
+
+<!-- No hay permisos--
+<section  [hidden]="empleadoActual.permisos.empleados" id="content_wrapper">
+
+
+
+<header id="topbar" class="bg-white alt">
+  <div class="topbar-left">
+    <ol class="breadcrumb mt-10">
+      <li class="crumb-active"><a routerLink="/inicio">Sistema Memphis</a></li>
+
+    </ol>
+  </div>
+
+</header>
+
+<div id="content" class="animated fadeIn">
+
+
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <hr class="mt20 mb30">
+
+
+      <div class="">
+        <div class="alert alert-danger alert-dismissable mb30">
+
+          <h5 class="mt5">Error</h5>
+          <h3 class="mt5">No tienes acceso a ésta sección</h3>
+          <p>Ponte en contacto con el administrador.</p><br>
+          <div class="element-groups-sm-custom"><a (click)="cancel()" class="btn btn-white">REGRESAR</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>-->
+
+
