@@ -28,11 +28,13 @@ export class EditarTipoDanoComponent implements OnInit {
   itemRecibido: Observable<TipoDano>;
   item: TipoDano = {
     key: '',
+    nombreBusqueda:'',
     clasificacionEquipo: '',
     tipoDano: '',
     pais: '',
     usuarioAlta: '',
-    fechaAlta: 0,
+    fechaAlta:0,
+    fechaEdicion: 0,
     estado: 0,
     };
 
@@ -67,7 +69,7 @@ export class EditarTipoDanoComponent implements OnInit {
     this.item.pais = 'MX';
 
     this.item.fechaEdicion = new Date().getTime();
-    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
+    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.tipoDano);
     this.itemDoc.update(this.item);
     this.submitted = true;
 

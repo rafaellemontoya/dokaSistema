@@ -34,8 +34,10 @@ export class EditarClasificacionEquipoComponent implements OnInit {
     paginas: '',
     item: 0,
     pais: '',
-    usuarioAlta: '',
-    fechaAlta: 0,
+    usuarioAlta:'',
+    fechaAlta:0,
+    fechaEdicion: 0,
+    nombreBusqueda:'',
     estado: 0,
 
     };

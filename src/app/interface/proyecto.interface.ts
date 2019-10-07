@@ -6,6 +6,7 @@ interface Proyecto {
     key: string;
     pais: string;
     usuarioAlta: string;
-    fechaAlta: number;
+    fechaAlta:number;
+    fechaEdicion: number;
     estado: number;
 }

@@ -19,6 +19,10 @@ import { DashboardAvisosComponent } from './pages/dashboard-avisos/dashboard-avi
 import { DashboardVideoComponent } from './pages/dashboard-video/dashboard-video.component';
 import { DashboardCobranzaComponent } from './pages/dashboard-cobranza/dashboard-cobranza.component';
 import { EditarClienteComponent } from './pages/editar-cliente/editar-cliente.component';
+import { EditarClasificacionEquipoComponent } from './pages/editar-clasificacion-equipo/editar-clasificacion-equipo.component';
+import { EditarMaterialComponent } from './pages/editar-materiales/editar-materiales.component';
+import { EditarProyectosComponent } from './pages/editar-proyectos/editar-proyectos.component';
+import { EditarTipoDanoComponent } from './pages/editar-tipo-dano/editar-tipo-dano.component';
 
 
 const routes: Routes = [
@@ -42,6 +46,11 @@ const routes: Routes = [
     {path: 'clasificacion-equipo', component: ClasificacionEquipoComponent},
     {path: 'tipo-dano', component: TipoDanoComponent},
     {path: 'editar-cliente/:id', component: EditarClienteComponent},
+    {path: 'editar-clasificacion-equipo/:id', component: EditarClasificacionEquipoComponent},
+    {path: 'editar-materiales/:id', component: EditarMaterialComponent},
+    {path: 'editar-proyectos/:id', component: EditarProyectosComponent},
+    {path: 'editar-tipo-dano/:id', component: EditarTipoDanoComponent},
+    {path: 'editar-tipo-usuario/:id', component: NuevoUsuarioComponent},
     { path: 'dashboard-cobranza', component: DashboardCobranzaComponent },
     { path: 'dashboard-avisos', component: DashboardAvisosComponent },
     { path: 'dashboard-video', component: DashboardVideoComponent },

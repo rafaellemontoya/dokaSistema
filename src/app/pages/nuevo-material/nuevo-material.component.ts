@@ -15,14 +15,15 @@ export class NuevoMaterialComponent implements OnInit {
  items: Observable<Cliente[]>;
 
  item: Material = {
-   codigo: '',
-   nombreBusqueda: '',
-   descripcion: '',
-   key: '',
-   pais: '',
-   usuarioAlta: '',
-   fechaAlta: 0,
-   estado: 0,
+  codigo: '',
+  nombreBusqueda: '',
+  descripcion: '',
+  key: '',
+  pais: '',
+  usuarioAlta: '',
+  fechaAlta:0,
+  fechaEdicion: 0,
+  estado: 0,
 
    }
 

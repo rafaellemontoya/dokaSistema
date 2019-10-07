@@ -14,11 +14,7 @@ export class EditarUsuarioComponent implements OnInit {
 
   mensajeErrorImg = '';
   claseCargaImg = '';
-  porcentajeCargaImg = '';
-  submitted = false;
-  mensajeErrorImg = '';
-  claseCargaImg = '';
-  porcentajeCargaImg: any ;
+  porcentajeCargaImg: '' ;
   submitted = false;
   imgError = false;
   selectedFile = null;
@@ -37,12 +33,12 @@ export class EditarUsuarioComponent implements OnInit {
     puesto: '',
     usuario: '',
     password: '',
-    permisos: {usuarios:false,
+    permisos:{usuarios:false,
                 clientes:false,
                 proyectos: false,
                 materiales: false,
-                damage: false,
-                Usuario: false,
+                damage:false,
+                clasificacionEquipo: false,
                 reportesObraWeb: false,
                 reporteEquipoDamageWeb:false,
                 reporteEnvioWeb:false,
@@ -60,6 +56,7 @@ export class EditarUsuarioComponent implements OnInit {
     pais:'',
     usuarioAlta:'',
     fechaAlta:0,
+    fechaEdicion:0,
     estado:0,
 
     };
@@ -79,7 +76,7 @@ export class EditarUsuarioComponent implements OnInit {
 
   obtenerInformacion(idRecibido) {
 
-    this.itemDoc = this.afs.doc<Usuario>('equipmentType/' + idRecibido);
+    this.itemDoc = this.afs.doc<Usuario>('user/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
       this.item = data;
@@ -94,7 +91,7 @@ export class EditarUsuarioComponent implements OnInit {
   crearItem() {
     this.item.pais = 'MX';
 
-    this.item.fechaAlta = new Date().getTime();
+    this.item.fechaEdicion = new Date().getTime();
     this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
     this.itemDoc.update(this.item);
     this.submitted = true;

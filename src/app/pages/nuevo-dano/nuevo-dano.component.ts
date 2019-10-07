@@ -16,13 +16,15 @@ export class NuevoDanoComponent implements OnInit {
  items: Observable<ClasificacionEquipo[]>;
 
  item: TipoDano = {
-   tipoDano: '',
-   clasificacionEquipo: '',
-   key: '',
-   pais: '',
-   usuarioAlta: '',
-   fechaAlta: 0,
-   estado: 0,
+  key: '',
+  nombreBusqueda:'',
+  clasificacionEquipo: '',
+  tipoDano: '',
+  pais: '',
+  usuarioAlta: '',
+  fechaAlta:0,
+  fechaEdicion:0,
+  estado:0,
 
    }
 

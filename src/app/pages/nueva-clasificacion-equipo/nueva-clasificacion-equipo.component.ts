@@ -14,15 +14,17 @@ export class NuevaClasificacionEquipoComponent implements OnInit {
 
 
  itemClasificacion: ClasificacionEquipo = {
-   nombre: '',
-   manual: '',
-   paginas: '',
-   item: 0,
-   key: '',
-   pais: '',
-   usuarioAlta: '',
-   fechaAlta: 0,
-   estado: 0,
+  key: '',
+  nombre: '',
+  manual: '',
+  paginas: '',
+  item: 0,
+  pais: '',
+  usuarioAlta: '',
+  fechaAlta: 0,
+  fechaEdicion: 0,
+  nombreBusqueda:'',
+  estado: 0,
 
    }
 

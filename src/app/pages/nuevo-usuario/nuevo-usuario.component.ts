@@ -46,6 +46,7 @@ export class NuevoUsuarioComponent implements OnInit {
     pais: '',
     usuarioAlta: '',
     fechaAlta: 0,
+    fechaEdicion:0,
     estado: 1
   }
   constructor(private sharedService: SharedService, private afs: AngularFirestore) { }

@@ -35,6 +35,7 @@ export class EditarProyectosComponent implements OnInit {
     pais: '',
     usuarioAlta: '',
     fechaAlta: 0,
+    fechaEdicion: 0,
     estado: 0,
 
     };

@@ -8,9 +8,9 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-editar-material',
-  templateUrl: './editar-material.component.html',
-  styleUrls: ['./editar-material.component.css']
+  selector: 'app-editar-materiales',
+  templateUrl: './editar-materiales.component.html',
+  styleUrls: ['./editar-materiales.component.css']
 })
 export class EditarMaterialComponent implements OnInit {
   mensajeErrorImg = '';
@@ -34,7 +34,8 @@ export class EditarMaterialComponent implements OnInit {
     key: '',
     pais: '',
     usuarioAlta: '',
-    fechaAlta: 0,
+    fechaAlta:0,
+    fechaEdicion: 0,
     estado: 0,
 
     };
@@ -70,7 +71,7 @@ export class EditarMaterialComponent implements OnInit {
     this.item.pais = 'MX';
 
     this.item.fechaEdicion = new Date().getTime();
-    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
+    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.descripcion);
     this.itemDoc.update(this.item);
     this.submitted = true;
 

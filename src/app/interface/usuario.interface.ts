@@ -28,5 +28,6 @@ interface Usuario {
     pais:string;
     usuarioAlta:string;
     fechaAlta:number;
+    fechaEdicion:number;
     estado:number;
 }
