@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Observable } from 'rxjs';
 import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { SharedService } from 'src/app/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
+=======
+>>>>>>> 95378fb8ab43719057792faa2cabacb9d3e4f195
 
 @Component({
   selector: 'app-editar-usuario',
@@ -14,6 +17,7 @@ export class EditarUsuarioComponent implements OnInit {
 
   mensajeErrorImg = '';
   claseCargaImg = '';
+<<<<<<< HEAD
   porcentajeCargaImg: '' ;
   submitted = false;
   imgError = false;
@@ -100,6 +104,13 @@ export class EditarUsuarioComponent implements OnInit {
   }
   cancel() {
     this.sharedService.cancelar();
+=======
+  porcentajeCargaImg = '';
+  submitted = false;
+  constructor() { }
+
+  ngOnInit() {
+>>>>>>> 95378fb8ab43719057792faa2cabacb9d3e4f195
   }
 
   getFile(event){
@@ -109,6 +120,12 @@ export class EditarUsuarioComponent implements OnInit {
   nuevoEmpleado(){
 
   }
+<<<<<<< HEAD
  
+=======
+  cancel(){
+
+  }
+>>>>>>> 95378fb8ab43719057792faa2cabacb9d3e4f195
 
 }
