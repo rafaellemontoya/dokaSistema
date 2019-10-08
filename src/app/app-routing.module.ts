@@ -23,6 +23,7 @@ import { EditarClasificacionEquipoComponent } from './pages/editar-clasificacion
 import { EditarMaterialComponent } from './pages/editar-materiales/editar-materiales.component';
 import { EditarProyectosComponent } from './pages/editar-proyectos/editar-proyectos.component';
 import { EditarTipoDanoComponent } from './pages/editar-tipo-dano/editar-tipo-dano.component';
+import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.component';
 
 
 const routes: Routes = [
@@ -50,7 +51,7 @@ const routes: Routes = [
     {path: 'editar-materiales/:id', component: EditarMaterialComponent},
     {path: 'editar-proyectos/:id', component: EditarProyectosComponent},
     {path: 'editar-tipo-dano/:id', component: EditarTipoDanoComponent},
-    {path: 'editar-tipo-usuario/:id', component: NuevoUsuarioComponent},
+    {path: 'editar-usuario/:id', component: EditarUsuarioComponent},
     { path: 'dashboard-cobranza', component: DashboardCobranzaComponent },
     { path: 'dashboard-avisos', component: DashboardAvisosComponent },
     { path: 'dashboard-video', component: DashboardVideoComponent },

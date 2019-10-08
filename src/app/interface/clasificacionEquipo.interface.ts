@@ -8,7 +8,7 @@ interface ClasificacionEquipo {
     usuarioAlta: string;
     fechaAlta: number;
     fechaEdicion: number;
-    nombreBusqueda:string;
+    nombreBusqueda: string;
     estado: number;
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreDocument, AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { SharedService } from 'src/app/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -21,7 +21,8 @@ export class EditarProyectosComponent implements OnInit {
   estadoCargaImg = false;
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
-
+  private itemsCollection: AngularFirestoreCollection<Cliente>;
+  items: Observable<Cliente[]>;
 
   idRecibido = '';
   private itemDoc: AngularFirestoreDocument<Proyecto>;
@@ -50,12 +51,13 @@ export class EditarProyectosComponent implements OnInit {
     this.idRecibido = parametros.id;
     console.log(parametros.id);
     this.obtenerInformacion(this.idRecibido);
+    this.getInfoClasificacion();
    });
  }
 
   obtenerInformacion(idRecibido) {
 
-    this.itemDoc = this.afs.doc<Proyecto>('equipmentType/' + idRecibido);
+    this.itemDoc = this.afs.doc<Proyecto>('projects/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
       this.item = data;
@@ -67,6 +69,11 @@ export class EditarProyectosComponent implements OnInit {
   }
 
 
+  getInfoClasificacion() {
+    this.itemsCollection = this.afs.collection<Cliente>('clients');
+    console.log(this.itemsCollection);
+    this.items = this.itemsCollection.valueChanges();
+  }
   crearItem() {
     this.item.pais = 'MX';
 

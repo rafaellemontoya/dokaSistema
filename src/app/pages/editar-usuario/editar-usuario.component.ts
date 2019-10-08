@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Observable } from 'rxjs';
 import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { SharedService } from 'src/app/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
-=======
->>>>>>> 95378fb8ab43719057792faa2cabacb9d3e4f195
 
 @Component({
   selector: 'app-editar-usuario',
@@ -17,7 +14,6 @@ export class EditarUsuarioComponent implements OnInit {
 
   mensajeErrorImg = '';
   claseCargaImg = '';
-<<<<<<< HEAD
   porcentajeCargaImg: '' ;
   submitted = false;
   imgError = false;
@@ -37,31 +33,31 @@ export class EditarUsuarioComponent implements OnInit {
     puesto: '',
     usuario: '',
     password: '',
-    permisos:{usuarios:false,
-                clientes:false,
+    permisos: { usuarios: false,
+                clientes: false,
                 proyectos: false,
                 materiales: false,
-                damage:false,
+                damage: false,
                 clasificacionEquipo: false,
                 reportesObraWeb: false,
-                reporteEquipoDamageWeb:false,
-                reporteEnvioWeb:false,
-                reporteDevolucionesWeb:false,
+                reporteEquipoDamageWeb: false,
+                reporteEnvioWeb: false,
+                reporteDevolucionesWeb: false,
                 reportesObraApp: false,
-                reporteEquipoDamageApp:false,
-                reporteEnvioApp:false,
-                reporteDevolucionesApp:false,
+                reporteEquipoDamageApp: false,
+                reporteEnvioApp: false,
+                reporteDevolucionesApp: false,
                 },
     email: '',
     passwordEmail: '',
     nombreBusqueda: '',
     key: '',
     foto: '',
-    pais:'',
-    usuarioAlta:'',
-    fechaAlta:0,
-    fechaEdicion:0,
-    estado:0,
+    pais: '',
+    usuarioAlta: '',
+    fechaAlta: 0,
+    fechaEdicion: 0,
+    estado: 0,
 
     };
 
@@ -104,28 +100,15 @@ export class EditarUsuarioComponent implements OnInit {
   }
   cancel() {
     this.sharedService.cancelar();
-=======
-  porcentajeCargaImg = '';
-  submitted = false;
-  constructor() { }
-
-  ngOnInit() {
->>>>>>> 95378fb8ab43719057792faa2cabacb9d3e4f195
   }
 
-  getFile(event){
+  getFile(event) {
 
   }
 
-  nuevoEmpleado(){
+  nuevoEmpleado() {
 
   }
-<<<<<<< HEAD
- 
-=======
-  cancel(){
 
-  }
->>>>>>> 95378fb8ab43719057792faa2cabacb9d3e4f195
 
 }

@@ -30,7 +30,7 @@ export class TipoDanoComponent implements OnInit {
     this.itemsCollection = this.afs.collection<TipoDano>('damage');
     this.items = this.itemsCollection.valueChanges();
 
-    this.itemsCollection = this.afs.collection<TipoDano>('damage', ref => ref.orderBy('nombreBusqueda'));
+    this.itemsCollection = this.afs.collection<TipoDano>('damage', ref => ref.orderBy('tipoDano'));
     // .snapshotChanges() returns a DocumentChangeAction[], which contains
     // a lot of information about "what happened" with each change. If you want to
     // get the data and the id use the map operator.

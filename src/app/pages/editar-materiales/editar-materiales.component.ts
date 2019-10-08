@@ -55,7 +55,7 @@ export class EditarMaterialComponent implements OnInit {
 
   obtenerInformacion(idRecibido) {
 
-    this.itemDoc = this.afs.doc<Material>('equipmentType/' + idRecibido);
+    this.itemDoc = this.afs.doc<Material>('material/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
       this.item = data;

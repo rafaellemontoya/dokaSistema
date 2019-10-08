@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
 
           <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
-          <li class="crumb-link"><a routerLink="/empleados">Materiales</a></li>
+          <li class="crumb-link"><a routerLink="/materiales">Materiales</a></li>
           <li class="crumb-trail">Editar Material</li>
         </ol>
       </div>
@@ -40,14 +40,14 @@
                   <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
                   <h3 class="mt5">Material guardado exitosamente!</h3>
                   <p>Material añadido con éxito.</p><br>
-                  <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo Material</button></div>
+                  <div class="element-groups-sm-custom"><a routerLink="/materiales" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo Material</button></div>
                 </div>
 
 
               </div>
               <!-- Panel formulario-->
               <div [hidden]="submitted" class="panel-body bg-light">
-                <form (ngSubmit)="nuevoItem()" (keydown.enter)="$event.preventDefault()">
+                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
@@ -57,7 +57,7 @@
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field prepend-icon">
-                              <input type="text" [(ngModel)]="item.codigo" #codigo="ngModel" id="codigo" required  name="nombre" placeholder="Código de material" class="gui-input">
+                              <input type="text" [(ngModel)]="item.codigo" #codigo="ngModel" id="codigo" required  name="codigo" placeholder="Código de material" class="gui-input">
                               <b class="tooltip tip-right-top">
                                 <em> Código.</em>
                               </b>
@@ -73,7 +73,7 @@
                     <div class="col-md-8">
                         <div class="section">
                             <label class="field prepend-icon">
-                              <input  type="text" [(ngModel)]="item.descripcion" #descripcion="ngModel"  id="descripcion" required  name="nombre" placeholder="Descripción" class="gui-input">
+                              <input  type="text" [(ngModel)]="item.descripcion" #descripcion="ngModel"  id="descripcion" required  name="descripcion" placeholder="Descripción" class="gui-input">
                               <b class="tooltip tip-right-top">
                                 <em> Código.</em>
                               </b>
@@ -103,7 +103,7 @@
 
 
                   <div class="panel-footer ">
-                      <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Guardar</button>
+                      <button type="button"  class="btn btn-success" (click)="crearItem()">Guardar</button>
                      
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>

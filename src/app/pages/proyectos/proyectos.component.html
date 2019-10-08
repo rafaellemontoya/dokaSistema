@@ -74,7 +74,7 @@
           <div class="table-responsive of-y-a">
             <table class="table admin-form theme-warning tc-checkbox-1 fs13">
               <thead>
-                <tr class="bg-system">
+                <tr style="background-color: #004a8e; color: #fff;" class="bg-system">
 
                   <th>Número de proyecto </th>
                   <th>Nombre de proyecto</th>
@@ -89,12 +89,12 @@
 
                   <td>{{item.numero }}</td>
                   <td>{{item.nombre}}</td>
-                  <td>Cliente 1</td>
+                  <td> {{item.cliente}}</td>
 
                   <td class="text-right">
                     <div class="btn-group text-right">
                       <button type="button" data-toggle="dropdown" aria-expanded="false"
-                        class="btn btn-danger br2 btn-xs fs12 dropdown-toggle">Inactivo<span
+                        class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Activo<span
                           class="caret ml15"></span></button>
                       <ul role="menu" class="dropdown-menu">
                           <li><a [routerLink]="['/editar-proyectos', item.id]">Editar</a></li>

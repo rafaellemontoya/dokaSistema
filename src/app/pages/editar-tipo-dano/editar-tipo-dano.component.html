@@ -47,7 +47,7 @@
               </div>
               <!-- Panel formulario-->
               <div [hidden]="submitted" class="panel-body bg-light">
-                <form (ngSubmit)="nuevoDano()" (keydown.enter)="$event.preventDefault()">
+                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
@@ -55,7 +55,7 @@
                     <div class="col-md-12">
                       <div class="section">
                         <label class="field prepend-icon">
-                          <input type="text"  [(ngModel)]="item.tipoDano" #codigo="ngModel" id="nombre" required  name="nombre" placeholder="Tipo de daño" class="gui-input">
+                          <input type="text"  [(ngModel)]="itemTipo.tipoDano" #codigo="ngModel" id="nombre" required  name="nombre" placeholder="Tipo de daño" class="gui-input">
                           <b class="tooltip tip-right-top">
                             <em> Nombre del tipo de daño.</em>
                           </b>
@@ -76,7 +76,7 @@
                     <div class="col-md-4">
                       <div class="section">
                         <label class="field select">
-                          <select class="form-control" name="clasifiacion" id="clasificacion" required [(ngModel)]="item.clasificacionEquipo" #clsificacionEquipo="ngModel" >
+                          <select class="form-control" name="clasifiacion" id="clasificacion" required [(ngModel)]="itemTipo.clasificacionEquipo" #clsificacionEquipo="ngModel" >
 
                             <option >Clasificacion de Equipo</option>
                             <option *ngFor="let item2 of items | async" [value] ="item2.nombre" > {{item2.nombre}}</option>
@@ -104,11 +104,7 @@
 
 
                   <div class="panel-footer ">
-<<<<<<< HEAD
-                    <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Guardar</button>
-=======
-                    <button type="button" class="btn btn-success" (click)="nuevoDano()">Guardar</button>
->>>>>>> 95378fb8ab43719057792faa2cabacb9d3e4f195
+                    <button type="button" class="btn btn-success" (click)="crearItem()">Guardar</button>
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>

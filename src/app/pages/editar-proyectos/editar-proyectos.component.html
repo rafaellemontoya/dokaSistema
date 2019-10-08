@@ -47,7 +47,7 @@
               </div>
               <!-- Panel formulario-->
               <div [hidden]="submitted" class="panel-body bg-light">
-                <form (ngSubmit)="nuevoItem()" (keydown.enter)="$event.preventDefault()">
+                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
@@ -140,7 +140,7 @@
 
 
                   <div class="panel-footer ">
-                    <button type="button" class="btn btn-success" (click)="nuevoItem()">Guardar</button>
+                    <button type="button" class="btn btn-success" (click)="crearItem()">Guardar</button>
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>
