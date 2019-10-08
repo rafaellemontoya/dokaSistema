@@ -27,7 +27,7 @@ export class EditarClasificacionEquipoComponent implements OnInit {
   idRecibido = '';
   private itemDoc: AngularFirestoreDocument<ClasificacionEquipo>;
   itemRecibido: Observable<ClasificacionEquipo>;
-  item: ClasificacionEquipo = {
+  itemC: ClasificacionEquipo = {
     key: '',
     nombre: '',
     manual: '',
@@ -60,7 +60,7 @@ export class EditarClasificacionEquipoComponent implements OnInit {
     this.itemDoc = this.afs.doc<ClasificacionEquipo>('equipmentType/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
-      this.item = data;
+      this.itemC = data;
     });
 
 
@@ -70,11 +70,13 @@ export class EditarClasificacionEquipoComponent implements OnInit {
 
 
   crearItem() {
-    this.item.pais = 'MX';
+    console.log(this.itemC);
+    this.itemC.pais = 'MX';
 
-    this.item.fechaEdicion = new Date().getTime();
-    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
-    this.itemDoc.update(this.item);
+    this.itemC.fechaEdicion = new Date().getTime();
+    this.itemC.nombreBusqueda = this.sharedService.corregirCaracteres(this.itemC.nombre);
+    this.itemDoc = this.afs.doc<ClasificacionEquipo>('equipmentType/' + this.idRecibido);
+    this.itemDoc.update(this.itemC);
     this.submitted = true;
 
     window.scrollTo(0, 0);

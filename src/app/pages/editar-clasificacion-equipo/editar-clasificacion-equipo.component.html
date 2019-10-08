@@ -47,7 +47,7 @@
               </div>
               <!-- Panel formulario-->
               <div [hidden]="submitted" class="panel-body bg-light">
-                <form (ngSubmit)="nuevaClasificacion()" (keydown.enter)="$event.preventDefault()">
+                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()" #itemForm="ngForm">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
@@ -55,7 +55,7 @@
                     <div class="col-md-12">
                       <div class="section">
                         <label class="field prepend-icon">
-                          <input  type="text" [(ngModel)]="itemClasificacion.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
+                          <input  type="text" [(ngModel)]="itemC.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
                           <b class="tooltip tip-right-top">
                             <em> Nombre de la clasificacion.</em>
                           </b>
@@ -76,7 +76,7 @@
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field prepend-icon">
-                              <input type="text" [(ngModel)]="itemClasificacion.item" #item="ngModel"  id="item" required  name="item" placeholder="Item del manual" class="gui-input">
+                              <input type="text" [(ngModel)]="itemC.item" #item="ngModel"  id="item" required  name="item" placeholder="Item del manual" class="gui-input">
                               <b class="tooltip tip-right-top">
                                 <em> Item del manual.</em>
                               </b>
@@ -92,7 +92,7 @@
                         <div class="col-md-4">
                             <div class="section">
                               <label class="field prepend-icon">
-                                <input type="text" [(ngModel)]="itemClasificacion.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
+                                <input type="text" [(ngModel)]="itemC.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
                                 <b class="tooltip tip-right-top">
                                   <em> Manual.</em>
                                 </b>
@@ -109,7 +109,7 @@
                           <div class="col-md-4">
                             <div class="section">
                               <label class="field prepend-icon">
-                                <input  type="text" [(ngModel)]="itemClasificacion.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página del Manual" class="gui-input">
+                                <input  type="text" [(ngModel)]="itemC.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página del Manual" class="gui-input">
                                 <b class="tooltip tip-right-top">
                                   <em> Nombre del Manual.</em>
                                 </b>
@@ -137,7 +137,7 @@
 
 
                   <div class="panel-footer ">
-                    <button type="button" class="btn btn-success" (click)="nuevaClasificacion()">Guardar</button>
+                    <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Guardar</button>
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>

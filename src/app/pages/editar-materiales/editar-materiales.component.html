@@ -103,7 +103,8 @@
 
 
                   <div class="panel-footer ">
-                    <button type="button" class="btn btn-success" (click)="nuevoItem()">Guardar</button>
+                      <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Guardar</button>
+                     
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>
