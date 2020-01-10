@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-materiales',
@@ -12,8 +13,9 @@ export class MaterialesComponent implements OnInit {
 
   private itemsCollection: AngularFirestoreCollection<Material>;
   items: Observable<Material[]>;
+  private itemDoc: AngularFirestoreDocument<Material>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private sharedService: SharedService) {
     this.getInfo();
    }
 
@@ -29,12 +31,16 @@ export class MaterialesComponent implements OnInit {
     // .snapshotChanges() returns a DocumentChangeAction[], which contains
     // a lot of information about "what happened" with each change. If you want to
     // get the data and the id use the map operator.
+
     this.items = this.itemsCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Material;
         const id = a.payload.doc.id;
+
         return { id, ...data };
       }))
     );
   }
+
+
 }

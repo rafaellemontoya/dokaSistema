@@ -76,10 +76,11 @@ export class EditarUsuarioComponent implements OnInit {
 
   obtenerInformacion(idRecibido) {
 
-    this.itemDoc = this.afs.doc<Usuario>('user/' + idRecibido);
+    this.itemDoc = this.afs.doc<Usuario>('users/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
       this.item = data;
+
     });
 
 
@@ -98,6 +99,7 @@ export class EditarUsuarioComponent implements OnInit {
 
     window.scrollTo(0, 0);
   }
+
   cancel() {
     this.sharedService.cancelar();
   }

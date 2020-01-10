@@ -24,6 +24,11 @@ import { EditarMaterialComponent } from './pages/editar-materiales/editar-materi
 import { EditarProyectosComponent } from './pages/editar-proyectos/editar-proyectos.component';
 import { EditarTipoDanoComponent } from './pages/editar-tipo-dano/editar-tipo-dano.component';
 import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.component';
+import { ReportesEnvioComponent } from './pages/reportes-envio/reportes-envio.component';
+import { ReportesDevolucionComponent } from './pages/reportes-devolucion/reportes-devolucion.component';
+import { ReportesCapacitacionComponent } from './pages/reportes-capacitacion/reportes-capacitacion.component';
+import { ReportesSeguimientoComponent } from './pages/reportes-seguimiento/reportes-seguimiento.component';
+import { ReportesDanoComponent } from './pages/reportes-dano/reportes-dano.component';
 
 
 const routes: Routes = [
@@ -52,6 +57,12 @@ const routes: Routes = [
     {path: 'editar-proyectos/:id', component: EditarProyectosComponent},
     {path: 'editar-tipo-dano/:id', component: EditarTipoDanoComponent},
     {path: 'editar-usuario/:id', component: EditarUsuarioComponent},
+    {path: 'tipo-dano', component: TipoDanoComponent},
+    {path: 'reportes-envio', component: ReportesEnvioComponent},
+    {path: 'reportes-devolucion', component: ReportesDevolucionComponent},
+    {path: 'reportes-seguimiento', component: ReportesSeguimientoComponent},
+    {path: 'reportes-capacitacion', component: ReportesCapacitacionComponent},
+    {path: 'reportes-dano', component: ReportesDanoComponent},
     { path: 'dashboard-cobranza', component: DashboardCobranzaComponent },
     { path: 'dashboard-avisos', component: DashboardAvisosComponent },
     { path: 'dashboard-video', component: DashboardVideoComponent },

@@ -11,6 +11,12 @@ import { map } from 'rxjs/operators';
 export class UsuariosComponent implements OnInit {
   private itemsCollection: AngularFirestoreCollection<Usuario>;
   items: Observable<Usuario[]>;
+  // Eliminar
+  preguntaEliminar = false;
+  eliminado = false;
+  itemEliminar = '';
+  nombreClienteEliminar = '';
+
   constructor(private afs: AngularFirestore) {
     this.getInfo();
    }
@@ -31,6 +37,18 @@ export class UsuariosComponent implements OnInit {
       }))
     );
   }
+  eliminarSeleccionado(idSeleccionado, nombreSeleccionado) {
+    this.itemEliminar = idSeleccionado;
+    this.nombreClienteEliminar = nombreSeleccionado;
+    this.preguntaEliminar = true;
+    window.scrollTo(0, 0);
+  }
 
+  eliminar() {
+    console.log(this.itemEliminar);
+    this.preguntaEliminar = false;
+    this.afs.doc<Usuario>('users/' + this.itemEliminar).delete();
+    this.eliminado = true;
+  }
 }
 

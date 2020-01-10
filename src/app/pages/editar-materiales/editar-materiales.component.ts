@@ -41,7 +41,7 @@ export class EditarMaterialComponent implements OnInit {
     };
 
   constructor(private sharedService: SharedService,
-              private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage) { }
+              private route: ActivatedRoute, private afs: AngularFirestore) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -59,12 +59,14 @@ export class EditarMaterialComponent implements OnInit {
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
       this.item = data;
+      this.actualizarItem(this.item, idRecibido);
     });
 
 
     // console.log(this.item.nombre);
 
   }
+
 
 
   crearItem() {
@@ -82,4 +84,46 @@ export class EditarMaterialComponent implements OnInit {
   }
 
 
+  actualizarItem(items, idRecibido) {
+    console.log('hola' + idRecibido);
+
+
+
+    // console.log(idRecibido);
+    // item.pais = 'MX';
+
+    // // this.item.fechaEdicion = new Date().getTime();
+    
+    
+
+    // tslint:disable-next-line:prefer-const
+
+    // let m: Material = {
+    //   codigo: '',
+    // nombreBusqueda: '',
+    // descripcion: '',
+    // key: '',
+    // pais: '',
+    // usuarioAlta: '',
+    // fechaAlta: 0,
+    // fechaEdicion: 0,
+    // estado: 0,
+    //   };
+
+    // m.codigo = items.codigo;
+
+    //   m.descripcion = items.descripcion;
+    //   m.key = '';
+    //   m.pais = 'MX';
+    //   m.usuarioAlta = '';
+    //   m.fechaAlta = items.fechaAlta;
+    //   m.fechaEdicion = items.fechaEdicion;
+    //   m.estado = 0;
+    items.nombreBusqueda = this.sharedService.corregirCaracteres(items.descripcion);
+
+    console.log(items);
+    this.itemDoc.update(items);
+    
+    // this.submitted = true;
+  }
 }

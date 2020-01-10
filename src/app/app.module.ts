@@ -34,6 +34,11 @@ import { EditarMaterialComponent } from './pages/editar-materiales/editar-materi
 import { EditarProyectosComponent } from './pages/editar-proyectos/editar-proyectos.component';
 import { EditarTipoDanoComponent } from './pages/editar-tipo-dano/editar-tipo-dano.component';
 import { EditarClasificacionEquipoComponent } from './pages/editar-clasificacion-equipo/editar-clasificacion-equipo.component';
+import { ReportesEnvioComponent } from './pages/reportes-envio/reportes-envio.component';
+import { ReportesDevolucionComponent } from './pages/reportes-devolucion/reportes-devolucion.component';
+import { ReportesSeguimientoComponent } from './pages/reportes-seguimiento/reportes-seguimiento.component';
+import { ReportesCapacitacionComponent } from './pages/reportes-capacitacion/reportes-capacitacion.component';
+import { ReportesDanoComponent } from './pages/reportes-dano/reportes-dano.component';
 
 const routes: Routes = [];
 @NgModule({
@@ -63,7 +68,12 @@ const routes: Routes = [];
     EditarMaterialComponent,
     EditarProyectosComponent,
     EditarTipoDanoComponent,
-    EditarClasificacionEquipoComponent
+    EditarClasificacionEquipoComponent,
+    ReportesEnvioComponent,
+    ReportesDevolucionComponent,
+    ReportesSeguimientoComponent,
+    ReportesCapacitacionComponent,
+    ReportesDanoComponent
   ],
   imports: [
     BrowserModule,

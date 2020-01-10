@@ -94,7 +94,10 @@
                   <!--<td class="w100"><img title="user" [src]="item.foto" class="img-responsive mw40 ib mr10"></td>-->
 
                   <td>{{item.codigo }}</td>
+                  <td>{{item.id }}</td>
+                  <td>{{item.nombreBusqueda }}</td>
                   <td>{{item.descripcion}}</td>
+                  <td><li><a (click)="actualizarItem(item)">Inhabilitar</a></li></td>
 
                   <td class="text-right">
                     <div class="btn-group text-right">
@@ -104,8 +107,8 @@
                       <ul role="menu" class="dropdown-menu">
                         <!--<li><a [routerLink]="['/editar-item', item.key]">Editar</a></li>-->
                         <li><a [routerLink]="['/editar-materiales', item.id]">Editar</a></li>
-                        <!-- <li><a (click)="inhabilitarEmpleado()">Inhabilitar</a></li>
-                          <li><a (click)="habilitarEmpleado()">Habilitar</a></li>
+                         <li><a (click)="actualizarItem(item)">Inhabilitar</a></li>
+                         <!-- <li><a (click)="habilitarEmpleado()">Habilitar</a></li>
                           <li><a (click)="inhabilitarEmpleado()">Borrar</a></li> -->
 
                       </ul>
