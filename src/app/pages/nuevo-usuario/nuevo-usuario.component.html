@@ -40,9 +40,9 @@
 
                 <div class="alert alert-success alert-dismissable mb30" style="background: rgb(3, 151, 102)">
                     <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
-                    <h3 class="mt5">Empleado guardado exitosamente!</h3>
-                    <p>Empleado añadido con éxito.</p><br>
-                    <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo empleado</button></div>
+                    <h3 class="mt5">Usuario guardado exitosamente!</h3>
+                    <p>Usuario añadido con éxito.</p><br>
+                    <div class="element-groups-sm-custom"><a routerLink="/usuarios" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo usuario</button></div>
                   </div>
 
 
@@ -162,6 +162,32 @@
                       </div>
 
                     </div>
+
+
+                    <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">País</span></div>
+                    <!-- Multi Selects-->
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="section">
+                          <label class="field select">
+                            <select  [(ngModel)]="item.pais" #pais="ngModel" class="form-control" id="pais" required name="pais" >
+
+                              <option value='MX' >México</option>
+                              <option value='BR'>Brasil</option>
+                              <option value='CH'>Chile</option>
+                              <option value='CO'>Colombia</option>
+                              <option value='PA'>Panamá</option>
+                              <option value='PE'>Perú</option>
+                              </select><i class="arrow"></i>
+                        </label>
+
+                        </div>
+                      </div>
+                      
+
+                    </div>
+
 
                     <div id="spy2" class="section-divider mv40"><span style="color:#004A8E;">Permisos de administración de Sistema web</span></div>
                     <!-- .section-divider-->
@@ -302,7 +328,7 @@
 
 
                     <div class="panel-footer ">
-                      <button type="button" class="btn btn-success" (click)="crearItem()">Guardar</button>
+                      <button type="button" class="btn btn-success" (click)="signUp()">Guardar</button>
 
                       <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                     </div>

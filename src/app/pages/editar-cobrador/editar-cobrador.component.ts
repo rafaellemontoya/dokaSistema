@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { SharedService } from 'src/app/services/shared.service';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import { flatMap, map } from 'rxjs/operators';
-
-export interface ProyectoId extends Proyecto{ id: string; }
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-editar-cliente',
-  templateUrl: './editar-cliente.component.html',
-  styleUrls: ['./editar-cliente.component.css']
+  selector: 'app-editar-cobrador',
+  templateUrl: './editar-cobrador.component.html',
+  styleUrls: ['./editar-cobrador.component.css']
 })
-export class EditarClienteComponent implements OnInit {
+export class EditarCobradorComponent implements OnInit {
+
   mensajeErrorImg = '';
   claseCargaImg = '';
   porcentajeCargaImg: any ;
@@ -24,30 +22,21 @@ export class EditarClienteComponent implements OnInit {
   estadoCargaImg = false;
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
-
-  private proyectosCollection: AngularFirestoreCollection<Proyecto>;
-  proyectos: Observable<Proyecto[]>;
-  nombreAnterior = '';
-
   idRecibido = '';
-  private itemDoc: AngularFirestoreDocument<Cliente>;
-  itemRecibido: Observable<Cliente>;
-  item: Cliente = {
+  private itemDoc: AngularFirestoreDocument<Vendedores>;
+  itemRecibido: Observable<Vendedores>;
+
+  item: Vendedores = {
+    id: '',
     nombre: '',
-    nombreBusqueda: '',
-    numero: '',
-    key: '',
-    pais: '',
-    usuarioAlta: '',
-    fechaAlta: 0,
-    estado: 0,
-    logo: '',
-    fechaEdicion: 0,
+    cantidad: 0,
+    imagen: '',
+    valorEstado: 0
 
-    };
+  }
 
-  constructor(private sharedService: SharedService,
-              private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private route: ActivatedRoute, private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -57,15 +46,14 @@ export class EditarClienteComponent implements OnInit {
     console.log(parametros.id);
     this.obtenerInformacion(this.idRecibido);
    });
- }
-
+    
+  }
   obtenerInformacion(idRecibido) {
     // this.afs.collection('clients', ref => ref.where('key', '==', 'large'));
-    this.itemDoc = this.afs.doc<Cliente>('clients/' + idRecibido);
+    this.itemDoc = this.afs.doc<Vendedores>('cobradores/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
       this.item = data;
-      this.nombreAnterior = data.nombre;
     });
 
 
@@ -73,51 +61,14 @@ export class EditarClienteComponent implements OnInit {
 
   }
 
-
-  crearItem() {
+  crearItem(){
     
-    this.item.fechaEdicion = new Date().getTime();
-    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
 
-    // this.proyectosCollection = this.afs.collection<Proyecto>('projects', ref => ref.where('cliente', '==', this.nombreAnterior));
-    
-    // this.proyectos = this.proyectosCollection.valueChanges();
-    // this.proyectos.subscribe(data => {
-    //   console.log(data);
-    // });
-
-    this.proyectosCollection = this.afs.collection<Proyecto>('projects', ref => ref.where('cliente', '==', this.nombreAnterior));
-    // .snapshotChanges() returns a DocumentChangeAction[], which contains
-    // a lot of information about "what happened" with each change. If you want to
-    // get the data and the id use the map operator.
-    this.proyectos = this.proyectosCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Proyecto;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
-
-
-    this.proyectos.forEach(data => {
-      console.log(data);
-      this.updateProyecto(data);
-    });
-    console.log(this.proyectos);
+    const itemCollection = this.afs.collection<Vendedores>('cobradores');
     this.itemDoc.update(this.item);
     this.submitted = true;
 
     window.scrollTo(0, 0);
-  }
-  updateProyecto(proyectos: Proyecto[]){
-    let proyectoDoc: AngularFirestoreDocument<Proyecto>;
-
-    proyectos.forEach(data => {
-      console.log(data['id']);
-      proyectoDoc = this.afs.doc<Proyecto>('projects/' + data['id'])
-      proyectoDoc.update({cliente: this.item.nombre, pais: this.item.pais });
-    });
-
   }
   cancel() {
     this.sharedService.cancelar();
@@ -136,7 +87,7 @@ export class EditarClienteComponent implements OnInit {
         event.target.files[0].type === 'image/png' ||
         event.target.files[0].type === 'image/jpg') {
         console.log('Imagen válida');
-        if (event.target.files[0].size < 200 * 200) {// Checking height * width}
+        if (event.target.files[0].size < 2000 * 2000) {// Checking height * width}
           console.log('tamaño válida');
           // this.selectedFile.push(event.target.id = { tevent.target.files[0]});
           // console.log(this.selectedFile);
@@ -180,7 +131,7 @@ export class EditarClienteComponent implements OnInit {
     this.claseCargaImg = 'progress-bar progress-bar-primary progress-bar-striped';
 
     const file = this.selectedFile;
-    const filePath = 'clients/' + file.name;
+    const filePath = 'cobrometro/' + file.name;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
@@ -198,7 +149,7 @@ export class EditarClienteComponent implements OnInit {
         this.downloadURL = fileRef.getDownloadURL();
         this.downloadURL.subscribe(
           url => {
-            this.item.logo = url;
+            this.item.imagen = url;
             this.claseCargaImg = 'progress-bar progress-bar-success';
           }
         );
@@ -209,4 +160,6 @@ export class EditarClienteComponent implements OnInit {
         x => console.log(fileRef.getDownloadURL));
   }
 
+
 }
+

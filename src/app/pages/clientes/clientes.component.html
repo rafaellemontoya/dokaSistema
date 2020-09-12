@@ -80,6 +80,7 @@
                   <th></th>
                   <th>No. </th>
                   <th>Nombre</th>
+                  <th>País</th>
                   <th class="text-right">Estado</th>
                 </tr>
               </thead>
@@ -91,6 +92,10 @@
                   <td>{{item.numero }}</td>
                   <td>{{item.nombre}}</td>
 
+                  <td>
+                    <img title="user" [src]="getBanderaPais(item.pais)" class="img-responsive mw40 ib mr10">
+                    {{getNombrePais(item.pais)}}
+                  </td>
                   <td class="text-right">
                     <div class="btn-group text-right">
                       <button type="button" data-toggle="dropdown" aria-expanded="false"

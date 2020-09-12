@@ -90,7 +90,7 @@ export class EditarUsuarioComponent implements OnInit {
 
 
   crearItem() {
-    this.item.pais = 'MX';
+
 
     this.item.fechaEdicion = new Date().getTime();
     this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);

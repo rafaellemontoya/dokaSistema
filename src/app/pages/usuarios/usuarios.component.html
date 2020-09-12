@@ -73,14 +73,14 @@
           <div class="table-responsive of-y-a">
             <table class="table admin-form theme-warning tc-checkbox-1 fs13">
               <thead>
-                <tr style="background-color: #004a8e; color: #fff;" class="bg-system">
+                <tr style="background-color: #bfc1c4; color: #fff;" class="bg-system">
 
                   <th>Foto</th>
                   <th>Nombre</th>
                   <th>Usuario</th>
                   <th>Puesto</th>
                   <th>Sección</th>
-                  <th>Permisos</th>
+                  <th>País</th>
                   <th class="text-right">Estado</th>
                 </tr>
               </thead>
@@ -94,16 +94,8 @@
                   <td>{{item.puesto}}</td>
                   <td>{{item.seccion}}</td>
                   <td>
-                    <span class="tag label bg-primary light" style=" margin-right: 2px;"
-                      *ngIf="(item.permisos.clasificacionEquipo == true)">clasificación equipo</span>
-                    <span class="tag label bg-primary light" style=" margin-right: 2px;"
-                      *ngIf="(item.permisos.clientes == true)"> Clientes</span>
-                    <span class="tag label bg-primary light" style=" margin-right: 2px;"
-                      *ngIf="(item.permisos.damage == true)"> Daños</span>
-                    <span class="tag label bg-primary light" style=" margin-right: 2px;"
-                      *ngIf="(item.permisos.materiales == true)"> Materiales</span>
-                    <span class="tag label bg-primary light" style=" margin-right: 2px;"
-                      *ngIf="(item.permisos.proyectos == true)"> Proyectos</span>
+                    <img title="user" [src]="getBanderaPais(item.pais)" class="img-responsive mw40 ib mr10">
+                    {{getNombrePais(item.pais)}}
                   </td>
                   
                   <td class="text-right">

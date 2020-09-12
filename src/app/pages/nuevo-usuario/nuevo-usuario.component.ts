@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-nuevo-usuario',
@@ -49,7 +51,7 @@ export class NuevoUsuarioComponent implements OnInit {
     fechaEdicion:0,
     estado: 1
   }
-  constructor(private sharedService: SharedService, private afs: AngularFirestore) { }
+  constructor(private sharedService: SharedService, private afs: AngularFirestore, public auth: AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -57,17 +59,33 @@ export class NuevoUsuarioComponent implements OnInit {
 
   }
 
-  crearItem(){
-    this.item.pais = 'MX';
+  crearItem() {
+
     //this.item.usuarioAlta = keyUser;
+    
     this.item.fechaAlta = new Date().getTime();
     this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
-    const itemCollection = this.afs.collection<Usuario>('users');
-    itemCollection.add(this.item);
+    // const itemCollection = this.afs.collection<Usuario>('users/' + this.item.key);
+    // itemCollection.add(this.item);
+
+    const itemDoc = this.afs.doc<Usuario>('users/' + this.item.key);
+    itemDoc.set(this.item);
 
     console.log(this.item);
+    this.submitted = true;
+    
   }
   cancel() {
     this.sharedService.cancelar();
+  }
+  signUp() {
+    // this.authe.auth.signInWithEmailAndPassword(this.email, this.password);
+    this.auth.auth.createUserWithEmailAndPassword(this.item.usuario, this.item.password).then(data => {
+      console.log(data.user.uid);
+      this.item.key = data.user.uid;
+      this.crearItem();
+
+    });
+
   }
 }

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-nuevo-cliente',
-  templateUrl: './nuevo-cliente.component.html',
-  styleUrls: ['./nuevo-cliente.component.css']
+  selector: 'app-nuevo-vendedor',
+  templateUrl: './nuevo-vendedor.component.html',
+  styleUrls: ['./nuevo-vendedor.component.css']
 })
-export class NuevoClienteComponent implements OnInit {
+export class NuevoVendedorComponent implements OnInit {
   mensajeErrorImg = '';
   claseCargaImg = '';
   porcentajeCargaImg: any ;
@@ -22,18 +22,14 @@ export class NuevoClienteComponent implements OnInit {
   downloadURL: Observable<string>;
 
 
-  item: Cliente = {
+  item: Vendedores = {
+
   nombre: '',
-  nombreBusqueda: '',
-  numero: '',
-  key: '',
-  pais: 'MX',
-  usuarioAlta: '',
-  fechaAlta: 0,
-  estado: 0,
-  logo: '',
-  fechaEdicion: 0,
-  }
+  cantidad: 0,
+  imagen: '',
+  valorEstado: 0
+
+  };
 
   constructor(private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
@@ -43,11 +39,29 @@ export class NuevoClienteComponent implements OnInit {
 
 
   crearItem() {
-    //this.item.usuarioAlta = keyUser;
-    this.item.fechaAlta = new Date().getTime();
-    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
+    
+    switch (String(this.item.valorEstado)) {
 
-    const itemCollection = this.afs.collection<Cliente>('clients');
+      case '0':
+        this.item.imagen = 'https://firebasestorage.googleapis.com/v0/b/tudoka-1deed.appspot.com/o/cobrometro%2Farriba.png?alt=media&token=e7805bb6-4aaf-49da-9293-8e18a0be386b';
+        break;
+    case '1':
+      this.item.imagen = 'https://firebasestorage.googleapis.com/v0/b/tudoka-1deed.appspot.com/o/cobrometro%2Fabajo.png?alt=media&token=a2d85cb4-723b-4980-8bca-62f588f14769';
+      break;
+
+    case '2':
+      this.item.imagen = 'https://firebasestorage.googleapis.com/v0/b/tudoka-1deed.appspot.com/o/cobrometro%2Fcumpliendo.png?alt=media&token=8ff4a64d-e629-42ac-9552-0920067f1c7d';
+      break;
+
+    case '3':
+      this.item.imagen = 'https://firebasestorage.googleapis.com/v0/b/tudoka-1deed.appspot.com/o/cobrometro%2Farriba.png?alt=media&token=e7805bb6-4aaf-49da-9293-8e18a0be386b';
+      break;
+      default:
+        this.item.imagen = 'hola';
+        break;
+    }
+    console.log(this.item);
+    const itemCollection = this.afs.collection<Vendedores>('vendedores');
     itemCollection.add(this.item);
     this.submitted = true;
   }
@@ -130,7 +144,7 @@ export class NuevoClienteComponent implements OnInit {
         this.downloadURL = fileRef.getDownloadURL();
         this.downloadURL.subscribe(
           url => {
-            this.item.logo = url;
+            this.item.imagen = url;
             this.claseCargaImg = 'progress-bar progress-bar-success';
           }
         );

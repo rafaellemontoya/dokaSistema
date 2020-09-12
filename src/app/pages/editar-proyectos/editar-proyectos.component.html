@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
 
           <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
-          <li class="crumb-link"><a routerLink="/empleados">Proyectos</a></li>
+          <li class="crumb-link"><a routerLink="/proyectos">Proyectos</a></li>
           <li class="crumb-trail">Editar proyectos</li>
         </ol>
       </div>
@@ -40,7 +40,7 @@
                   <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
                   <h3 class="mt5">Proyecto guardado exitosamente!</h3>
                   <p>Proyecto añadido con éxito.</p><br>
-                  <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo empleado</button></div>
+                  <div class="element-groups-sm-custom"><a routerLink="/proyectos" class="btn btn-default">Continuar</a></div>
                 </div>
 
 
@@ -93,10 +93,10 @@
                     <div class="col-md-4">
                         <div class="section">
                           <label class="field select">
-                            <select class="form-control" name="cliente" id="clasificacion1" required [(ngModel)]="item.cliente" #cliente="ngModel" >
+                            <select class="form-control" name="clienteSeleccionado" id="clienteSeleccionado" required [(ngModel)]="clienteSeleccionado" #clienteSeleccionado2="ngModel" >
 
                               <option >Cliente</option>
-                              <option *ngFor="let item2 of items | async" [value] ="item2.nombre" > {{item2.nombre}}</option>
+                              <option *ngFor="let item2 of items | async" [ngValue] ="item2" > {{item2.nombre}}</option>
                               </select><i class="arrow"></i>
                         </label>
 

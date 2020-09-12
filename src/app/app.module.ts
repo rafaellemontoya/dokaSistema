@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { NuevoUsuarioComponent } from './pages/nuevo-usuario/nuevo-usuario.component';
 import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.component';
@@ -39,6 +40,14 @@ import { ReportesDevolucionComponent } from './pages/reportes-devolucion/reporte
 import { ReportesSeguimientoComponent } from './pages/reportes-seguimiento/reportes-seguimiento.component';
 import { ReportesCapacitacionComponent } from './pages/reportes-capacitacion/reportes-capacitacion.component';
 import { ReportesDanoComponent } from './pages/reportes-dano/reportes-dano.component';
+import { CobrometroComponent } from './pages/cobrometro/cobrometro.component';
+import { VendedoresComponent } from './pages/vendedores/vendedores.component';
+import { NuevoVendedorComponent } from './pages/nuevo-vendedor/nuevo-vendedor.component';
+import { CobradoresComponent } from './pages/cobradores/cobradores.component';
+import { NuevoCobradorComponent } from './pages/nuevo-cobrador/nuevo-cobrador.component';
+import { EditarCobradorComponent } from './pages/editar-cobrador/editar-cobrador.component';
+import { EditarVendedorComponent } from './pages/editar-vendedor/editar-vendedor.component';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 const routes: Routes = [];
 @NgModule({
@@ -73,19 +82,27 @@ const routes: Routes = [];
     ReportesDevolucionComponent,
     ReportesSeguimientoComponent,
     ReportesCapacitacionComponent,
-    ReportesDanoComponent
+    ReportesDanoComponent,
+    CobrometroComponent,
+    VendedoresComponent,
+    NuevoVendedorComponent,
+    CobradoresComponent,
+    NuevoCobradorComponent,
+    EditarCobradorComponent,
+    EditarVendedorComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase, 'dokaSistema'),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
     RouterModule.forRoot(routes, { useHash: true })
   ],
-  providers: [AngularFirestore, AngularFireStorageModule],
+  providers: [AngularFirestore, AngularFireStorageModule, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

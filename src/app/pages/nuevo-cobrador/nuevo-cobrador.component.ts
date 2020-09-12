@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-nuevo-cliente',
-  templateUrl: './nuevo-cliente.component.html',
-  styleUrls: ['./nuevo-cliente.component.css']
+  selector: 'app-nuevo-cobrador',
+  templateUrl: './nuevo-cobrador.component.html',
+  styleUrls: ['./nuevo-cobrador.component.css']
 })
-export class NuevoClienteComponent implements OnInit {
+export class NuevoCobradorComponent implements OnInit {
   mensajeErrorImg = '';
   claseCargaImg = '';
   porcentajeCargaImg: any ;
@@ -22,17 +22,13 @@ export class NuevoClienteComponent implements OnInit {
   downloadURL: Observable<string>;
 
 
-  item: Cliente = {
-  nombre: '',
-  nombreBusqueda: '',
-  numero: '',
-  key: '',
-  pais: 'MX',
-  usuarioAlta: '',
-  fechaAlta: 0,
-  estado: 0,
-  logo: '',
-  fechaEdicion: 0,
+  item: Vendedores = {
+
+    nombre: '',
+    cantidad: 0,
+    imagen: '',
+    valorEstado: 0
+  
   }
 
   constructor(private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage) { }
@@ -42,12 +38,10 @@ export class NuevoClienteComponent implements OnInit {
 
 
 
-  crearItem() {
-    //this.item.usuarioAlta = keyUser;
-    this.item.fechaAlta = new Date().getTime();
-    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
+  crearItem(){
+    
 
-    const itemCollection = this.afs.collection<Cliente>('clients');
+    const itemCollection = this.afs.collection<Vendedores>('cobradores');
     itemCollection.add(this.item);
     this.submitted = true;
   }
@@ -68,7 +62,7 @@ export class NuevoClienteComponent implements OnInit {
         event.target.files[0].type === 'image/png' ||
         event.target.files[0].type === 'image/jpg') {
         console.log('Imagen válida');
-        if (event.target.files[0].size < 200 * 200) {// Checking height * width}
+        if (event.target.files[0].size < 2000 * 2000) {// Checking height * width}
           console.log('tamaño válida');
           // this.selectedFile.push(event.target.id = { tevent.target.files[0]});
           // console.log(this.selectedFile);
@@ -112,7 +106,7 @@ export class NuevoClienteComponent implements OnInit {
     this.claseCargaImg = 'progress-bar progress-bar-primary progress-bar-striped';
 
     const file = this.selectedFile;
-    const filePath = 'clients/' + file.name;
+    const filePath = 'cobrometro/' + file.name;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
@@ -130,7 +124,7 @@ export class NuevoClienteComponent implements OnInit {
         this.downloadURL = fileRef.getDownloadURL();
         this.downloadURL.subscribe(
           url => {
-            this.item.logo = url;
+            this.item.imagen = url;
             this.claseCargaImg = 'progress-bar progress-bar-success';
           }
         );

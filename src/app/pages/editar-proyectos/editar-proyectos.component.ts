@@ -12,6 +12,19 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class EditarProyectosComponent implements OnInit {
 
+  clienteSeleccionado: Cliente = {
+    nombre: '',
+    nombreBusqueda: '',
+    numero: '',
+    key: '',
+    pais: 'MX',
+    usuarioAlta: '',
+    fechaAlta: 0,
+    estado: 0,
+    logo: '',
+    fechaEdicion: 0,
+    };
+
   mensajeErrorImg = '';
   claseCargaImg = '';
   porcentajeCargaImg: any ;
@@ -61,6 +74,7 @@ export class EditarProyectosComponent implements OnInit {
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
       this.item = data;
+      this.clienteSeleccionado.nombre = data.cliente;
     });
 
 
@@ -70,13 +84,14 @@ export class EditarProyectosComponent implements OnInit {
 
 
   getInfoClasificacion() {
-    this.itemsCollection = this.afs.collection<Cliente>('clients');
+    this.itemsCollection = this.afs.collection<Cliente>('clients', ref => ref.orderBy('nombre'));
     console.log(this.itemsCollection);
     this.items = this.itemsCollection.valueChanges();
   }
   crearItem() {
-    this.item.pais = 'MX';
 
+    this.item.cliente = this.clienteSeleccionado.nombre;
+    this.item.pais = this.clienteSeleccionado.pais;
     this.item.fechaEdicion = new Date().getTime();
     this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
     this.itemDoc.update(this.item);

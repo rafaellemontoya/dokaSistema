@@ -40,7 +40,7 @@
                     <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
                     <h3 class="mt5">Proyecto guardado exitosamente!</h3>
                     <p>Proyecto añadido con éxito.</p><br>
-                    <div class="element-groups-sm-custom"><a routerLink="/empleados" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo proyecto</button></div>
+                    <div class="element-groups-sm-custom"><a routerLink="/proyectos" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Nuevo proyecto</button></div>
                   </div>
 
 
@@ -93,10 +93,9 @@
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field select">
-                              <select class="form-control" name="cliente" id="clasificacion1" required [(ngModel)]="item.cliente" #cliente="ngModel" >
+                              <select class="form-control" name="clienteSeleccionado"  required [(ngModel)]="clienteSeleccionado" #clienteSeleccionado2="ngModel" >
 
-                                <option >Cliente</option>
-                                <option *ngFor="let item2 of items | async" [value] ="item2.nombre" > {{item2.nombre}}</option>
+                                <option *ngFor="let item2 of items | async" [ngValue] ="item2" > {{item2.nombre}}</option>
                                 </select><i class="arrow"></i>
                           </label>
 
@@ -106,8 +105,6 @@
                           <div class="section">
                             <label class="field select">
                               <select class="form-control" id="clasificacion1" required name="clasificacion1"  required [(ngModel)]="item.estado" #estado="ngModel" >
-
-
                                 <option value=1 >Activo</option>
                                 <option value=2 >Inactivo</option>
 

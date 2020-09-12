@@ -52,4 +52,51 @@ export class ProyectosComponent implements OnInit {
     this.eliminado = true;
   }
 
+
+  getNombrePais(pais: string) {
+    switch (pais) {
+      case 'MX':
+        return 'México';
+        break;
+        case 'BR':
+          return 'Brasil';
+          break;
+          case 'CH':
+            return 'Chile';
+            break;
+            case 'CO':
+              return 'Colombia';
+              break;
+              case 'PA':
+                return 'Panamá';
+                break;
+                case 'PE':
+                  return 'Perú';
+                  break;
+
+    }
+  }
+  getBanderaPais(pais: string) {
+    switch (pais) {
+      case 'MX':
+        return 'assets/assets/img/mx.svg';
+        break;
+        case 'BR':
+          return 'assets/assets/img/br.png';
+          break;
+          case 'CH':
+            return 'assets/assets/img/ch.png';
+            break;
+            case 'CO':
+              return 'assets/assets/img/co.png';
+              break;
+              case 'PA':
+                return 'assets/assets/img/pa.png';
+                break;
+                case 'PE':
+                  return 'assets/assets/img/pe.png';
+                  break;
+
+    }
+  }
 }

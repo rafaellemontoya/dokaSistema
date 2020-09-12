@@ -13,6 +13,19 @@ export class NuevoProyectoComponent implements OnInit {
    private itemsCollection: AngularFirestoreCollection<Cliente>;
   items: Observable<Cliente[]>;
 
+  clienteSeleccionado: Cliente = {
+    nombre: '',
+    nombreBusqueda: '',
+    numero: '',
+    key: '',
+    pais: 'MX',
+    usuarioAlta: '',
+    fechaAlta: 0,
+    estado: 0,
+    logo: '',
+    fechaEdicion: 0,
+    };
+
   item: Proyecto = {
     nombre: '',
     nombreBusqueda: '',
@@ -22,7 +35,7 @@ export class NuevoProyectoComponent implements OnInit {
     pais: '',
     usuarioAlta: '',
     fechaAlta: 0,
-    fechaEdicion:0,
+    fechaEdicion: 0,
     estado: 0,
 
     }
@@ -34,17 +47,23 @@ export class NuevoProyectoComponent implements OnInit {
     }
 
     getInfo() {
-      this.itemsCollection = this.afs.collection<Cliente>('clients');
+      this.itemsCollection = this.afs.collection<Cliente>('clients', ref => ref.orderBy('nombre'));
       console.log(this.itemsCollection);
       this.items = this.itemsCollection.valueChanges();
     }
 
-    nuevoItem(){
-      this.item.pais = 'MX';
+    nuevoItem() {
+
+      console.log(this.clienteSeleccionado);
+
+
+      this.item.cliente = this.clienteSeleccionado.nombre;
+      this.item.pais = this.clienteSeleccionado.pais;
       //this.item.usuarioAlta = keyUser;
       this.item.fechaAlta = new Date().getTime();
       this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.nombre);
 
+      console.log(this.item);
       const itemCollection = this.afs.collection<Proyecto>('projects');
       itemCollection.add(this.item);
       this.submitted = true;
@@ -58,5 +77,12 @@ export class NuevoProyectoComponent implements OnInit {
 
 
 
+    getInfoCliente(clienteSeleccionado: Cliente) {
+
+      // console.log(clienteSeleccionado);
+      this.item.pais = clienteSeleccionado.pais;
+      this.item.cliente = clienteSeleccionado.nombre;
+      
+    }
 
   }

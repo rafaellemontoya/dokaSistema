@@ -9,8 +9,8 @@
         <ol class="breadcrumb">
 
           <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
-          <li class="crumb-link"><a routerLink="/empleados">Clientes</a></li>
-          <li class="crumb-trail">Nuevo cliente</li>
+          <li class="crumb-link"><a routerLink="/vendedores">Vendedores</a></li>
+          <li class="crumb-trail">Nuevo vendedor</li>
         </ol>
       </div>
 
@@ -22,9 +22,9 @@
         <div class="mw1000 center-block">
           <!-- Begin: Content Header-->
           <div class="content-header">
-            <h2> <b style="color:#004A8E;">Nuevo cliente</b>
+            <h2> <b style="color:#004A8E;">Nuevo vendedor</b>
             </h2>
-            <p class="lead">Llena el formulario para agregar el cliente</p>
+            <p class="lead">Llena el formulario para agregar el vendedor</p>
           </div>
 
 
@@ -38,9 +38,9 @@
 
               <div class="alert alert-success alert-dismissable mb30" style="background-color: rgb(3, 151, 102)" >
                   <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
-                  <h3 class="mt5">Cliente guardado exitosamente!</h3>
-                  <p>Cliente añadido con éxito.</p><br>
-                  <div class="element-groups-sm-custom"><a routerLink="/clientes" class="btn btn-default">Continuar</a></div>
+                  <h3 class="mt5">Vendedor guardado exitosamente!</h3>
+                  <p>Vendedor añadido con éxito.</p><br>
+                  <div class="element-groups-sm-custom"><a routerLink="/dashboard-vendedores" class="btn btn-default">Continuar</a></div>
                 </div>
 
 
@@ -57,12 +57,12 @@
                         <label class="field prepend-icon">
                           <input [(ngModel)]="item.nombre" #nombre="ngModel" type="text"   id="nombre" required  name="nombre" placeholder="Nombre" class="gui-input">
                           <b class="tooltip tip-right-top">
-                            <em> Nombre del cliente.</em>
+                            <em> Nombre del Vendedor.</em>
                           </b>
                           <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                         </label>
                         <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-primary">
-                           Se necesita un nombre de cliente
+                           Se necesita un nombre de Vendedor
                         </div>
                       </div>
                     </div>
@@ -74,95 +74,37 @@
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field prepend-icon">
-                              <input [(ngModel)]="item.numero" #numero="ngModel" required type="text"   id="numero"   name="numero" placeholder="No. Cliente" class="gui-input">
+                              <input [(ngModel)]="item.cantidad" #cantidad="ngModel" required type="text"   id="cantidad"   name="cantidad" placeholder="Cantidad" class="gui-input">
                               <b class="tooltip tip-right-top">
-                                <em> Número de cliente.</em>
+                                <em> Cantidad vendida.</em>
                               </b>
                               <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
                             </label>
                             <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
-                               Se necesita un número de cliente
+                               Se necesita un número de Vendedor
                             </div>
                           </div>
                         </div>
                     <div class="col-md-4">
                         <div class="section">
                           <label class="field select">
-                            <select  [(ngModel)]="item.pais" #pais="ngModel" class="form-control" id="pais" required name="pais" >
-                              <option value='MX' >México</option>
-                              <option value='BR'>Brasil</option>
-                              <option value='CH'>Chile</option>
-                              <option value='CO'>Colombia</option>
-                              <option value='PA'>Panamá</option>
-                              <option value='PE'>Perú</option>
+                            
+                            <select  [(ngModel)]="item.valorEstado" #estado="ngModel" class="form-control" id="estado" required name="estado" >
+
+                              <option value=3 >Alza</option>
+                              <option value=2 >Medio</option>
+                              <option value=1>Baja</option>
                               </select><i class="arrow"></i>
                         </label>
 
                         </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="section">
-                        <label class="field select">
-                          <select  [(ngModel)]="item.estado" #estado="ngModel" class="form-control" id="estado" required name="estado" >
-
-                            <option value=1 >Activo</option>
-                            <option value=0>Inactivo</option>
-                            </select><i class="arrow"></i>
-                      </label>
-
-                      </div>
-                  </div>
 
 
                   </div>
 
 
-                  <!-- Multi Selects-->
-
-
-
-                  <!-- .section-divider-->
-                  <!-- tooltips-->
-
-
-
-                  <div id="spy3" class="section-divider mv40"><span style="color:#004A8E;">Logo (opcional)</span></div>
-                  <div [hidden]="!imgError">
-                    <h2>{{mensajeErrorImg}}</h2>
-
-                  </div>
-                  <!-- .section-divider-->
-                  <!-- File Uploaders-->
-
-                  <!-- imagen 1 -->
-                  <div class="row">
-                      <div class="col-md-12">
-                        <div class="section">
-                          <label class="field prepend-icon append-button file"><span class="button btn-primary">Seleccionar</span>
-                            <input id="file1" type="file"  name="file1" (change)="getFile($event) " onchange="document.getElementById('up1').value = this.value;" class="gui-file">
-                            <input id="up1"  type="text" placeholder="Logo de cliente" class="gui-input">
-                            <label class="field-icon"><i class="fa fa-upload"></i></label>
-                          </label>
-
-
-
-                          <!--
-                          <div [hidden]="!imgError" class="alert alert-danger alert-dismissable">
-                            <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button><i class="fa fa-remove pr10"></i><strong>Error en la imagen!</strong> {{mensajeErrorImg}}.
-                          </div>
-
-
-
-                          <div [hidden]="!estadoCargaImg" class="progress mt10">
-                            <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': porcentajeCargaImg + '%'}"  [ngClass]="claseCargaImg">{{porcentajeCargaImg}}%</div>
-                          </div>
-                        -->
-                        </div>
-                      </div>
-
-                    </div>
-
-
+              
 
 
                   <div class="panel-footer ">

@@ -29,6 +29,13 @@ import { ReportesDevolucionComponent } from './pages/reportes-devolucion/reporte
 import { ReportesCapacitacionComponent } from './pages/reportes-capacitacion/reportes-capacitacion.component';
 import { ReportesSeguimientoComponent } from './pages/reportes-seguimiento/reportes-seguimiento.component';
 import { ReportesDanoComponent } from './pages/reportes-dano/reportes-dano.component';
+import { CobrometroComponent } from './pages/cobrometro/cobrometro.component';
+import { VendedoresComponent } from './pages/vendedores/vendedores.component';
+import { NuevoVendedorComponent } from './pages/nuevo-vendedor/nuevo-vendedor.component';
+import { CobradoresComponent } from './pages/cobradores/cobradores.component';
+import { NuevoCobradorComponent } from './pages/nuevo-cobrador/nuevo-cobrador.component';
+import { EditarCobradorComponent } from './pages/editar-cobrador/editar-cobrador.component';
+import { EditarVendedorComponent } from './pages/editar-vendedor/editar-vendedor.component';
 
 
 const routes: Routes = [
@@ -66,7 +73,13 @@ const routes: Routes = [
     { path: 'dashboard-cobranza', component: DashboardCobranzaComponent },
     { path: 'dashboard-avisos', component: DashboardAvisosComponent },
     { path: 'dashboard-video', component: DashboardVideoComponent },
-
+    { path: 'dashboard-cobrometro', component: CobrometroComponent },
+    { path: 'dashboard-vendedores', component: VendedoresComponent },
+    { path: 'nuevo-vendedor', component: NuevoVendedorComponent },
+    { path: 'dashboard-cobradores', component: CobradoresComponent },
+    { path: 'nuevo-cobrador', component: NuevoCobradorComponent },
+    {path: 'editar-cobrador/:id', component: EditarCobradorComponent},
+    {path: 'editar-vendedor/:id', component: EditarVendedorComponent},
 ];
 @NgModule({
     imports: [

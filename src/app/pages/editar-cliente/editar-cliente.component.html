@@ -85,6 +85,22 @@
                               </div>
                             </div>
                           </div>
+
+                    <div class="col-md-4">
+                      <div class="section">
+                        <label class="field select">
+                          <select  [(ngModel)]="item.pais" #pais="ngModel" class="form-control" id="pais" required name="pais" >
+                            <option value='MX' >México</option>
+                            <option value='BR'>Brasil</option>
+                            <option value='CH'>Chile</option>
+                            <option value='CO'>Colombia</option>
+                            <option value='PA'>Panamá</option>
+                            <option value='PE'>Perú</option>
+                            </select><i class="arrow"></i>
+                      </label>
+
+                      </div>
+                  </div>
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field select">
