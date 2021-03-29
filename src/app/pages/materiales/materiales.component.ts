@@ -3,6 +3,7 @@ import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SharedService } from 'src/app/services/shared.service';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-materiales',
@@ -15,7 +16,7 @@ export class MaterialesComponent implements OnInit {
   items: Observable<Material[]>;
   private itemDoc: AngularFirestoreDocument<Material>;
 
-  constructor(private afs: AngularFirestore, private sharedService: SharedService) {
+  constructor(private afs: AngularFirestore, private sharedService: SharedService, public back: BackendService) {
     this.getInfo();
    }
 

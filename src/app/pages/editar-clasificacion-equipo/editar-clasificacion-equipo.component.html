@@ -6,11 +6,19 @@
     <!-- Start: Topbar-->
     <header id="topbar" class="alt">
       <div class="topbar-left">
-        <ol class="breadcrumb">
+        <ol *ngIf="back.lang == 'es'" class="breadcrumb">
 
           <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
           <li class="crumb-link"><a routerLink="/clasificacion-equipo">Clasificaciones de equipo</a></li>
           <li class="crumb-trail">Editar clasificación</li>
+        </ol>
+        <ol *ngIf="back.lang == 'pt'" class="breadcrumb">
+
+          <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
+          <li class="crumb-link"><a routerLink="/clasificacion-equipo">Classificação do equipamento
+          </a></li>
+          <li class="crumb-trail">Editar classificação
+          </li>
         </ol>
       </div>
 
@@ -21,10 +29,17 @@
       <div class="tray tray-center">
         <div class="mw1000 center-block">
           <!-- Begin: Content Header-->
-          <div class="content-header">
+          <div *ngIf="back.lang == 'es'" class="content-header">
             <h2> <b style="color:#004A8E;">Editar clasificación de equipo</b>
             </h2>
-            <p class="lead">Llena el formulario para editar la nueva clasificación de equipo</p>
+            <p class="lead">Llena el formulario para agregar la nueva clasificación de equipo</p>
+          </div>
+          <div *ngIf="back.lang == 'pt'" class="content-header">
+            <h2> <b style="color:#004A8E;">Editar classificação do equipamento
+            </b>
+            </h2>
+            <p class="lead">Preencher o formulário para nova classificação do equipamento
+            </p>
           </div>
 
 
@@ -46,8 +61,8 @@
 
               </div>
               <!-- Panel formulario-->
-              <div [hidden]="submitted" class="panel-body bg-light">
-                <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()" #itemForm="ngForm">
+              <div *ngIf="back.lang == 'es'"  [hidden]="submitted" class="panel-body bg-light">
+                <form (ngSubmit)="nuevaClasificacion()" (keydown.enter)="$event.preventDefault()">
                   <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Información general</span></div>
                   <!-- .section-divider-->
                   <!-- Basic Inputs-->
@@ -55,7 +70,27 @@
                     <div class="col-md-12">
                       <div class="section">
                         <label class="field prepend-icon">
-                          <input  type="text" [(ngModel)]="itemC.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
+                          <input  type="text" [(ngModel)]="itemClasificacion.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nombre de clasificación" class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Nombre de la clasificacion.</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                        <!--
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                           Se necesita un nombre de empleado
+                        </div>
+                      -->
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section">
+                        <label class="field prepend-icon">
+                          <input  type="text" [(ngModel)]="itemClasificacion.nombrePT" #nombrePT="ngModel"  id="nombrePT" required  name="nombrePT" placeholder="Nombre de clasificación Portugés" class="gui-input">
                           <b class="tooltip tip-right-top">
                             <em> Nombre de la clasificacion.</em>
                           </b>
@@ -76,7 +111,7 @@
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field prepend-icon">
-                              <input type="text" [(ngModel)]="itemC.item" #item="ngModel"  id="item" required  name="item" placeholder="Item del manual" class="gui-input">
+                              <input type="text" [(ngModel)]="itemClasificacion.item" #item="ngModel"  id="item" required  name="item" placeholder="Item del manual" class="gui-input">
                               <b class="tooltip tip-right-top">
                                 <em> Item del manual.</em>
                               </b>
@@ -92,7 +127,7 @@
                         <div class="col-md-4">
                             <div class="section">
                               <label class="field prepend-icon">
-                                <input type="text" [(ngModel)]="itemC.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
+                                <input type="text" [(ngModel)]="itemClasificacion.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
                                 <b class="tooltip tip-right-top">
                                   <em> Manual.</em>
                                 </b>
@@ -109,7 +144,7 @@
                           <div class="col-md-4">
                             <div class="section">
                               <label class="field prepend-icon">
-                                <input  type="text" [(ngModel)]="itemC.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página del Manual" class="gui-input">
+                                <input  type="text" [(ngModel)]="itemClasificacion.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página del Manual" class="gui-input">
                                 <b class="tooltip tip-right-top">
                                   <em> Nombre del Manual.</em>
                                 </b>
@@ -137,7 +172,131 @@
 
 
                   <div class="panel-footer ">
-                    <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Guardar</button>
+                    <button type="button" class="btn btn-success" (click)="nuevaClasificacion()">Guardar</button>
+
+                    <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                  </div>
+                </form>
+              </div>
+
+              <div *ngIf="back.lang == 'pt'"  [hidden]="submitted" class="panel-body bg-light">
+                <form (ngSubmit)="nuevaClasificacion()" (keydown.enter)="$event.preventDefault()">
+                  <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Informações gerais
+                  </span></div>
+                  <!-- .section-divider-->
+                  <!-- Basic Inputs-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section">
+                        <label class="field prepend-icon">
+                          <input  type="text" [(ngModel)]="itemClasificacion.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nome da classificação
+                          " class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Nome da classificação
+                              .</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                        <!--
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                           Se necesita un nombre de empleado
+                        </div>
+                      -->
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section">
+                        <label class="field prepend-icon">
+                          <input  type="text" [(ngModel)]="itemClasificacion.nombrePT" #nombrePT="ngModel"  id="nombrePT" required  name="nombrePT" placeholder="Nome da classificação em Português
+                          " class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Nome da classificação em Português
+                              .</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                        <!--
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                           Se necesita un nombre de empleado
+                        </div>
+                      -->
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <!-- Input Icons-->
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="section">
+                            <label class="field prepend-icon">
+                              <input type="text" [(ngModel)]="itemClasificacion.item" #item="ngModel"  id="item" required  name="item" placeholder="Item do manual" class="gui-input">
+                              <b class="tooltip tip-right-top">
+                                <em> Item do manual.</em>
+                              </b>
+                              <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                            </label>
+                            <!--
+                            <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                               Se necesita un nombre de empleado
+                            </div>
+                          -->
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="section">
+                              <label class="field prepend-icon">
+                                <input type="text" [(ngModel)]="itemClasificacion.manual" #manual="ngModel"  id="manual" required  name="manual" placeholder="Manual" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Manual.</em>
+                                </b>
+                                <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+                              <!--
+                              <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                 Se necesita un nombre de empleado
+                              </div>
+                            -->
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="section">
+                              <label class="field prepend-icon">
+                                <input  type="text" [(ngModel)]="itemClasificacion.paginas" #paginas="ngModel"  id="paginas" required  name="paginas" placeholder="Página do Manual" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Página do Manual.</em>
+                                </b>
+                                <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+                              <!--
+                              <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                 Se necesita un nombre de empleado
+                              </div>
+                            -->
+                            </div>
+                          </div>
+
+                  </div>
+
+
+                  <!-- Multi Selects-->
+
+
+
+                  <!-- .section-divider-->
+                  <!-- tooltips-->
+
+
+
+
+                  <div class="panel-footer ">
+                    <button type="button" class="btn btn-success" (click)="crearItem()">SALVAR
+                    </button>
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>

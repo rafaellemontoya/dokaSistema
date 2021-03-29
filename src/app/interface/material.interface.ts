@@ -5,7 +5,9 @@ interface Material {
     key: string;
     pais: string;
     usuarioAlta: string;
-    fechaAlta:number;
+    fechaAlta: number;
     fechaEdicion: number;
     estado: number;
+
+    descripcionPT: string;
 }

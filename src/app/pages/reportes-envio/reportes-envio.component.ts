@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-reportes-envio',
@@ -14,7 +15,7 @@ export class ReportesEnvioComponent implements OnInit {
   items: Observable<ReporteEnvio[]>;
   itemDoc: AngularFirestoreDocument<Cliente>;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, public back: BackendService) { }
 
   ngOnInit() {
     this.getInfo();

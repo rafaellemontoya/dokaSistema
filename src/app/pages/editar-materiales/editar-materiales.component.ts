@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { storage } from 'firebase';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-editar-materiales',
@@ -37,10 +38,11 @@ export class EditarMaterialComponent implements OnInit {
     fechaAlta:0,
     fechaEdicion: 0,
     estado: 0,
+    descripcionPT: ''
 
     };
 
-  constructor(private sharedService: SharedService,
+  constructor(private sharedService: SharedService, public back: BackendService,
               private route: ActivatedRoute, private afs: AngularFirestore) { }
 
   ngOnInit() {

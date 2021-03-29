@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-nuevo-cliente',
@@ -35,7 +36,8 @@ export class NuevoClienteComponent implements OnInit {
   fechaEdicion: 0,
   }
 
-  constructor(private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage) { }
+  constructor(private sharedService: SharedService, private afs: AngularFirestore, private storage: AngularFireStorage,
+              public back: BackendService) { }
 
   ngOnInit() {
   }

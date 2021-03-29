@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-proyectos',
@@ -17,7 +18,7 @@ export class ProyectosComponent implements OnInit {
     eliminado = false;
     itemEliminar = '';
     nombreClienteEliminar = '';
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, public back: BackendService) {
     this.getInfo();
    }
 

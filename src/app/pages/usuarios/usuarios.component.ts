@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -17,7 +18,7 @@ export class UsuariosComponent implements OnInit {
   itemEliminar = '';
   nombreClienteEliminar = '';
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, public back: BackendService) {
     this.getInfo();
    }
 

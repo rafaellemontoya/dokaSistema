@@ -24,13 +24,16 @@
             <div class="content-header">
               <h2> <b style="color:#004A8E;">Editar cliente</b>
               </h2>
-              <p class="lead">Llena el formulario para editar el cliente</p>
+              <p *ngIf="back.lang == 'es'" class="lead">Llena el formulario para editar el cliente</p>
+              <p *ngIf="back.lang == 'pt'" class="lead">Preencher o formulário para editar o cliente
+              </p>
             </div>
   
   
   
             <!-- Begin: Admin Form-->
-            <div class="admin-form">
+            
+            <div *ngIf="back.lang == 'es'" class="admin-form">
               <div  class="panel heading-border">
                 <!-- Panel guardado-->
                 <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
@@ -85,34 +88,33 @@
                               </div>
                             </div>
                           </div>
-
-                    <div class="col-md-4">
-                      <div class="section">
-                        <label class="field select">
-                          <select  [(ngModel)]="item.pais" #pais="ngModel" class="form-control" id="pais" required name="pais" >
-                            <option value='MX' >México</option>
-                            <option value='BR'>Brasil</option>
-                            <option value='CH'>Chile</option>
-                            <option value='CO'>Colombia</option>
-                            <option value='PA'>Panamá</option>
-                            <option value='PE'>Perú</option>
-                            </select><i class="arrow"></i>
-                      </label>
-
-                      </div>
-                  </div>
                       <div class="col-md-4">
                           <div class="section">
                             <label class="field select">
-                              <select  [(ngModel)]="item.estado" #estado="ngModel" class="form-control" id="estado" required name="estado" >
-  
-                                <option value=1 >Activo</option>
-                                <option value=0>Inactivo</option>
+                              <select  [(ngModel)]="item.pais" #pais="ngModel" class="form-control" id="pais" required name="pais" >
+                                <option value='MX' >México</option>
+                                <option value='BR'>Brasil</option>
+                                <option value='CH'>Chile</option>
+                                <option value='CO'>Colombia</option>
+                                <option value='PA'>Panamá</option>
+                                <option value='PE'>Perú</option>
                                 </select><i class="arrow"></i>
                           </label>
   
                           </div>
                       </div>
+                      <div class="col-md-4">
+                        <div class="section">
+                          <label class="field select">
+                            <select  [(ngModel)]="item.estado" #estado="ngModel" class="form-control" id="estado" required name="estado" >
+  
+                              <option value=1 >Activo</option>
+                              <option value=0>Inactivo</option>
+                              </select><i class="arrow"></i>
+                        </label>
+  
+                        </div>
+                    </div>
   
   
                     </div>
@@ -128,17 +130,16 @@
   
   
                     <div id="spy3" class="section-divider mv40"><span style="color:#004A8E;">Logo (opcional)</span></div>
-                    
                     <div [hidden]="!imgError">
                       <h2>{{mensajeErrorImg}}</h2>
   
                     </div>
                     <!-- .section-divider-->
                     <!-- File Uploaders-->
-                    
+  
                     <!-- imagen 1 -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <div class="section">
                             <label class="field prepend-icon append-button file"><span class="button btn-primary">Seleccionar</span>
                               <input id="file1" type="file"  name="file1" (change)="getFile($event) " onchange="document.getElementById('up1').value = this.value;" class="gui-file">
@@ -161,11 +162,6 @@
                           -->
                           </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="section">
-                                <img title="user" [src]="item.logo" class="">
-                            </div>
-                          </div>
   
                       </div>
   
@@ -174,6 +170,154 @@
   
                     <div class="panel-footer ">
                       <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Guardar</button>
+  
+                      <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+  
+            <div *ngIf="back.lang == 'pt'" class="admin-form">
+              <div  class="panel heading-border">
+                <!-- Panel guardado-->
+                <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
+  
+  
+                <div class="alert alert-success alert-dismissable mb30" style="background-color: rgb(3, 151, 102)" >
+                    <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                    <h3 class="mt5">Cliente salvo com sucesso!
+                    </h3>
+                    <p>Cliente adicionado com sucesso.
+                    </p><br>
+                    <div class="element-groups-sm-custom"><a routerLink="/clientes" class="btn btn-default">Continuar</a></div>
+                  </div>
+  
+  
+                </div>
+                <!-- Panel formulario-->
+                <div [hidden]="submitted" class="panel-body bg-light">
+                  <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()" #itemForm="ngForm">
+                    <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Informações gerais
+                    </span></div>
+                    <!-- .section-divider-->
+                    <!-- Basic Inputs-->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input [(ngModel)]="item.nombre" #nombre="ngModel" type="text"   id="nombre" required  name="nombre" placeholder="Nome" class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Nome del cliente.</em>
+                            </b>
+                            <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+                          <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-primary">
+                             Se necesita un nombre de cliente
+                          </div>
+                        </div>
+                      </div>
+  
+  
+                    </div>
+                    <!-- Input Icons-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="section">
+                              <label class="field prepend-icon">
+                                <input [(ngModel)]="item.numero" #numero="ngModel" required type="text"   id="numero"   name="numero" placeholder="Núm Cliente" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Número de cliente.</em>
+                                </b>
+                                <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+                              <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                 Se necesita un número de cliente
+                              </div>
+                            </div>
+                          </div>
+                      <div class="col-md-4">
+                          <div class="section">
+                            <label class="field select">
+                              <select  [(ngModel)]="item.pais" #pais="ngModel" class="form-control" id="pais" required name="pais" >
+                                <option value='MX' >México</option>
+                                <option value='BR'>Brasil</option>
+                                <option value='CH'>Chile</option>
+                                <option value='CO'>Colombia</option>
+                                <option value='PA'>Panamá</option>
+                                <option value='PE'>Perú</option>
+                                </select><i class="arrow"></i>
+                          </label>
+  
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="section">
+                          <label class="field select">
+                            <select  [(ngModel)]="item.estado" #estado="ngModel" class="form-control" id="estado" required name="estado" >
+  
+                              <option value=1 >Ativo</option>
+                              <option value=0>Inativo</option>
+                              </select><i class="arrow"></i>
+                        </label>
+  
+                        </div>
+                    </div>
+  
+  
+                    </div>
+  
+  
+                    <!-- Multi Selects-->
+  
+  
+  
+                    <!-- .section-divider-->
+                    <!-- tooltips-->
+  
+  
+  
+                    <div id="spy3" class="section-divider mv40"><span style="color:#004A8E;">Logotipo (opcional)</span></div>
+                    <div [hidden]="!imgError">
+                      <h2>{{mensajeErrorImg}}</h2>
+  
+                    </div>
+                    <!-- .section-divider-->
+                    <!-- File Uploaders-->
+  
+                    <!-- imagen 1 -->
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="section">
+                            <label class="field prepend-icon append-button file"><span class="button btn-primary">Selecionar</span>
+                              <input id="file1" type="file"  name="file1" (change)="getFile($event) " onchange="document.getElementById('up1').value = this.value;" class="gui-file">
+                              <input id="up1"  type="text" placeholder="Logotipo do cliente" class="gui-input">
+                              <label class="field-icon"><i class="fa fa-upload"></i></label>
+                            </label>
+  
+  
+  
+                            <!--
+                            <div [hidden]="!imgError" class="alert alert-danger alert-dismissable">
+                              <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button><i class="fa fa-remove pr10"></i><strong>Error en la imagen!</strong> {{mensajeErrorImg}}.
+                            </div>
+  
+  
+  
+                            <div [hidden]="!estadoCargaImg" class="progress mt10">
+                              <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': porcentajeCargaImg + '%'}"  [ngClass]="claseCargaImg">{{porcentajeCargaImg}}%</div>
+                            </div>
+                          -->
+                          </div>
+                        </div>
+  
+                      </div>
+  
+  
+  
+  
+                    <div class="panel-footer ">
+                      <button type="button" [disabled]="!itemForm.form.valid" class="btn btn-success" (click)="crearItem()">Salvar</button>
   
                       <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                     </div>

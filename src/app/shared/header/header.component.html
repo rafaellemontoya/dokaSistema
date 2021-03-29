@@ -6,10 +6,11 @@
   <ul class="nav navbar-nav navbar-left"></ul>
 
   <ul class="nav navbar-nav navbar-right">
-    <li><img src="assets/assets/img/avatars/1.jpg" alt="avatar"></li>
+    <li *ngIf="back.lang == 'es'"><img _ngcontent-bbm-c4="" class="img-responsive mw40 ib mr10" title="user" src="assets/assets/img/es.png"></li>
+    <li *ngIf="back.lang == 'pt'"><img _ngcontent-bbm-c4="" class="img-responsive mw40 ib mr10" title="user" src="assets/assets/img/br.png"></li>
     <li class="dropdown menu-merge"><a href="#" data-toggle="dropdown" class="dropdown-toggle fw600 p15"><span class="fa fa-angle-down"></span> </a>
       <ul role="menu" class="dropdown-menu list-group dropdown-persist w250">
-        <li class="dropdown-header clearfix">
+        <!-- <li class="dropdown-header clearfix">
           <div class="pull-left ml10">
             <select id="user-status">
               <optgroup label="Current Status:">
@@ -28,12 +29,9 @@
               </optgroup>
             </select>
           </div>
-        </li>
-        <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-envelope"></span> Messages<span class="label label-warning">2</span></a></li>
-        <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-user"></span> Friends<span class="label label-warning">6</span></a></li>
-        <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-bell"></span> Notifications</a></li>
-        <li class="list-group-item"><a href="#" class="animated animated-short fadeInUp"><span class="fa fa-gear"></span> Settings</a></li>
-        <li class="dropdown-footer"><a href="pages_login.html"><span class="fa fa-power-off pr5"></span> Logout</a></li>
+        </li> -->
+        <li ng-click="cambiarIdioma('es')" class="list-group-item"><a class="animated animated-short fadeInUp"(click)="cambiarIdioma('es')"> Español</a></li>
+        <li class="list-group-item"><a class="animated animated-short fadeInUp" (click)="cambiarIdioma('pt')"> Portugues</a></li>
       </ul>
     </li>
   </ul>
@@ -66,13 +64,13 @@ Results: Fixed Left Sidebar with light/white background
         </div>
       </div>
     </header>
-    <ul class="nav sidebar-menu">
+    <ul *ngIf="back.lang == 'es'" class="nav sidebar-menu">
 
       <li class=""><a routerLink="/inicio"><span class="fa fa-home"></span><span class="sidebar-title">Inicio</span></a>
       </li>
 
       <li class="sidebar-label pt35 "></li>
-      <li  routerLinkActive="active"><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-fire"></span><span class="sidebar-title">Administración</span><span class="caret"></span></a>
+      <li  routerLinkActive="active"><a href="#" class="accordion-toggle menu-open"><span class="glyphicon glyphicon-fire"></span><span class="sidebar-title">Administración</span><span class="caret"></span></a>
         <ul class="nav sub-nav">
           <li><a routerLink="/clientes"><span class="glyphicon glyphicon-modal-window"></span>
             Clientes
@@ -120,6 +118,109 @@ Results: Fixed Left Sidebar with light/white background
   </span></a>
 </li>
   <li routerLinkActive="active"><a  routerLink="/reportes-dano"><span class="fa fa-file-text-o"></span><span class="sidebar-title">Reportes de equpo dañado</span></a>
+  </li>
+  <!-- <li class="sidebar-label pt35"></li>
+  <li routerLinkActive="active"><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-fire"></span><span class="sidebar-title">Dashboard</span><span class="caret"></span></a>
+        <ul class="nav sub-nav">
+          <li><a routerLink="/dashboard-cobrometro"><span class="glyphicon glyphicon-modal-window"></span>
+            Dashboard activo
+          </a>
+          </li>
+          <li><a routerLink="/dashboard-cobranza"><span class="glyphicon glyphicon-modal-window"></span>
+            Dashboard cobranza
+          </a>
+          </li>
+          <li><a routerLink="/dashboard-avisos"><span class="glyphicon glyphicon-equalizer"></span>
+            Dashboard avisos
+          </a>
+          </li>
+          <li><a routerLink="/dashboard-video"><span class="glyphicon glyphicon-equalizer"></span>
+            Dashboard video
+          </a>
+          </li>
+          <li><a routerLink="/dashboard-vendedores"><span class="glyphicon glyphicon-modal-window"></span>
+            Dashboard vendedores
+          </a>
+        </li>
+          <li><a routerLink="/dashboard-cobradores"><span class="glyphicon glyphicon-modal-window"></span>
+            Dashboard cobradores
+          </a>
+          </li>
+          
+          <li><a href="https://apptudoka.com.mx/dashboardDoka/#/" target="_blank"><span class="glyphicon glyphicon-equalizer"></span>
+            Ir al dashboard
+          </a>
+          
+          </li>
+          
+          
+        </ul>
+      </li> -->
+
+    </ul>
+
+    <ul *ngIf="back.lang == 'pt'" class="nav sidebar-menu">
+
+      <li class=""><a routerLink="/inicio"><span class="fa fa-home"></span><span class="sidebar-title">Início</span></a>
+      </li>
+
+      <li class="sidebar-label pt35 "></li>
+      <li  routerLinkActive="active"><a href="#" class="accordion-toggle  menu-open"><span class="glyphicon glyphicon-fire"></span><span class="sidebar-title">Administração</span><span class="caret"></span></a>
+        <ul class="nav sub-nav">
+          <li><a routerLink="/clientes"><span class="glyphicon glyphicon-modal-window"></span>
+            Clientes
+          </a>
+          </li>
+          <li><a routerLink="/clasificacion-equipo"><span class="glyphicon glyphicon-equalizer"></span>
+            Classificação do material
+          </a>
+          </li>
+          <li><a routerLink="/tipo-dano"><span class="glyphicon glyphicon-equalizer"></span>
+            Tipo de dano
+
+          </a>
+          </li>
+          <li><a routerLink="/proyectos"><span class="glyphicon glyphicon-equalizer"></span>
+            Projetos
+          </a>
+          </li>
+          <li><a routerLink="/materiales"><span class="glyphicon glyphicon-equalizer"></span>
+            Materiais
+          </a>
+          </li>
+          <li><a routerLink="/usuarios"><span class="glyphicon glyphicon-equalizer"></span>
+            Usuários
+          </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="sidebar-label pt35"></li>
+
+      <li routerLinkActive="active"><a routerLink="/reportes-envio"><span class="fa fa-file-text-o"></span><span class="sidebar-title">
+        Relatórios de envio 
+
+      </span></a>
+      </li>
+      <li routerLinkActive="active"><a routerLink="/reportes-devolucion"><span class="fa fa-file-text-o"></span><span class="sidebar-title">
+        Relatórios de devolução
+
+      </span></a>
+    </li>
+    <li routerLinkActive="active"><a routerLink="/reportes-capacitacion"><span class="fa fa-file-text-o"></span><span class="sidebar-title">
+      Relatório de treinamento
+
+    </span></a>
+  </li>
+  <li routerLinkActive="active"><a routerLink="/reportes-seguimiento"><span class="fa fa-file-text-o"></span><span class="sidebar-title">
+    Relatório de acompanhamento
+
+  </span></a>
+</li>
+  <li routerLinkActive="active"><a  routerLink="/reportes-dano"><span class="fa fa-file-text-o"></span><span class="sidebar-title">
+    Relatórios de material danificado
+
+  </span></a>
   </li>
   <!-- <li class="sidebar-label pt35"></li>
   <li routerLinkActive="active"><a href="#" class="accordion-toggle"><span class="glyphicon glyphicon-fire"></span><span class="sidebar-title">Dashboard</span><span class="caret"></span></a>

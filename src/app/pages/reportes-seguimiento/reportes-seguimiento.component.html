@@ -1,4 +1,4 @@
-<section id="content_wrapper" >
+<section  *ngIf="back.lang == 'es'" id="content_wrapper" >
   <!--[hidden]="!empleadoActual.permisos.empleados">-->
     <!-- Start: Topbar-Dropdown-->
   
@@ -75,8 +75,7 @@
                           class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Activo<span
                             class="caret ml15"></span></button>
                         <ul role="menu" class="dropdown-menu">
-                          <li><a [routerLink]="['/editar-usuario', item.id]">Editar</a></li>
-                          <li><a style = "cursor: pointer;" (click)="eliminarSeleccionado()">Borrar</a></li>
+                          <li><a [routerLink]="['/editar-Reportes de envío', item.id]">Imprimir</a></li>
                           <!-- <li><a (click)="inhabilitarEmpleado()">Inhabilitar</a></li>
                             <li><a (click)="habilitarEmpleado()">Habilitar</a></li>
                             <li><a (click)="inhabilitarEmpleado()">Borrar</a></li> -->
@@ -106,7 +105,98 @@
     </section>
   </section>
   
+  <section  *ngIf="back.lang == 'pt'" id="content_wrapper" >
+    <!--[hidden]="!empleadoActual.permisos.empleados">-->
+      <!-- Start: Topbar-Dropdown-->
+    
+    
+      <!-- Start: Topbar-->
+      <div id="topbar" class="text-center bg-white alt ph10 br-b-ddd">
+        <div>
+          <h1><b style="color: #004a8e">Relatórios de acompanhamento
+          </b></h1>
+        </div>
+    
+      </div>
+      <!-- Begin: Content-->
+      <section id="content" class="table-layout">
+        <!-- begin: .tray-center-->
+        <div class="tray tray-center" style="height: 802px;">
+          <!-- create new order panel-->
+          <div class="panel  ">
+    
+    
+    
+    
+          </div>
+          <!-- recent orders table-->
+          <div class="panel">
+           
+            <div class="panel-body pn">
+              <div class="table-responsive of-y-a">
+                <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                  <thead>
+                    <tr style="background-color: #bfc1c4; color: #fff;" class="bg-system">
+    
+                      <th>ID reporte</th>
+                      <th>Criado por</th>
+                      <th>Data</th>
+                      <th>Pais</th>
+                      
+                      <th class="text-right">Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of feedItem | async">
+    
+                      <!--<td class="w100"><img title="user" [src]="item.foto" class="img-responsive mw40 ib mr10"></td>-->
+                      <td>{{item.id}}</td>
+                      <td>{{item.nombre }}</td>
+                      <td>{{item.fecha}}</td>
+                      <td>{{item.pais}}</td>
   
+                      
+                      <!-- <td>{{item.pais}}</td> -->
+                      <!-- <td>
+                        <img title="user" [src]="getBanderaPais(item.pais)" class="img-responsive mw40 ib mr10">
+                        {{getNombrePais(item.pais)}}
+                      </td> -->
+                      
+                      <td class="text-right">
+                        <div class="btn-group text-right">
+                          <button type="button" data-toggle="dropdown" aria-expanded="false"
+                            class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Ativo<span
+                              class="caret ml15"></span></button>
+                          <ul role="menu" class="dropdown-menu">
+                            <li><a [routerLink]="['/editar-Reportes de envío', item.id]">Imprimir</a></li>
+                            <!-- <li><a (click)="inhabilitarEmpleado()">Inhabilitar</a></li>
+                              <li><a (click)="habilitarEmpleado()">Habilitar</a></li>
+                              <li><a (click)="inhabilitarEmpleado()">Borrar</a></li> -->
+    
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- begin: .tray-right-->
+    
+      </section>
+    </section>
   <!-- No hay permisos
   <section [hidden]="empleadoActual.permisos.empleados" id="content_wrapper">
     <header id="topbar" class="bg-white alt">

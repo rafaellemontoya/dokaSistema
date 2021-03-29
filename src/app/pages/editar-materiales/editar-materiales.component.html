@@ -1,6 +1,6 @@
 <div   class="admin-elements-page">
   <!-- Start: Content-Wrapper-->
-  <section id="content_wrapper">
+  <section *ngIf="back.lang == 'es'" id="content_wrapper">
     <!-- Start: Topbar-Dropdown-->
 
     <!-- Start: Topbar-->
@@ -90,7 +90,27 @@
 
                   </div>
 
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input type="text" [(ngModel)]="item.descripcionPT" #descripcionPT="ngModel" id="descripcionPT" required  name="descripcionPT" placeholder="Descripción de material en Portugés" class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Código.</em>
+                            </b>
+                            <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+                          <!--
+                          <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                             Se necesita un nombre de empleado
+                          </div>
+                        -->
+                        </div>
+                      </div>
+                 
 
+
+                </div>
                   <!-- Multi Selects-->
 
 
@@ -105,6 +125,154 @@
                   <div class="panel-footer ">
                       <button type="button"  class="btn btn-success" (click)="crearItem()">Guardar</button>
                      
+
+                    <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- begin: .tray-right-->
+
+    </section>
+  </section>
+
+  <section *ngIf="back.lang == 'pt'" id="content_wrapper">
+    <!-- Start: Topbar-Dropdown-->
+
+    <!-- Start: Topbar-->
+    <header id="topbar" class="alt">
+      <div class="topbar-left">
+        <ol class="breadcrumb">
+
+          <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
+          <li class="crumb-link"><a routerLink="/empleados">Materiais</a></li>
+          <li class="crumb-trail">Editar material
+          </li>
+        </ol>
+      </div>
+
+    </header>
+    <!-- Begin: Content-->
+    <section id="content" class="table-layout animated fadeIn">
+      <!-- begin: .tray-center-->
+      <div class="tray tray-center">
+        <div class="mw1000 center-block">
+          <!-- Begin: Content Header-->
+          <div class="content-header">
+            <h2> <b style="color:#004A8E;">Editar material
+            </b>
+            </h2>
+            <p class="lead">Preencher formulário para adicionar material
+            </p>
+          </div>
+
+
+
+          <!-- Begin: Admin Form-->
+          <div class="admin-form">
+            <div  class="panel heading-border">
+              <!-- Panel guardado-->
+              <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
+
+
+              <div class="alert alert-success alert-dismissable mb30" style="background: rgb(3, 151, 102)">
+                  <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                  <h3 class="mt5">Material salvo com sucesso!
+                  </h3>
+                  <p>Material adicionado com sucesso.
+                  </p><br>
+                  <div class="element-groups-sm-custom"><a routerLink="/materiales" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">NOVO MATERIAL 
+                  </button></div>
+                </div>
+
+
+              </div>
+              <!-- Panel formulario-->
+              <div [hidden]="submitted" class="panel-body bg-light">
+                <form (ngSubmit)="nuevoItem()" (keydown.enter)="$event.preventDefault()">
+                  <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Informações gerais
+                  </span></div>
+                  <!-- .section-divider-->
+                  <!-- Basic Inputs-->
+
+                  <!-- Input Icons-->
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="section">
+                            <label class="field prepend-icon">
+                              <input type="text" [(ngModel)]="item.codigo" #codigo="ngModel" id="codigo" required  name="nombre" placeholder="Código do material
+                              " class="gui-input">
+                              <b class="tooltip tip-right-top">
+                                <em> Código do material.</em>
+                              </b>
+                              <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                            </label>
+                            <!--
+                            <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                               Se necesita un nombre de empleado
+                            </div>
+                          -->
+                          </div>
+                        </div>
+                    <div class="col-md-8">
+                        <div class="section">
+                            <label class="field prepend-icon">
+                              <input  type="text" [(ngModel)]="item.descripcion" #descripcion="ngModel"  id="descripcion" required  name="nombre" placeholder="Descrição" class="gui-input">
+                              <b class="tooltip tip-right-top">
+                                <em> Descrição.</em>
+                              </b>
+                              <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                            </label>
+                            <!--
+                            <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                               Se necesita un nombre de empleado
+                            </div>
+                          -->
+                          </div>
+                    </div>
+
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input type="text" [(ngModel)]="item.descripcionPT" #descripcionPT="ngModel" id="descripcionPT" required  name="descripcionPT" placeholder="Descrição do material em português                              " class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Descrição do material em português
+                                .</em>
+                            </b>
+                            <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+                          <!--
+                          <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                             Se necesita un nombre de empleado
+                          </div>
+                        -->
+                        </div>
+                      </div>
+                 
+
+
+                </div>
+
+                  <!-- Multi Selects-->
+
+
+
+                  <!-- .section-divider-->
+                  <!-- tooltips-->
+
+
+
+
+
+                  <div class="panel-footer ">
+                    <button type="button" class="btn btn-success" (click)="crearItem()">SALVAR</button>
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>

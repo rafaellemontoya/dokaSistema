@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public back: BackendService) { }
 
   ngOnInit() {
   }
+  cambiarIdioma(lang): void {
 
+    console.log(lang);
+    this.back.setLanguage(lang);
+
+
+}
 }

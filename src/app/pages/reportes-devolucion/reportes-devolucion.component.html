@@ -1,3 +1,226 @@
-<p>
-  reportes-devolucion works!
-</p>
+<section  *ngIf="back.lang == 'es'" id="content_wrapper">
+  <!--[hidden]="!empleadoActual.permisos.empleados">-->
+  <!-- Start: Topbar-Dropdown-->
+
+
+  <!-- Start: Topbar-->
+  <div id="topbar" class="text-center bg-white alt ph10 br-b-ddd">
+    <div>
+      <h1><b style="color: #004a8e">Reportes de devolución</b></h1>
+    </div>
+
+  </div>
+  <!-- Begin: Content-->
+  <section id="content" class="table-layout">
+    <!-- begin: .tray-center-->
+    <div class="tray tray-center" style="height: 802px;">
+      <!-- create new order panel-->
+      <div class="panel  ">
+
+
+
+        
+
+      </div>
+      <!-- recent orders table-->
+      <div class="panel">
+          
+        <div class="panel-body pn">
+          <div class="table-responsive of-y-a">
+            <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+              <thead>
+                <tr style="background-color: #004a8e; color: #fff;" class="bg-system">
+                  
+                  <th>Id </th>
+                  <th>Fecha </th>
+                  <th>Usuario </th>
+                  <th>Número de proyecto </th>
+                  <th>Nombre de proyecto</th>
+                  <th>Número Cliente</th>
+                  <th>Cliente</th>
+                  <th class="text-right">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of items | async">
+
+                  <!--<td class="w100"><img title="user" [src]="item.foto" class="img-responsive mw40 ib mr10"></td>-->
+
+                  <td>{{item.id }}</td>
+                  <td>{{item.fechaCreacion | date : 'dd-MM-yyyy HH:mm:ss' }}</td>
+                  <td>{{item.idUsuario }}</td>
+                  <td> {{item.proyecto}}</td>
+                  <td> {{item.proyecto}}</td>
+                  <td> {{item.cliente}}</td>
+                  <td> </td>
+                  
+
+                  <td class="text-right">
+                    <div class="btn-group text-right">
+                      <button type="button" data-toggle="dropdown" aria-expanded="false"
+                        class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Activo<span
+                          class="caret ml15"></span></button>
+                      <ul role="menu" class="dropdown-menu">
+                          <li><a [routerLink]="['/editar-Reportes de envío', item.id]">Imprimir</a></li>
+                          
+                          <!-- <li><a (click)="inhabilitarEmpleado()">Inhabilitar</a></li>
+                          <li><a (click)="habilitarEmpleado()">Habilitar</a></li>
+                          <li><a (click)="inhabilitarEmpleado()">Borrar</a></li> -->
+
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+
+
+
+
+
+
+
+
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- begin: .tray-right-->
+
+  </section>
+</section>
+
+<section  *ngIf="back.lang == 'pt'" id="content_wrapper">
+  <!--[hidden]="!empleadoActual.permisos.empleados">-->
+  <!-- Start: Topbar-Dropdown-->
+
+
+  <!-- Start: Topbar-->
+  <div id="topbar" class="text-center bg-white alt ph10 br-b-ddd">
+    <div>
+      <h1><b style="color: #004a8e">Relatórios de devolução
+      </b></h1>
+    </div>
+
+  </div>
+  <!-- Begin: Content-->
+  <section id="content" class="table-layout">
+    <!-- begin: .tray-center-->
+    <div class="tray tray-center" style="height: 802px;">
+      <!-- create new order panel-->
+      <div class="panel  ">
+
+
+
+        
+
+      </div>
+      <!-- recent orders table-->
+      <div class="panel">
+          
+        <div class="panel-body pn">
+          <div class="table-responsive of-y-a">
+            <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+              <thead>
+                <tr style="background-color: #004a8e; color: #fff;" class="bg-system">
+                  
+                  <th>Id </th>
+                  <th>Data </th>
+                  <th>Usúario </th>
+                  <th>Numero do Projeto
+                  </th>
+                  <th>Nome do Projeto
+                  </th>
+                  <th>Numero do cliente
+                  </th>
+                  <th>Cliente</th>
+                  <th class="text-right">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of items | async">
+
+                  <!--<td class="w100"><img title="user" [src]="item.foto" class="img-responsive mw40 ib mr10"></td>-->
+
+                  <td>{{item.id }}</td>
+                  <td>{{item.fechaCreacion | date : 'dd-MM-yyyy HH:mm:ss' }}</td>
+                  <td>{{item.idUsuario }}</td>
+                  <td> {{item.proyecto}}</td>
+                  <td> {{item.proyecto}}</td>
+                  <td> {{item.cliente}}</td>
+                  <td> </td>
+                  
+
+                  <td class="text-right">
+                    <div class="btn-group text-right">
+                      <button type="button" data-toggle="dropdown" aria-expanded="false"
+                        class="btn btn-success br2 btn-xs fs12 dropdown-toggle">Ativo<span
+                          class="caret ml15"></span></button>
+                      <ul role="menu" class="dropdown-menu">
+                          <li><a [routerLink]="['/editar-Reportes de envío', item.id]">Imprimir</a></li>
+                          
+                          <!-- <li><a (click)="inhabilitarEmpleado()">Inhabilitar</a></li>
+                          <li><a (click)="habilitarEmpleado()">Habilitar</a></li>
+                          <li><a (click)="inhabilitarEmpleado()">Borrar</a></li> -->
+
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+
+
+
+
+
+
+
+
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- begin: .tray-right-->
+
+  </section>
+</section>
+<!-- No hay permisos
+<section [hidden]="empleadoActual.permisos.empleados" id="content_wrapper">
+  <header id="topbar" class="bg-white alt">
+    <div class="topbar-left">
+      <ol class="breadcrumb mt-10">
+        <li class="crumb-active"><a routerLink="/inicio">Sistema Memphis</a></li>
+
+      </ol>
+    </div>
+
+  </header>
+  <div id="content" class="animated fadeIn">
+
+
+    <div class="row">
+      <div class="col-md-12">
+
+
+        <hr class="mt20 mb30">
+
+
+        <div class="">
+          <div class="alert alert-danger alert-dismissable mb30">
+
+            <h5 class="mt5">Error</h5>
+            <h3 class="mt5">No tienes acceso a ésta sección</h3>
+            <p>Ponte en contacto con el administrador.</p><br>
+            <div class="element-groups-sm-custom"><a (click)="atras()" class="btn btn-white">REGRESAR</a></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>-->

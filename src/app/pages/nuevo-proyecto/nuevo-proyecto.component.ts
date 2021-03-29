@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-nuevo-proyecto',
@@ -40,7 +41,8 @@ export class NuevoProyectoComponent implements OnInit {
 
     }
 
-    constructor(private sharedService: SharedService, private afs: AngularFirestore) { }
+    constructor(private sharedService: SharedService, private afs: AngularFirestore,
+                public back: BackendService) { }
 
     ngOnInit() {
       this.getInfo();

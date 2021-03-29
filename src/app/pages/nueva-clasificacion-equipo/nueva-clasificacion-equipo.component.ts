@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-nueva-clasificacion-equipo',
@@ -25,10 +26,12 @@ export class NuevaClasificacionEquipoComponent implements OnInit {
   fechaEdicion: 0,
   nombreBusqueda:'',
   estado: 0,
+  nombrePT: ''
 
    }
 
-   constructor(private sharedService: SharedService, private afs: AngularFirestore) { }
+   constructor(private sharedService: SharedService, private afs: AngularFirestore,
+               public back: BackendService) { }
 
    ngOnInit() { }
 

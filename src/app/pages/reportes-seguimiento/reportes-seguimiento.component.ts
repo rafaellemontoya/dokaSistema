@@ -3,6 +3,7 @@ import { ReporteSeguimiento } from '../../interface/reporte-seguimiento.interfac
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable, combineLatest } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
+import { BackendService } from '../../services/backend.service';
 export interface ReporteSeguimientoId extends ReporteSeguimiento { id: string; }
 export interface UsuarioId extends Usuario { id: string; }
 export interface Feed {
@@ -39,7 +40,7 @@ export class ReportesSeguimientoComponent implements OnInit {
 
   colChallangeCollection: AngularFirestoreCollection<ColChallange>;
   feedItem: Observable<Feed[]>;
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, public back: BackendService) {
     // this.shirtCollection = afs.collection<ReporteSeguimiento>('reportesSeguimiento');
     // // .snapshotChanges() returns a DocumentChangeAction[], which contains
     // // a lot of information about "what happened" with each change. If you want to

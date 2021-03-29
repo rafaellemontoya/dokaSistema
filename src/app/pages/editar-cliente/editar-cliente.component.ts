@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { SharedService } from 'src/app/services/shared.service';
 import { finalize } from 'rxjs/operators';
 import { flatMap, map } from 'rxjs/operators';
+import { BackendService } from 'src/app/services/backend.service';
 
 export interface ProyectoId extends Proyecto{ id: string; }
 
@@ -47,7 +48,8 @@ export class EditarClienteComponent implements OnInit {
     };
 
   constructor(private sharedService: SharedService,
-              private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage) { }
+              // tslint:disable-next-line:max-line-length
+              private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage, public back: BackendService) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);

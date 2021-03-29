@@ -4,6 +4,7 @@ import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firest
 import { SharedService } from 'src/app/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -61,7 +62,7 @@ export class EditarUsuarioComponent implements OnInit {
 
     };
 
-  constructor(private sharedService: SharedService,
+  constructor(private sharedService: SharedService, public back: BackendService,
               private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
   ngOnInit() {

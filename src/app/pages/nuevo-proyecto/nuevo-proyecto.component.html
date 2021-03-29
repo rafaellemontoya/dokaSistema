@@ -1,6 +1,6 @@
 <div   class="admin-elements-page">
     <!-- Start: Content-Wrapper-->
-    <section id="content_wrapper">
+    <section  *ngIf="back.lang == 'es'" id="content_wrapper">
       <!-- Start: Topbar-Dropdown-->
 
       <!-- Start: Topbar-->
@@ -9,7 +9,7 @@
           <ol class="breadcrumb">
 
             <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="crumb-link"><a routerLink="/empleados">Proyectoss</a></li>
+            <li class="crumb-link"><a routerLink="/empleados">Proyectos</a></li>
             <li class="crumb-trail">Nuevo proyecto</li>
           </ol>
         </div>
@@ -138,6 +138,169 @@
 
                     <div class="panel-footer ">
                       <button type="button" class="btn btn-success" (click)="nuevoItem()">Guardar</button>
+
+                      <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- begin: .tray-right-->
+
+      </section>
+    </section>
+
+    <section  *ngIf="back.lang == 'pt'" id="content_wrapper">
+      <!-- Start: Topbar-Dropdown-->
+
+      <!-- Start: Topbar-->
+      <header id="topbar" class="alt">
+        <div class="topbar-left">
+          <ol class="breadcrumb">
+
+            <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="crumb-link"><a routerLink="/empleados">Projetos</a></li>
+            <li class="crumb-trail">Novo Projeto
+            </li>
+          </ol>
+        </div>
+
+      </header>
+      <!-- Begin: Content-->
+      <section id="content" class="table-layout animated fadeIn">
+        <!-- begin: .tray-center-->
+        <div class="tray tray-center">
+          <div class="mw1000 center-block">
+            <!-- Begin: Content Header-->
+            <div class="content-header">
+              <h2> <b style="color:#004A8E;">Novo Projeto
+              </b>
+              </h2>
+              <p class="lead">Preencher formulário para adicionar projeto
+              </p>
+            </div>
+
+
+
+            <!-- Begin: Admin Form-->
+            <div class="admin-form">
+              <div  class="panel heading-border">
+                <!-- Panel guardado-->
+                <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
+
+
+                <div class="alert alert-success alert-dismissable mb30" style="background: rgb(3, 151, 102)">
+                    <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                    <h3 class="mt5">Projeto salvo com sucesso! 
+                      !</h3>
+                    <p>Projeto adicionado com sucesso.
+                      .</p><br>
+                    <div class="element-groups-sm-custom"><a routerLink="/proyectos" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">NOVO PROJETO
+                    </button></div>
+                  </div>
+
+
+                </div>
+                <!-- Panel formulario-->
+                <div [hidden]="submitted" class="panel-body bg-light">
+                  <form (ngSubmit)="nuevoItem()" (keydown.enter)="$event.preventDefault()">
+                    <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Informações gerais
+                    </span></div>
+                    <!-- .section-divider-->
+                    <!-- Basic Inputs-->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input type="text" [(ngModel)]="item.nombre" #nombre="ngModel"  id="nombre" required  name="nombre" placeholder="Nome do Projeto
+                            " class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Nome do Projeto
+                              </em>
+                            </b>
+                            <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+                          <!--
+                          <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                             Se necesita un nombre de empleado
+                          </div>
+                        -->
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <!-- Input Icons-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="section">
+                              <label class="field prepend-icon">
+                                <input type="text" [(ngModel)]="item.numero" #numero="ngModel"  id="numero" required  name="numero" placeholder="Núm. do Projeto
+                                " class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Núm. do Projeto
+                                    .</em>
+                                </b>
+                                <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+                              <!--
+                              <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                                 Se necesita un nombre de empleado
+                              </div>
+                            -->
+                            </div>
+                          </div>
+
+                      <div class="col-md-4">
+                          <div class="section">
+                            <label class="field select">
+                              <select class="form-control" name="clienteSeleccionado"  required [(ngModel)]="clienteSeleccionado" #clienteSeleccionado2="ngModel" >
+
+                                <option *ngFor="let item2 of items | async" [ngValue] ="item2" > {{item2.nombre}}</option>
+                                </select><i class="arrow"></i>
+                          </label>
+
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="section">
+                            <label class="field select">
+                              <select class="form-control" id="clasificacion1" required name="clasificacion1"  required [(ngModel)]="item.estado" #estado="ngModel" >
+                                <option value=1 >Ativo</option>
+                                <option value=2 >Inativo</option>
+
+                                </select><i class="arrow"></i>
+                          </label>
+
+                          </div>
+                      </div>
+
+
+                    </div>
+
+
+                    <!-- Multi Selects-->
+
+
+
+                    <!-- .section-divider-->
+                    <!-- tooltips-->
+
+
+
+
+
+                    <!-- .section-divider-->
+                    <!-- File Uploaders-->
+
+                    <!-- imagen 1 -->
+
+
+
+                    <div class="panel-footer ">
+                      <button type="button" class="btn btn-success" (click)="nuevoItem()">Salvar</button>
 
                       <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                     </div>

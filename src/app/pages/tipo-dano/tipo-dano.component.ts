@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-tipo-dano',
@@ -19,7 +20,7 @@ export class TipoDanoComponent implements OnInit {
     nombreClienteEliminar = '';
 
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, public back: BackendService) {
     this.getInfo();
   }
 

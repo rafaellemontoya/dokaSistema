@@ -10,5 +10,6 @@ interface ClasificacionEquipo {
     fechaEdicion: number;
     nombreBusqueda: string;
     estado: number;
+    nombrePT: string;
 
 }

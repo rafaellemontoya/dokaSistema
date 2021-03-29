@@ -4,6 +4,7 @@ import { AngularFirestoreDocument, AngularFirestore, AngularFirestoreCollection 
 import { SharedService } from 'src/app/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-editar-tipo-dano',
@@ -28,7 +29,7 @@ export class EditarTipoDanoComponent implements OnInit {
   idRecibido = '';
   private itemDoc: AngularFirestoreDocument<TipoDano>;
   itemRecibido: Observable<TipoDano>;
-  itemTipo: TipoDano = {
+  item: TipoDano = {
     key: '',
     nombreBusqueda:'',
     clasificacionEquipo: '',
@@ -38,9 +39,10 @@ export class EditarTipoDanoComponent implements OnInit {
     fechaAlta:0,
     fechaEdicion: 0,
     estado: 0,
+    tipoDanoPT: ''
     };
 
-  constructor(private sharedService: SharedService,
+  constructor(private sharedService: SharedService, public back: BackendService,
               private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
   ngOnInit() {
@@ -59,7 +61,7 @@ export class EditarTipoDanoComponent implements OnInit {
     this.itemDoc = this.afs.doc<TipoDano>('damage/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
-      this.itemTipo = data;
+      this.item = data;
     });
 
 
@@ -73,11 +75,11 @@ export class EditarTipoDanoComponent implements OnInit {
   }
 
   crearItem() {
-    this.itemTipo.pais = 'MX';
+    this.item.pais = 'MX';
 
-    this.itemTipo.fechaEdicion = new Date().getTime();
-    this.itemTipo.nombreBusqueda = this.sharedService.corregirCaracteres(this.itemTipo.tipoDano);
-    this.itemDoc.update(this.itemTipo);
+    this.item.fechaEdicion = new Date().getTime();
+    this.item.nombreBusqueda = this.sharedService.corregirCaracteres(this.item.tipoDano);
+    this.itemDoc.update(this.item);
     this.submitted = true;
 
     window.scrollTo(0, 0);

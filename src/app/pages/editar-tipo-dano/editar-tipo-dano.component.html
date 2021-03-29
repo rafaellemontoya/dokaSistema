@@ -1,6 +1,6 @@
 <div   class="admin-elements-page">
   <!-- Start: Content-Wrapper-->
-  <section id="content_wrapper">
+  <section *ngIf="back.lang == 'es'"  id="content_wrapper">
     <!-- Start: Topbar-Dropdown-->
 
     <!-- Start: Topbar-->
@@ -71,6 +71,26 @@
 
 
                   </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section">
+                        <label class="field prepend-icon">
+                          <input type="text"  [(ngModel)]="itemTipo.tipoDanoPT" #tipoDanoPT="ngModel" id="tipoDanoPT" required  name="tipoDanoPT" placeholder="Tipo de daño en Portugués" class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Nombre del tipo de daño.</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                        <!--
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                           Se necesita un nombre de empleado
+                        </div>
+                      -->
+                      </div>
+                    </div>
+
+
+                  </div>
                   <!-- Input Icons-->
                   <div class="row">
                     <div class="col-md-4">
@@ -105,6 +125,148 @@
 
                   <div class="panel-footer ">
                     <button type="button" class="btn btn-success" (click)="crearItem()">Guardar</button>
+
+                    <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- begin: .tray-right-->
+
+    </section>
+  </section>
+
+  <section *ngIf="back.lang == 'pt'" id="content_wrapper">
+    <!-- Start: Topbar-Dropdown-->
+
+    <!-- Start: Topbar-->
+    <header id="topbar" class="alt">
+      <div class="topbar-left">
+        <ol class="breadcrumb">
+
+          <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
+          <li class="crumb-link"><a routerLink="/empleados">Tipo de dano</a></li>
+          <li class="crumb-trail">Editar Dano</li>
+        </ol>
+      </div>
+
+    </header>
+    <!-- Begin: Content-->
+    <section id="content" class="table-layout animated fadeIn">
+      <!-- begin: .tray-center-->
+      <div class="tray tray-center">
+        <div class="mw1000 center-block">
+          <!-- Begin: Content Header-->
+          <div class="content-header">
+            <h2> <b style="color:#004A8E;">Editar tipo de dano</b>
+            </h2>
+            <p class="lead">Preencher o formulário para editar o tipo de dano
+            </p>
+          </div>
+
+
+
+          <!-- Begin: Admin Form-->
+          <div class="admin-form">
+            <div  class="panel heading-border">
+              <!-- Panel guardado-->
+              <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
+
+
+              <div class="alert alert-success alert-dismissable mb30" style="background: rgb(3, 151, 102)">
+                  <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                  <h3 class="mt5">Tipo de dano salvo com sucesso!
+                  </h3>
+                  <p>Tipo de dano adicionado  com sucesso.</p><br>
+                  <div class="element-groups-sm-custom"><a routerLink="/tipo-dano" class="btn btn-default">Continuar</a><button type="button" routerLink="/nuevo-tipo-dano " class="btn btn-default">Novo dano</button></div>
+                </div>
+
+
+              </div>
+              <!-- Panel formulario-->
+              <div [hidden]="submitted" class="panel-body bg-light">
+                <form (ngSubmit)="nuevoDano()" (keydown.enter)="$event.preventDefault()">
+                  <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Informações gerais
+                  </span></div>
+                  <!-- .section-divider-->
+                  <!-- Basic Inputs-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section">
+                        <label class="field prepend-icon">
+                          <input type="text"  [(ngModel)]="item.tipoDano" #codigo="ngModel" id="nombre" required  name="nombre" placeholder="Tipo de dano" class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Tipo de dano</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                        <!--
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                           Se necesita un nombre de empleado
+                        </div>
+                      -->
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="section">
+                        <label class="field prepend-icon">
+                          <input type="text"  [(ngModel)]="item.tipoDanoPT" #tipoDanoPT="ngModel" id="tipoDanoPT" required  name="tipoDanoPT" placeholder="Tipo de dano em português" class="gui-input">
+                          <b class="tooltip tip-right-top">
+                            <em> Tipo de dano em português.</em>
+                          </b>
+                          <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                        </label>
+                        <!--
+                        <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                           Se necesita un nombre de empleado
+                        </div>
+                      -->
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <!-- Input Icons-->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="section">
+                        <label class="field select">
+                          <select class="form-control" name="clasifiacion" id="clasificacion" required [(ngModel)]="item.clasificacionEquipo" #clsificacionEquipo="ngModel" >
+
+                            <option >Clasificacion de Equipo</option>
+                            <option *ngFor="let item2 of items | async" [value] ="item2.nombre" > {{item2.nombre}}</option>
+                            </select><i class="arrow"></i>
+                      </label>
+
+                      </div>
+                  </div>
+
+
+
+
+                  </div>
+
+                 
+                  <!-- Multi Selects-->
+
+
+
+                  <!-- .section-divider-->
+                  <!-- tooltips-->
+
+
+
+
+
+                  <div class="panel-footer ">
+                    <button type="button" class="btn btn-success" (click)="crearItem()">Salvar</button>
 
                     <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
                   </div>

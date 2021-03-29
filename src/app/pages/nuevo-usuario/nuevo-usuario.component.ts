@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-nuevo-usuario',
@@ -51,7 +52,8 @@ export class NuevoUsuarioComponent implements OnInit {
     fechaEdicion:0,
     estado: 1
   }
-  constructor(private sharedService: SharedService, private afs: AngularFirestore, public auth: AngularFireAuth) { }
+  constructor(private sharedService: SharedService, private afs: AngularFirestore,
+              public back: BackendService, public auth: AngularFireAuth) { }
 
   ngOnInit() {
   }

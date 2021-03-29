@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BackendService } from '../../services/backend.service';
 
 export interface Shirt { name: string; price: number; }
 export interface ShirtId extends Shirt { id: string; }
@@ -20,7 +21,7 @@ export class ClientesComponent implements OnInit {
   itemEliminar = '';
   nombreClienteEliminar = '';
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, public back: BackendService) {
     this.getInfo();
 
    }
@@ -68,7 +69,12 @@ export class ClientesComponent implements OnInit {
             return 'Chile';
             break;
             case 'CO':
-              return 'Colombia';
+              if ( this.back.lang === 'es') {
+                return 'Colombia';
+              }
+              if ( this.back.lang === 'pt') {
+                return 'Colómbia';
+              }
               break;
               case 'PA':
                 return 'Panamá';

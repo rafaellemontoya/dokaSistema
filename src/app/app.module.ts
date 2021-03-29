@@ -6,6 +6,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NuevoUsuarioComponent } from './pages/nuevo-usuario/nuevo-usuario.component';
 import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.component';
@@ -98,6 +99,7 @@ const routes: Routes = [];
     AngularFireAuthModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
     RouterModule.forRoot(routes, { useHash: true })

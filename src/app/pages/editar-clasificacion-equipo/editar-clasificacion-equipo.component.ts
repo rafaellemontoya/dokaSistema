@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { BackendService } from '../../services/backend.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class EditarClasificacionEquipoComponent implements OnInit {
   idRecibido = '';
   private itemDoc: AngularFirestoreDocument<ClasificacionEquipo>;
   itemRecibido: Observable<ClasificacionEquipo>;
-  itemC: ClasificacionEquipo = {
+  itemClasificacion: ClasificacionEquipo = {
     key: '',
     nombre: '',
     manual: '',
@@ -39,10 +40,11 @@ export class EditarClasificacionEquipoComponent implements OnInit {
     fechaEdicion: 0,
     nombreBusqueda:'',
     estado: 0,
+    nombrePT: ''
 
     };
 
-  constructor(private sharedService: SharedService,
+  constructor(private sharedService: SharedService, public back: BackendService,
               private route: ActivatedRoute, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
   ngOnInit() {
@@ -60,7 +62,7 @@ export class EditarClasificacionEquipoComponent implements OnInit {
     this.itemDoc = this.afs.doc<ClasificacionEquipo>('equipmentType/' + idRecibido);
     this.itemDoc.valueChanges().subscribe(data => {
       console.log(data);
-      this.itemC = data;
+      this.itemClasificacion = data;
     });
 
 
@@ -70,13 +72,13 @@ export class EditarClasificacionEquipoComponent implements OnInit {
 
 
   crearItem() {
-    console.log(this.itemC);
-    this.itemC.pais = 'MX';
+    console.log(this.itemClasificacion);
+    this.itemClasificacion.pais = 'MX';
 
-    this.itemC.fechaEdicion = new Date().getTime();
-    this.itemC.nombreBusqueda = this.sharedService.corregirCaracteres(this.itemC.nombre);
+    this.itemClasificacion.fechaEdicion = new Date().getTime();
+    this.itemClasificacion.nombreBusqueda = this.sharedService.corregirCaracteres(this.itemClasificacion.nombre);
     this.itemDoc = this.afs.doc<ClasificacionEquipo>('equipmentType/' + this.idRecibido);
-    this.itemDoc.update(this.itemC);
+    this.itemDoc.update(this.itemClasificacion);
     this.submitted = true;
 
     window.scrollTo(0, 0);

@@ -2,7 +2,7 @@
   <!--[hidden]="!empleadoActual.permisos.empleados"-->
  
    <!-- Start: Content-Wrapper-->
-   <section id="content_wrapper">
+   <section  *ngIf="back.lang == 'es'" id="content_wrapper">
        <!-- Start: Topbar-Dropdown-->
  
        <!-- Start: Topbar-->
@@ -342,6 +342,366 @@
  
        </section>
      </section>
+
+     <section  *ngIf="back.lang == 'pt'" id="content_wrapper">
+      <!-- Start: Topbar-Dropdown-->
+
+      <!-- Start: Topbar-->
+      <header id="topbar" class="alt">
+        <div class="topbar-left">
+          <ol class="breadcrumb">
+
+            <li class="crumb-icon"><a routerLink="/inicio"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="crumb-link"><a routerLink="/empleados">Usuários</a></li>
+            <li class="crumb-trail">Editar Usuário
+</li>
+          </ol>
+        </div>
+
+      </header>
+      <!-- Begin: Content-->
+      <section id="content" class="table-layout animated fadeIn">
+        <!-- begin: .tray-center-->
+        <div class="tray tray-center">
+          <div class="mw1000 center-block">
+            <!-- Begin: Content Header-->
+            <div class="content-header">
+              <h2> <b style="color:#004A8E;">Editar Usuário
+</b>
+              </h2>
+              <p class="lead">Preencher formulário para adicionar o usuário</p>
+            </div>
+
+
+
+            <!-- Begin: Admin Form-->
+            <div class="admin-form">
+              <div  class="panel heading-border">
+                <!-- Panel guardado-->
+                <div [hidden]="!submitted" class="panel-body bg-light animated fadeIn">
+
+
+                <div class="alert alert-success alert-dismissable mb30" style="background: rgb(3, 151, 102)">
+                    <!-- <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button> -->
+                    <h3 class="mt5">Usuário salvo com sucesso!
+                      !</h3>
+                    <p>Usuário salvo com sucesso!
+                      .</p><br>
+                    <div class="element-groups-sm-custom"><a routerLink="/usuarios" class="btn btn-default">Continuar</a><button type="button" (click)="submitted=false; " class="btn btn-default">Novo usúario</button></div>
+                  </div>
+
+
+                </div>
+                <!-- Panel formulario-->
+                <div [hidden]="submitted" class="panel-body bg-light">
+                  <form (ngSubmit)="crearItem()" (keydown.enter)="$event.preventDefault()">
+                    <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Informações gerais
+                    </span></div>
+                    <!-- .section-divider-->
+                    <!-- Basic Inputs-->
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input id="tooltip1" type="text" [(ngModel)]="item.nombre" #nombre="ngModel" name="tooltip1"  id="nombre" required  name="nombre" placeholder="Nome" class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Nome.</em>
+                            </b>
+                            <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+
+                          <div [hidden]="nombre.valid || nombre.pristine" class="alert alert-danger">
+                             Se necesita un nombre de empleado
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input  type="text" [(ngModel)]="item.puesto" #puesto="ngModel"  id="puesto" required  name="puesto" placeholder="Ocupação" class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Ocupação.</em>
+                            </b>
+                            <label for="puesto" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+                          <div [hidden]="puesto.valid || puesto.pristine" class="alert alert-danger">
+                             Se necesita un puesto
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- Input Icons-->
+                    <div class="row">
+                      <div class="col-md-4">
+                          <div class="section">
+                              <label class="field prepend-icon">
+                                <input type="usuario" [(ngModel)]="item.usuario" #usuario="ngModel"  id="usuario" required name="usuario" placeholder="Usuário" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Usuário.</em>
+                                </b>
+                                <label for="usuario" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="section">
+                              <label class="field prepend-icon">
+                                <input type="password" [(ngModel)]="item.password" #password="ngModel"  id="password" required  name="password"  placeholder="Senha" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em> Senha.</em>
+                                </b>
+                                <label for="password" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="section">
+                              <label class="field prepend-icon">
+                                <input type="text"  [(ngModel)]="item.seccion" #seccion="ngModel" id="seccion"   name="seccion"  placeholder="Departamento" class="gui-input">
+                                <b class="tooltip tip-right-top">
+                                  <em>Departamento</em>
+                                </b>
+                                <label for="seccion" class="field-icon"><i class="fa fa-flag"></i></label>
+                              </label>
+
+                          </div>
+                      </div>
+
+                    </div>
+
+                    <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Correio eletrônico
+                    </span></div>
+                    <!-- Multi Selects-->
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input  type="email" [(ngModel)]="item.email" #email="ngModel"  id="email" required name="email" placeholder="Correio eletrônico
+" class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em> Correio eletrônico
+.</em>
+                            </b>
+                            <label for="tooltip1" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+
+                          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                            Se necesita un correo de empleado
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="section">
+                          <label class="field prepend-icon">
+                            <input type="password" [(ngModel)]="item.passwordEmail" #passwordEmail="ngModel" id="passwordEmail" required name="passwordEmail"
+                              placeholder="Senha do correio
+" class="gui-input">
+                            <b class="tooltip tip-right-top">
+                              <em>Senha do correio
+.</em>
+                            </b>
+                            <label for="passwordEmail" class="field-icon"><i class="fa fa-flag"></i></label>
+                          </label>
+                          <div [hidden]="passwordEmail.valid || passwordEmail.pristine" class="alert alert-danger">
+                            Se necesita una contraseña del correo
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div id="spy1" class="section-divider mb40"><span style="color:#004A8E;">Pais</span></div>
+                    <!-- Multi Selects-->
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="section">
+                          <label class="field select">
+                            <select  [(ngModel)]="item.pais" #pais="ngModel" class="form-control" id="pais" required name="pais" >
+
+                              <option value='MX' >México</option>
+                              <option value='BR'>Brasil</option>
+                              <option value='CH'>Chile</option>
+                              <option value='CO'>Colombia</option>
+                              <option value='PA'>Panamá</option>
+                              <option value='PE'>Perú</option>
+                              </select><i class="arrow"></i>
+                        </label>
+
+                        </div>
+                      </div>
+                      
+
+                    </div>
+
+
+                    <div id="spy2" class="section-divider mv40"><span style="color:#004A8E;">Permissões administrativos de sistema web
+                    </span></div>
+                    <!-- .section-divider-->
+                    <!-- tooltips-->
+                    <div class="row">
+                      <div class="col-md-2 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input id="clasificacionEquipo"  [(ngModel)]="item.permisos.clasificacionEquipo" #permisos.clasificacionEquipo="ngModel" type="checkbox" name="clasificacionEquipo">
+                          <label for="clasificacionEquipo">Classificação de equipamento 
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-2 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input id="clientes" [(ngModel)]="item.permisos.clientes" #permisos.clientes="ngModel" type="checkbox" name="clientes">
+                          <label for="clientes">Clientes</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input [(ngModel)]="item.permisos.materiales" #permisos.materiales="ngModel" id="materiales" type="checkbox"
+                          name="materiales">
+                          <label for="materiales">Materias</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                           <input  [(ngModel)]="item.permisos.damage" #permisos.damage="ngModel" id="damage" type="checkbox" name="damage">
+                              <label for="damage">Tipos de dano</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input [(ngModel)]="item.permisos.proyectos" #permisos.proyectos="ngModel" id="proyectos" type="checkbox" name="proyectos">
+                          <label for="proyectos">Projetos</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input [(ngModel)]="item.permisos.usuarios" #permisos.usuarios="ngModel" id="usuarios" type="checkbox" name="usuarios">
+                          <label for="usuarios">Usúarios</label>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div id="spy2" class="section-divider mv40"><span style="color:#004A8E;">Permissões de reportes de sistema web
+                    </span></div>
+                    <!-- .section-divider-->
+                    <!-- tooltips-->
+                    <div class="row">
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input id="reporteEquipoDamageWeb"  [(ngModel)]="item.permisos.reporteEquipoDamageWeb" #permisos.reporteEquipoDamageWeb="ngModel" type="checkbox" name="reporteEquipoDamageWeb">
+                          <label for="reporteEquipoDamageWeb">Relatórios de material danificado
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input id="reporteDevolucionesWeb" [(ngModel)]="item.permisos.reporteDevolucionesWeb" #permisos.reporteDevolucionesWeb="ngModel" type="checkbox" name="reporteDevolucionesWeb">
+                          <label for="reporteDevolucionesWeb">Relatórios de devolução
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input [(ngModel)]="item.permisos.reporteEnvioWeb" #permisos.reporteEnvioWeb="ngModel" id="reporteEnvioWeb" type="checkbox"
+                          name="reporteEnvioWeb">
+                          <label for="reporteEnvioWeb">Relatórios de envios 
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input [(ngModel)]="item.permisos.reportesObraWeb" #permisos.reportesObraWeb="ngModel" id="reportesObraWeb" type="checkbox"
+                          name="reportesObraWeb">
+                          <label for="reportesObraWeb">Relatórios de obra
+                          </label>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div id="spy2" class="section-divider mv40"><span style="color:#004A8E;">Permissões de reportes do app móvel
+                    </span></div>
+                    <!-- .section-divider-->
+                    <!-- tooltips-->
+                    <div class="row">
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input id="reporteEquipoDamageApp"  [(ngModel)]="item.permisos.reporteEquipoDamageApp" #permisos.reporteEquipoDamageApp="ngModel" type="checkbox" name="reporteEquipoDamageApp">
+                          <label for="reporteEquipoDamageApp">Relatórios de material danificado</label>
+                        </div>
+                      </div>
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input id="reporteDevolucionesApp" [(ngModel)]="item.permisos.reporteDevolucionesApp" #permisos.reporteDevolucionesApp="ngModel" type="checkbox" name="reporteDevolucionesApp">
+                          <label for="reporteDevolucionesApp">Relatórios de devolução</label>
+                        </div>
+                      </div>
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input [(ngModel)]="item.permisos.reporteEnvioApp" #permisos.reporteEnvioApp="ngModel" id="reporteEnvioApp" type="checkbox"
+                          name="reporteEnvioApp">
+                          <label for="reporteEnvioApp">Relatórios de envios </label>
+                        </div>
+                      </div>
+                      <div class="col-md-3 ">
+                        <div class="checkbox-custom fill checkbox-success mb5">
+                          <input [(ngModel)]="item.permisos.reportesObraApp" #permisos.reportesObraApp="ngModel" id="reportesObraApp" type="checkbox"
+                          name="reportesObraApp">
+                          <label for="reportesObraApp">Relatórios de obra</label>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div id="spy3" class="section-divider mv40"><span style="color:#004A8E;">Foto (opcional)</span></div>
+                    <div [hidden]="!imgError">
+                      <h2>{{mensajeErrorImg}}</h2>
+
+                    </div>
+                    <!-- .section-divider-->
+                    <!-- File Uploaders-->
+
+                    <!-- imagen 1 -->
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="section">
+                            <label class="field prepend-icon append-button file"><span class="button btn-primary">Selecionar</span>
+                              <input id="file1" type="file"  name="file1" (change)="getFile($event) " onchange="document.getElementById('up1').value = this.value;" class="gui-file">
+                              <input id="up1"  type="text" placeholder="Foto empregado
+                              " class="gui-input">
+                              <label class="field-icon"><i class="fa fa-upload"></i></label>
+                            </label>
+
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+
+                    <div class="panel-footer ">
+                      <button type="button" class="btn btn-success" (click)="crearItem()">Salvar</button>
+
+                      <a (click)="cancel()" class="btn btn-danger" style="margin-left: 20px;" >Cancelar</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- begin: .tray-right-->
+
+      </section>
+    </section>
      </div>
  
  
